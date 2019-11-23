@@ -250,6 +250,18 @@ $ git remote set-url origin https://username@github.com/hoge/abc.git
 
 push しようとしてるブランチが GitLab で protected branch になっているとコレが出るね。普通は master を protected にしてあり、 push するのは dev なので起こらない。 setting から unprotected を行えば OK。
 
+### 27. 最強のオプション filter-branch
+
+コミット者の変更。
+
+```bash
+git filter-branch -f --env-filter "
+    GIT_AUTHOR_NAME='sample';
+    GIT_AUTHOR_EMAIL='sample@gmail.com';
+    GIT_COMMITTER_NAME='sample';
+    GIT_COMMITTER_EMAIL='sample@gmail.com';
+    " HEAD 
+```
 
 ***
 
