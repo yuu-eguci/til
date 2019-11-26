@@ -246,6 +246,13 @@ git config user.email midori.mate@gmail.com
 $ git remote set-url origin https://username@github.com/hoge/abc.git
 ```
 
+あまりにも使うのでショートカットにした。意味あるかな……
+
+```bash
+# denied = !"f() { git remote set-url origin https://$1@github.com/$1/$2.git }
+git denied yuu-eguci work-notes
+```
+
 ### 26. GitLab: You are not allowed to force push code to a protected branch on this project が出たとき
 
 push しようとしてるブランチが GitLab で protected branch になっているとコレが出るね。普通は master を protected にしてあり、 push するのは dev なので起こらない。 setting から unprotected を行えば OK。
