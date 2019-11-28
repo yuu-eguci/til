@@ -10,6 +10,12 @@ git config user.email midori.mate@gmail.com
 [user]
     name = midori-mate
     email = midori.mate@gmail.com
+
+git config user.name yuu-eguci
+git config user.email yuu.eguci@gmail.com
+[user]
+    name = yuu-eguci
+    email = yuu.eguci@gmail.com
 ```
 
 
