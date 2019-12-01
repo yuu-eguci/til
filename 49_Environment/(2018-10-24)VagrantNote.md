@@ -213,3 +213,13 @@ Vagrant が起動している状態で .vagrant を移動しちゃったら halt
 
 - https://ato-u-ma.com/1471.html
 
+## This system supports the C.UTF-8 locale which is recommended.
+
+```plaintext
+This system supports the C.UTF-8 locale which is recommended.
+You might be able to resolve your issue by exporting the following environment variables
+    export LC_ALL=C.UTF-8
+    export LANG=C.UTF-8
+```
+
+printenv で調べると LC_ALL は無くて LANG は en_US.UTF-8 だった。 provision.sh に2行追加すると解決した。基本的に Ubuntu 使うときの provision.sh にはこれを入れたほうがいいんかな?
