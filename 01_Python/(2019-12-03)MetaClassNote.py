@@ -1,6 +1,6 @@
 """MetaClassNote
 
-- サブクラスの検証
+- メタクラスを使ってサブクラスの検証を行う
 """
 
 
@@ -12,7 +12,7 @@ class Meta(type):
     def __new__(meta, name, bases, class_dict):
         # meta: self みたいなもん <class '__main__.Meta'>
         # name: これが metaclass として設定されているクラスの名前 MyClass
-        # bases: 継承関係にあるクラス type が格納されている ()
+        # bases: 継承関係にあるクラスが格納されている。 object を省略すると空タプルになる。
         # class_dict: {'__module__': '__main__', '__qualname__': 'MyClass', 'stuff': 123, 'foo': <function MyClass.foo at 0x000001BAA6EA3598>}
 
         print(meta, name, bases, class_dict)
@@ -23,6 +23,7 @@ class Meta(type):
             if not (0 <= class_dict['stuff'] <= 100):
                 raise ValueError('0～100にしてくれ')
 
+        # ここでクラスを実際に生成している。
         return type.__new__(meta, name, bases, class_dict)
 
 
