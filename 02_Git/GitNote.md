@@ -207,10 +207,9 @@ git config user.email yuu.eguci@gmail.com
     ・ディレクトリがファイルとして認識されてるのが原因らしい。ひとまず消して、まだ足せばOK。
 
 ### 20. Commit の日付を変更したい
+    ・詳細は commit-hacker リポジトリ参照
     ・ 直前のやつしか今のとこできない。
-    $ git rebase -i HEAD~1
     $ git commit --amend --date="Wed Feb 07 00:00:00 2018 +0900"  # 日付は適当に作って。
-    $ git rebase --continue
     $ git rebase HEAD~1 --committer-date-is-author-date
     $ git log --pretty=fuller  # 変わっていること確認したいとき。
 
