@@ -27,6 +27,7 @@ $ wget -r -np {URL}
     # r = recursive, np = no parent
 
 $ sudo tail -f "ファイルパス"
+$ source ~/.bash_profile
 ```
 
 
