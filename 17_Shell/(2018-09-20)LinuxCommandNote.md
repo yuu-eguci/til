@@ -22,7 +22,7 @@ $ chmod 777 ""
 $ chmod +x ""
 $ rm ""
 $ rm -rf "" (ディレクトリを再帰的に消す場合。rmは複数可能)
-$ ln -s "ターゲット" "シンボ名"
+$ ln -sf "ターゲット(絶対パス)" "シンボ名"
 $ wget -r -np {URL}
     # r = recursive, np = no parent
 
@@ -42,4 +42,11 @@ curl -i -b cookie -X PUT http://localhost:1337/api/v1/timecard -H "Content-type:
 # -b --cookie  : クッキーを利用
 # -X --request : HTTP メソッド
 # -H --header  : ヘッダ情報付与
+```
+
+
+## 出力結果を変数に格納
+
+```bash
+VAR=`pwd`
 ```
