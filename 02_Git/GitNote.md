@@ -207,11 +207,20 @@ git config user.email yuu.eguci@gmail.com
     ・ディレクトリがファイルとして認識されてるのが原因らしい。ひとまず消して、まだ足せばOK。
 
 ### 20. Commit の日付を変更したい
-    ・詳細は commit-hacker リポジトリ参照
-    ・ 直前のやつしか今のとこできない。
-    $ git commit --amend --date="Wed Feb 07 00:00:00 2018 +0900"  # 日付は適当に作って。
-    $ git rebase HEAD~1 --committer-date-is-author-date
-    $ git log --pretty=fuller  # 変わっていること確認したいとき。
+
+最新コミットの日付を完全に捏造する。これ、ときおり使うから alias にしておこうかな。
+
+```bash
+# AuthorDate を変更。これ、年月日と時刻さえ設定すれば曜日は勝手に調整されるように思う。
+git commit --amend --no-edit --date="Sat Dec 14 10:00:00 2019 +0900"
+
+# CommitDate を変更。
+git rebase HEAD~1 --committer-date-is-author-date
+
+# 変更されたことを確認。
+echo '## Check latest commmit date.'
+git log --pretty=fuller -1
+```
 
 ### 21. windows10 cmdで日本語が文字化けする
     $ git config --global core.pager "LESSCHARSET=utf-8 less"
