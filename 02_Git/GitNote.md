@@ -284,6 +284,25 @@ git filter-branch -f --env-filter "
     " HEAD 
 ```
 
+### 28. Mac と Win で .gitconfig の設定を変えたい
+
+```gitconfig
+# .gitconfig
+
+[core]
+    editor = subl -w
+
+[include]
+    path = .gitconfig.local
+```
+
+```gitconfig
+# .gitconfig.local
+
+[core]
+    editor = "'c:/program files/sublime text 3/subl.exe' -w"
+```
+
 ***
 
 ## これを書いてる頃にはもう出会わないんだけど昔のエラーノート
