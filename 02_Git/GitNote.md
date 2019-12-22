@@ -5,19 +5,28 @@ GitNote
 2015 年のエンジニアに Git は欠かせない。
 
 ```
-git config user.name midori-mate
-git config user.email midori.mate@gmail.com
-[user]
-    name = midori-mate
-    email = midori.mate@gmail.com
-
-git config user.name yuu-eguci
-git config user.email yuu.eguci@gmail.com
 [user]
     name = yuu-eguci
     email = yuu.eguci@gmail.com
 ```
 
+## このノートを開くとき見たいもの
+
+```bash
+# user 変更
+git config user.name yuu-eguci
+git config user.email yuu.eguci@gmail.com
+
+# remote url にユーザ名追加
+git remote set-url origin https://yuu-eguci@github.com/yuu-eguci/repo.git
+
+# AuthorDate を変更。これ、年月日と時刻さえ設定すれば曜日は勝手に調整されるように思う。
+git commit --amend --no-edit --date="Sat Dec 14 10:00:00 2019 +0900"
+# CommitDate を変更。
+git rebase HEAD~1 --committer-date-is-author-date
+# 変更されたことを確認。
+git log --pretty=fuller -1
+```
 
 ## 設定編
 
