@@ -109,3 +109,14 @@ openssl x509
 openssl rsa
 # 情報未発見。↑ openssl x509 のオプションと同じ感じか?
 ```
+
+## 秘密鍵と公開鍵で暗号化復号化
+
+```bash
+echo "HELLO" | openssl rsautl -encrypt -pubin -inkey public-key.pem > message
+cat message | openssl rsautl -decrypt -inkey private-key.pem
+
+# これは RSA だから(?)逆も可能。
+echo "HELLO" | openssl rsautl -encrypt -pubin -inkey private-key.pem > message
+cat message | openssl rsautl -decrypt -inkey public-key.pem
+```
