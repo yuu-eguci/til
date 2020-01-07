@@ -187,3 +187,8 @@ Command palette > configure language specific settings > 言語を選択
 ## Markdown preview
 
 コマンドパレットで `markdown`。
+
+
+## HTML を編集するとき勝手に終了タグにマルチカーソルがつく
+
+`Mirror Cursor On Matching Tag` のチェックを外す。
