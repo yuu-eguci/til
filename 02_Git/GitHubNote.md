@@ -17,6 +17,10 @@ $ which hub
 - [https://github.com/github/hub/releases](https://github.com/github/hub/releases)
 - ぱそこ再起動。
 
+### hub コマンドに紐づく GitHub アカウントを変更
+
+`~/.config/hub` ファイルを消せ。
+
 
 ## コマンドラインから PR する準備
 
