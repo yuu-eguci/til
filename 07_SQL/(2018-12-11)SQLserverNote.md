@@ -67,6 +67,21 @@ SELECT *
     OFFSET 10 ROWS FETCH NEXT 5 ROWS ONLY
 ```
 
+#### OFFSET FETCH を速くする方法
+
+```sql
+-- これを
+OFFSET 0 ROWS FETCH NEXT 20 ROWS ONLY
+
+-- こうする
+DECLARE @a int = 20;
+OFFSET 0 ROWS FETCH NEXT @a ROWS ONLY
+```
+
+参考: [大きいデータの時の OFFSET FETCH は定数でクエリ書いた方が有利そう？](https://odashinsuke.hatenablog.com/entry/2016/06/28/221732)
+
+**パラメータ化すると内部でソートの方法が変わる**のでそういうことになると言う。……が、意味がよくわからない。わかるときはくるだろうか。
+
 #### 02. SQL の中で変数使いたいんですけど
 
 `DECLARE` で宣言するときは型に注意しないとだめ。 `string` とかざっくりしたのは使えない。めんど。
