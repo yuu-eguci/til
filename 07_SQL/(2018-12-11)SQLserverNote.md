@@ -123,3 +123,7 @@ ORDER BY creation_time DESC -- 別になくてもいいけどね
 ```sql
 column_name bigint IDENTITY(1,1) NOT NULL
 ```
+
+## SSMS 絞り込んで編集する
+
+上位200行の編集 > 上メニューのクエリデザイナー > ペイン > SQL
