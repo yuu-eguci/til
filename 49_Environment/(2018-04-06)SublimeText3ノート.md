@@ -176,3 +176,11 @@ ln -s "path/to/Packages/User/Default (OSX).sublime-keymap" "path/to/Packages/Def
 
 https://packagecontrol.io/packages/Sync%20Settings
 
+## Unbind keys
+
+```json
+[
+    { "keys": ["f7"], "command": "unbound" }
+]
+```
+
