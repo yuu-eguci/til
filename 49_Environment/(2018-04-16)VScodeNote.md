@@ -155,7 +155,7 @@ usersettings > associations で検索 > settings.json を開く > 以下追記�
 
 ## とにかくショートカットキーを変えたい
 
-Command palette > Open Keyboard Shortcuts
+Command palette > `Open Keyboard Shortcuts`
 
 見やすい。これは**ショートカット名でもショートカットキーでも検索できる**最高のキーバインディング設定画面だ。
 
@@ -192,3 +192,9 @@ Command palette > configure language specific settings > 言語を選択
 ## HTML を編集するとき勝手に終了タグにマルチカーソルがつく
 
 `Mirror Cursor On Matching Tag` のチェックを外す。
+
+
+## 全体の拡大と縮小
+
+- `Open Keyboard Shortcuts` で `zoom` を見ればわかる。
+- デフォルトだとたぶん Command + - と Command + Shift + - かな。
