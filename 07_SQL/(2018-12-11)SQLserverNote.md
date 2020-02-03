@@ -127,3 +127,14 @@ column_name bigint IDENTITY(1,1) NOT NULL
 ## SSMS 絞り込んで編集する
 
 上位200行の編集 > 上メニューのクエリデザイナー > ペイン > SQL
+
+## 重複削除 最新
+
+```sql
+SELECT
+    id,
+    MAX(update_at) update_at
+FROM table
+WHERE id = 1214
+GROUP BY id
+```
