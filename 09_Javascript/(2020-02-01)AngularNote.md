@@ -28,7 +28,7 @@ ng add angular-cli-ghpages
 ng generate component COMPONENT
 ```
 
-## GitHub Pages で公開
+## GitHub Pages
 
 サブドメインの設定方法。 apex domain の場合は違う。
 
@@ -46,4 +46,22 @@ Apex domain の場合……やったことないけど。
 185.199.109.153
 185.199.110.153
 185.199.111.153
+```
+
+## Version
+
+```bash
+ng version
+```
+
+こういうのが見れる。
+
+```plaintext
+Angular CLI: 8.3.23
+Node: 12.13.1
+OS: darwin x64
+Angular: 8.2.14
+... animations, common, compiler, compiler-cli, core, forms
+... language-service, platform-browser, platform-browser-dynamic
+... router
 ```
