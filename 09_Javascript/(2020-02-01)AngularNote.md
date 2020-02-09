@@ -65,3 +65,11 @@ Angular: 8.2.14
 ... language-service, platform-browser, platform-browser-dynamic
 ... router
 ```
+
+## 構造ディレクティブ
+
+```html
+<div *ngFor="let i of this.x; let index=index; let first=first; let last=last; let even=even; let odd=odd"></div>
+
+<a *ngIf="this.x" class="btn post-category"></a>
+```
