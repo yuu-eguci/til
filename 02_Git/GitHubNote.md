@@ -122,6 +122,14 @@ https://get.slack.help/hc/ja/articles/232289568-GitHub-%E3%81%A8-Slack-%E3%82%92
 /github unsubscribe owner/repo
 ```
 
+### Could not find resource: owner/repo
+
+自分がそのリポジトリの権限を持っていることは当然として……
+↓コマンドで GitHub アカウントへのサインインをやり直せる。
+
+```
+/github signin
+```
 
 ## Organization と individual
 
