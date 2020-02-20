@@ -26,6 +26,9 @@ git commit --amend --no-edit --date="Sat Dec 14 10:00:00 2020 +0900"
 git rebase HEAD~1 --committer-date-is-author-date
 # 変更されたことを確認。
 git log --pretty=fuller -1
+
+# ↑のエイリアスを自作した。
+git_change_commit_date 2020-02-20
 ```
 
 ## 設定編
