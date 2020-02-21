@@ -177,3 +177,14 @@ GROUP BY id
 いろんなサイトで、データベース右クリック > タスク > バックアップを選択、といわれているが、ない。
 
 ![](media/issue.jpg)
+
+## 今日、 n 週間前、今日～ n 週間前
+
+```sql
+-- 今日
+GETDATE()
+-- 1週間前
+DATEADD(week, 1, GETDATE())
+-- 2週間前から今日
+date_field BETWEEN DATEADD(WEEK, -2, GETDATE()) AND GETDATE()
+```
