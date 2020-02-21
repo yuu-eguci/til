@@ -140,3 +140,18 @@ Organization private と individual private を同時に使うことになった
 | 外部のユーザを招く | 有料シート枠が必要 | 3人まで無料追加可能 |
 | PR の Draft 機能   | 使える             | 使えない            |
 |                    |                    |                     |
+
+## GitHub Desktop で unable to access エラー
+
+別の固定 IP で使っていたぱそこを他の Wifi で使っているとき、 GitHub Desktop が使えねえ。
+
+```plaintext
+fatal: unable to access 'https://github.com/yuu-eguci/work-notes.git': schannel: failed to receive handshake, SSL/TLS connection failed
+```
+
+`~/.gitconfig` にこれを足したら動いた。
+
+```plaintext
+[http]
+    sslbackend = openssl
+```
