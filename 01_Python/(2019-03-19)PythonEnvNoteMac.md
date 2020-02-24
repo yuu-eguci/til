@@ -22,6 +22,17 @@ pyenv virtualenv VERSION NEW_NAME
 pip install --upgrade pip
 ```
 
+## pyenv だけ使いたいとき
+
+(2020-02-24)細かい仮想環境分けは pipenv のほうが便利ということで、 pyenv-virtualenv は要らない。
+
+```bash
+brew install pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+eval "$(pyenv init -)"
+```
+
+これだけで↑のコマンド使えるようになった。
 
 ## 何ができる?
 
