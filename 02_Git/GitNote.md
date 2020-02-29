@@ -28,7 +28,7 @@ git rebase HEAD~1 --committer-date-is-author-date
 git log --pretty=fuller -1
 
 # ↑のエイリアスを自作した。
-git_change_commit_date 2020-02-20
+git_ccd "2020-02-20 12:00"
 ```
 
 ## 設定編
