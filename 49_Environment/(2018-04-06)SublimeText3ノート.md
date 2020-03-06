@@ -70,6 +70,16 @@ C#.sublime-build
 }
 ```
 
+(2020-03-06)↑これでは動かなくなった。↓こうすること。参考 issue: [extensions error, ImportError: No module named 'tables' #138](https://github.com/timonwong/OmniMarkupPreviewer/issues/138)
+
+```json
+{
+    "renderer_options-MarkdownRenderer": {
+        "extensions": ["markdown.extensions.tables", "markdown.extensions.fenced_code", "markdown.extensions.codehilite"]
+    }
+}
+```
+
 #### 03. Mac キーバインディングの設定
 
 ・ キーバインドファイルをここにコピー。
