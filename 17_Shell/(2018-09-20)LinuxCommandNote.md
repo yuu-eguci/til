@@ -44,6 +44,7 @@ curl -i -b cookie -X PUT http://localhost:1337/api/v1/timecard -H "Content-type:
 # -H --header  : ヘッダ情報付与
 ```
 
+- curl コマンドを python に変換: https://curl.trillworks.com/
 
 ## 出力結果を変数に格納
 
