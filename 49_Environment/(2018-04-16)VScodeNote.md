@@ -198,3 +198,39 @@ Command palette > configure language specific settings > 言語を選択
 
 - `Open Keyboard Shortcuts` で `zoom` を見ればわかる。
 - デフォルトだとたぶん Command + - と Command + Shift + - かな。
+
+
+## Python の linter と formatter を導入
+
+拡張機能
+
+- Python
+- autoDocstring
+
+```bash
+pip install flake8 autopep8
+```
+
+Command + , > associations > Edit in settings.json
+
+```json
+"python.linting.pylintEnabled": false,  // 標準の pylint をオフ。
+"python.linting.flake8Enabled": true,  // PEP8 の linting をオン。
+"files.autoSave": "afterDelay",  // ファイル自動保存。
+"files.autoSaveDelay": 1000,  // 1秒ごとに自動保存。
+"python.linting.lintOnSave": true,  // 保存後に linting。
+"python.linting.flake8Args": [
+    // PEP8 エラーコード一覧。
+    // https://pep8.readthedocs.io/en/latest/intro.html
+    "--ignore=",
+    // 行の長さ。
+    "--max-line-length=80",
+    // 循環的複雑度。
+    "--max-complexity=20"
+],
+"python.formatting.provider": "autopep8",
+"python.formatting.autopep8Args": [
+    "--aggressive",
+    "--aggressive",
+],
+```
