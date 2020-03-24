@@ -20,15 +20,15 @@ git config user.email yuu.eguci@gmail.com
 # remote url にユーザ名追加
 git remote set-url origin https://yuu-eguci@github.com/yuu-eguci/repo.git
 
-# AuthorDate を変更。これ、年月日と時刻さえ設定すれば曜日は勝手に調整されるように思う。
+# ↓のエイリアスを自作した。
+git_ccd "2020-02-20 19:00"
+
+# AuthorDate を変更。
 git commit --amend --no-edit --date="Sat Dec 14 10:00:00 2020 +0900"
 # CommitDate を変更。
 git rebase HEAD~1 --committer-date-is-author-date
 # 変更されたことを確認。
 git log --pretty=fuller -1
-
-# ↑のエイリアスを自作した。
-git_ccd "2020-02-20 12:00"
 ```
 
 ## 設定編
