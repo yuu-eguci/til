@@ -1,6 +1,43 @@
 Vue-cli Note
 ===
 
+なんで Vue なんて名前にしたんですかね。(View と聞き間違えながら)
+
+## (2019-05-22)VueNote のメモ
+
+> なんで Vue なんて名前にしたんですかね。(View と聞き間違えながら)
+
+当時と感想変わらなくてワロタ。
+
+### 始めてから一週間の奴が Vue について概説する
+
+何もしらん一週間前のぼくに説明するなら……。
+
+お、いまのぼくがどう感じるか見てみよう。
+
+- HTML を分割して親ファイルと子ファイル(今のとこ親 vue 子 vue って呼んでる)に分ける作りだよ。
+- 親 vue から子 vue を include する感じ。
+    - 親 vue の中で `<子VUEの名前></子VUEの名前>` こんなふうに書くと include になる。
+    - 子 vue の名前は子 vue の中で `parasails.registerComponent('子VUEの名前', ...` みたいに書いて登録する。
+- 各 vue は変数を持てる。 data とか prop がある。
+- prop は親から引き継ぐやつ。よって一番トップの親 vue にはない。
+- data は各 vue 固有のやつ。 prop と同じ名前にしないこと。
+- 変数は親子間でリアクティブに変更を受け取り合うことができる。
+
+わかりやすいと思った例は「検索バーに打ち込まれるたびにテーブルの行を絞り込んでリアクティブに検索結果を表示」。
+
+```plaintext
+# 親子 vue 関係
+- 親 vue  
+  data: 検索ワード
+    - 子 vue 検索バー  
+      prop: 検索ワード  
+      常に入力テキストを watch して検索ワードの変数に入れる。親経由で行の vue へ渡す
+    - 子 vue テーブルの行  
+      prop: 検索ワード  
+      親から回ってきた検索ワードを使って絞り込んで表示する。
+```
+
 ## 導入
 
 ```bash
@@ -11,9 +48,22 @@ vue create PROJECT_NAME
 npx @vue/cli create PROJECT_NAME
 ```
 
+## バージョン確認
+
+```bash
+# npm
+npm --version
+
+# vue-cli
+vue --version
+
+# vue 自体
+npm list vue
+```
+
 ## BootstrapVue
 
-- https://bootstrap-vue.js.org/docs
+- [https://bootstrap-vue.js.org/docs](https://bootstrap-vue.js.org/docs)
 
 ```bash
 yarn add vue bootstrap-vue bootstrap
@@ -115,7 +165,7 @@ export default {
 
 ## @fortawesome/vue-fontawesome
 
-- https://www.npmjs.com/package/@fortawesome/vue-fontawesome
+- [https://www.npmjs.com/package/@fortawesome/vue-fontawesome](https://www.npmjs.com/package/@fortawesome/vue-fontawesome)
 
 ```bash
 yarn add @fortawesome/fontawesome-svg-core
@@ -224,4 +274,62 @@ export default class TopListGroupItem extends Vue {
   </div>
   <p class="mb-1" v-html="this.rawHtmlDescription"></p> <!-- HTML のサニタイズを妨害するやつ。 -->
 </b-list-group-item>
+```
+
+## i18n
+
+> The vue-cli-plugin-i18n that has been released on npm will be released as @intlify/vue-cli-plugin-i18n in near future.
+
+らしい。わくわくだね。ページごとに翻訳 json を用意するという記事もあるけどそれは kazupon/vue-cli-plugin-i18n ではなく kazupon/vue-i18n だから注意。
+
+```bash
+vue add i18n
+```
+
+```plaintext
+? The locale of project localization. en
+? The fallback locale of project localization. en
+? The directory where store localization messages of project. It's stored under `src` directory. locales
+? Enable locale messages in Single file components ? No  # ←何を意味するかわからない。
+```
+
+これだけで全体的に src が変わる。
+
+```json
+// メッセージの定義はこう。 ja.json en.json ro.json
+// 下に示すようにページごともできるらしい!
+{
+  "message": "やあ i18n !!",
+  "hello": "Hallo {name}!",
+  "wolves": "no wolf | one wolf | a pack of wolves",
+  "wolves2": "no wolf | one wolf | a pack of {n} wolves",
+  "wolves3": "no wolf | one wolf | a pack of {numberOfWolves} wolves",
+
+  // 構造化可能
+  "main-screen": {
+      "title": "Main screen",
+      "description": "This is the main screen..."
+  },
+  "about-screen": {
+      "title": "About screen",
+      "description": "That's what this is all about...."
+  },
+}
+```
+
+```html
+<!-- 使い方。シンプルな html -->
+<p>{{ $t('message') }}</p>
+<p>{{ $t('hello', { name: 'Vue.js'}) }}</p>
+
+<!-- 複数形 -->
+<p>{{ $tc('wolves', 1) }}</p>
+<p>{{ $tc('wolves2', 5) }}</p>
+<p>{{ $tc('wolves3', 5, {numberOfWolves: 5}) }}</p>
+
+<!-- 属性で使う -->
+<sub-component :title="$t('message')"></sub-component>
+
+<!-- 構造化したやつ使う -->
+<p>{{ $t('about-screen.title') }}</p>
 ```
