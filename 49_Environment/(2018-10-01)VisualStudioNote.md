@@ -163,3 +163,6 @@ Git上での変更点をエディタに表示。必須ってわけじゃない�
 ### Visual Studio Document Reopen
 
 閉じたタブを Ctrl+Shift+T で開く。デフォルトで無いなんて信じられない。
+
+
+## auto save
