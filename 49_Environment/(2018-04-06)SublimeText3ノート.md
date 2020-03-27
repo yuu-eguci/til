@@ -6,7 +6,7 @@ SublimeText3Note SublimeNote SublimeTextNote
 - 設定、パッケージ、ビルドシステムを Chrome のように常時同期できるようになったら。 -> sync settings で OK!
 - windows10 で日本語入力の小窓がインラインになったら。 -> 2019-03-14 OK!
 - windows10 タスクバー右クリックで新しいウィンドウを開けるようになったら。
-- windows10 現在開いているファイルをエクスプローラで開けるようになったら。
+- windows10 現在開いているファイルをエクスプローラで開けるようになったら。 -> project manager の中で開いていれば……という条件付きで可能。
 
 ## ショートカット
 
