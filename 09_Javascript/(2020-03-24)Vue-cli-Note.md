@@ -76,7 +76,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 ```
 
-### v-table
+### b-table
 
 - https://bootstrap-vue.js.org/docs/components/table
 
@@ -333,3 +333,19 @@ vue add i18n
 <!-- 構造化したやつ使う -->
 <p>{{ $t('about-screen.title') }}</p>
 ```
+
+## @
+
+tsconfig.json に `@` を定義しているところがあって、 src 直下のパスとして扱える。
+
+```json
+{
+"paths": {
+  "@/*": [
+    "src/*"
+  ]
+}
+```
+
+- `'@/views/Home.vue'`
+- `<img alt="Vue logo" src="@/assets/logo.png">`: template タグ内の img src にも使えるみたい。
