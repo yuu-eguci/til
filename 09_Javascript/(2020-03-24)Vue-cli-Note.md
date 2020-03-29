@@ -201,7 +201,7 @@ module.exports = {
   pages: {
     index: {
       entry: 'src/main.ts',
-      title: 'Taskal Time-Card',
+      title: 'たいとる',
     }
   }
 }
@@ -276,6 +276,57 @@ export default class TopListGroupItem extends Vue {
 </b-list-group-item>
 ```
 
+## vue-router のライフサイクル(って言っていいのかな?)
+
+1. `router.beforeEach`
+1. 親 route record の `beforeEnter`
+1. 子 route record の `beforeEnter`
+
+```javascript
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes: [
+    // これら各 route の object は route record と呼ばれる。(children 内のも同じく。)
+    {
+      // この親 route record が開かれたときに呼ばれる。各 child が開かれるときは呼ばれない。
+      // 各 child が開かれるときの処理は後述の beforeEach に書く。
+      beforeEnter: (to, from, next) => {
+        console.info('2. 親 route record の beforeEnter だよ')
+        next()
+      },
+      path: '/',
+      component: App,
+      children: [
+        // このひとつひとつも route record。
+        {
+          path: '',
+          name: 'Home',
+          component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
+          // この route record が開かれたときに呼ばれる。
+          beforeEnter: (to, from, next) => {
+            // これ、出ない。
+            console.info('3. 子 route record の beforeEnter だよ')
+            next()
+          },
+        },
+        {
+          path: 'about',
+          name: 'About',
+          component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+        },
+      ]
+    },
+  ],
+})
+
+router.beforeEach((to, from, next) => {
+  console.info('1. router.beforeEach だよ')
+  // next() を呼ばないといけない。
+  next()
+})
+```
+
 ## i18n
 
 > The vue-cli-plugin-i18n that has been released on npm will be released as @intlify/vue-cli-plugin-i18n in near future.
@@ -332,6 +383,76 @@ vue add i18n
 
 <!-- 構造化したやつ使う -->
 <p>{{ $t('about-screen.title') }}</p>
+```
+
+### URL で i18n
+
+1. 親 route record のパスを `/:locale` で設定。
+1. `router.beforeEach` で locale をもとに `i18n.locale` をセット。
+
+```javascript
+routes: [
+  {
+    // :locale 動的セグメントです。これをもとに beforeEach 内で i18n.locale をセットします。
+    path: '/:locale',
+    component: App,
+    children: [
+      {
+        path: '',
+        // ...
+      }
+    ]
+  }
+]
+
+router.beforeEach((to, from, next) => {
+  // URL の locale を i18n.locale にセットします。
+  if (['en', 'ja', 'ro'].includes(to.params.locale)) {
+    // OK.
+  } else {
+    return next('en')
+  }
+  i18n.locale = to.params.locale
+
+  // beforeEnter では next() を呼ばないといけない。
+  next()
+})
+```
+
+## 認証要求のページ
+
+1. 認証要求のページに `requiredAuth` を設定。
+1. `router.beforeEach` で認証確認。
+
+```javascript
+{
+  path: 'admin',
+  name: 'Admin',
+  component: () => import(/* webpackChunkName: "admin" */ '../views/Admin.vue'),
+  // Admin ページを表示するためには認証が必要であるとします。
+  meta: { requiredAuth: true },
+}
+
+router.beforeEach((to, from, next) => {
+  // meta: { requiredAuth: true } を指定した route のときこれが true になります。
+  if (to.matched.some(record => record.meta.requiredAuth)) {
+    // 今回はてきとうに、 GET クエリに auth=ok があったときとします。
+    if (to.query.auth === 'ok') {
+      // ok ならそのまま流して、 next() を実行します。
+      console.info('認証 ok')
+    } else {
+      // ng ならトップへ。
+      console.info('認証 ng')
+      next({
+        name: 'Home', query: { redirect: to.fullPath }
+      })
+      return
+    }
+  }
+
+  // beforeEnter では next() を呼ばないといけない。
+  next()
+})
 ```
 
 ## @
