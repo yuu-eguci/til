@@ -194,3 +194,11 @@ https://packagecontrol.io/packages/Sync%20Settings
 ]
 ```
 
+## auto save
+
+> まだ、COMMAND+Sとか押してんの？  
+>   
+> [Sublime Textの自動保存で、Cmd+Sから解放される方法](https://qiita.com/madaran0805/items/ba468ecb59f65618e46d)
+
+- Install auto-save
+- Key bindings に追加 `{ "keys": ["ctrl+shift+s"], "command": "auto_save" }`
