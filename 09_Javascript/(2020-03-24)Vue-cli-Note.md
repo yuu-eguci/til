@@ -455,6 +455,99 @@ router.beforeEach((to, from, next) => {
 })
 ```
 
+## Vuex
+
+書くこと多すぎるので ptf-vue 参照……でも大事なところをすこし記録。 TypeScript と JavaScript で違うので、参考記事が見つけづらい……。
+
+```typescript
+// types.ts
+export interface RootState {
+  version: string;
+}
+
+export interface I18nState {
+  locale: string;
+}
+```
+
+```typescript
+// index.ts
+import Vue from 'vue'
+import Vuex, { StoreOptions } from 'vuex';
+import { RootState } from './types';
+import { i18n } from '@/store/modules/i18n'
+import createPersistedState from 'vuex-persistedstate'
+
+Vue.use(Vuex)
+
+const store: StoreOptions<RootState> = {
+  state: {
+    version: '1.0.0',
+  },
+  modules: {
+    i18n,
+  },
+  plugins: [
+    createPersistedState({
+      storage: window.sessionStorage
+    })
+  ],
+}
+
+export default new Vuex.Store<RootState>(store)
+```
+
+```typescript
+// modules/i18n.ts
+import { Module, GetterTree, MutationTree, ActionTree } from 'vuex';
+import { I18nState, RootState } from '@/store/types';
+
+const state: I18nState = {
+  locale: 'en',
+}
+
+// GetterTree<I18nState, RootState> この部分よくわかってない。
+const getters: GetterTree<I18nState, RootState> = {
+  locale: (state: I18nState) => {
+    return state.locale
+  },
+}
+
+const mutations: MutationTree<I18nState> = {
+  set: (state: I18nState, newLocale: string) => {
+    state.locale = newLocale
+  },
+  remove: (state: I18nState) => {
+    state.locale = ''
+  },
+}
+
+const actions: ActionTree<I18nState, RootState> = {
+}
+
+export const i18n: Module<I18nState, RootState> = {
+  namespaced: true,
+  state,
+  getters,
+  mutations,
+  actions,
+}
+```
+
+```typescript
+// getters 経由で取得
+this.$store.getters['モジュール名/データ名']
+this.$store.getters['i18n/locale']
+
+// mutations 実行
+this.$store.commit('モジュール名/定義したメソッド名', '引数')
+this.$store.commit('i18n/locale', 'en')
+this.$store.commit('i18n/locale', this.$i18n.locale)
+
+// actions 実行
+this.$store.dispatch('increment')
+```
+
 ## @
 
 tsconfig.json に `@` を定義しているところがあって、 src 直下のパスとして扱える。
