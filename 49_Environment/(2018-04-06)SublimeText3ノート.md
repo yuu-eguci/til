@@ -174,12 +174,19 @@ Mac のほうはもともと `swap_line_up` `swap_line_down` があったので�
 
 HTMLPrettify
 
-#### Ctrl + k のカタカナが死んでる
+#### Ctrl+k のカタカナが死んでる
 
 これは適切なユーザキーバインドの設定で解決した。 **Default (OSX).sublime-keymap** は Default のフォルダに置かないとダメ。もしかしたら sync settings で同期されるのは User フォルダだけかもなので、シンボリックリンクを張る。
 
 ```bash
-ln -s "path/to/Packages/User/Default (OSX).sublime-keymap" "path/to/Packages/Default/Default (OSX).sublime-keymap"
+# Packages フォルダに移動してから。
+
+# Default
+ln -sf "(絶対パス必須)Default (OSX).sublime-keymap" "./Default/Default (OSX).sublime-keymap"
+ln -sf "/Users/username/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap" "./Default/Default (OSX).sublime-keymap"
+
+# Table Editor にも ctrl+k が使われている。
+ln -sf "/Users/username/Library/Application Support/Sublime Text 3/Packages/User/Default-TableEditor (OSX).sublime-keymap" "./Table Editor/Default (OSX).sublime-keymap"
 ```
 
 #### Sync Settings
