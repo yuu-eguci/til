@@ -28,6 +28,11 @@ $ wget -r -np {URL}
 
 $ sudo tail -f "ファイルパス"
 $ source ~/.bash_profile
+
+# このポートを占有してるプロセスを出す。
+lsof -i:1337
+# PID 指定で殺す。
+kill 20
 ```
 
 
