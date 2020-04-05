@@ -327,7 +327,7 @@ router.beforeEach((to, from, next) => {
 })
 ```
 
-## i18n
+## i18n(vue-cli-plugin-i18n)
 
 > The vue-cli-plugin-i18n that has been released on npm will be released as @intlify/vue-cli-plugin-i18n in near future.
 
