@@ -305,8 +305,8 @@ const router = new VueRouter({
           component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
           // この route record が開かれたときに呼ばれる。
           beforeEnter: (to, from, next) => {
-            // これ、出ない。
-            console.info('3. 子 route record の beforeEnter だよ')
+            // これ(debug)、出ない。
+            console.debug('3. 子 route record の beforeEnter だよ')
             next()
           },
         },
@@ -563,3 +563,32 @@ tsconfig.json に `@` を定義しているところがあって、 src 直下�
 
 - `'@/views/Home.vue'`
 - `<img alt="Vue logo" src="@/assets/logo.png">`: template タグ内の img src にも使えるみたい。
+
+## 環境変数
+
+環境変数ファイル
+
+- .env.local
+- .env.staging
+- .env.production
+
+中身
+
+```plaintext
+NODE_ENV='local'
+VUE_APP_API_BASE_URL='http://localhost:1337'
+```
+
+使うとき
+
+```javascript
+// eslint-disable-line @typescript-eslint/no-console
+console.info(process.env.VUE_APP_API_BASE_URL)
+```
+
+環境切り替え package.json
+
+```json
+"serve": "vue-cli-service serve --mode production",
+"build:local": "vue-cli-service build --mode local",
+```
