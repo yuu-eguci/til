@@ -21,6 +21,12 @@ SublimeText3Note SublimeNote SublimeTextNote
 | Opt(Alt) + - (てかこれは変えてる)         | カーソル位置を前の場所へ                             |
 | Opt(Alt) + Shift + - (てかこれは変えてる) | カーソル位置を前の場所へ                             |
 
+## フォント
+
+インストール方法は FontNote に書いてある。
+
+- Mac では Ricty
+- Win では Myrica M
 
 ## 場合別 tips
 
@@ -79,6 +85,10 @@ C#.sublime-build
     }
 }
 ```
+
+#### OmniMarkupPreviewer can't be reached
+
+(2020-04-14)うーん、なんか再起動したらできるようになったよ。 Windows defender とかいじってみたけどそっちは必要なかった。
 
 #### 03. Mac キーバインディングの設定
 
