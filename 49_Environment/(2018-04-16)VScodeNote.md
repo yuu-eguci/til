@@ -234,3 +234,12 @@ Command + , > associations > Edit in settings.json
     "--aggressive",
 ],
 ```
+
+## code コマンド
+
+コマンドパレットで Shell Command: Install 'code' command in PATH。
+
+```bash
+# 拡張を見る。
+code --list-extensions
+```
