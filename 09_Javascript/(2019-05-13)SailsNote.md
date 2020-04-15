@@ -1,12 +1,7 @@
 SailsNote
 ===
 
-
-
-## Problems
-
-
-#### layout.ejs 問題
+## layout.ejs 問題
 
 - ページごとに違う layout を使いたい。
 - ページごとに違う css を使いたい。
@@ -29,4 +24,26 @@ SailsNote
 
 ↓ こうして別途書く。
 <link rel="stylesheet" href="/styles/pages/login.css">
+```
+
+## intercept
+
+```javascript
+// helper からエラーを受け取る。
+const newKey = await sails.helpers.subscription.generate.with({
+  arg: 1,
+}).intercept('duplicateError', () => {
+  return 'duplicateError';
+});
+```
+
+## update は fetch できるが updateOne はできない
+
+```javascript
+// fetch しなくても fetch されてる。
+const row = await Table.updateOne({
+  arg: 1,
+}).set({
+  available: false,
+});
 ```
