@@ -548,7 +548,7 @@ this.$store.commit('i18n/locale', this.$i18n.locale)
 this.$store.dispatch('increment')
 ```
 
-## @
+## @ アットマーク
 
 tsconfig.json に `@` を定義しているところがあって、 src 直下のパスとして扱える。
 
