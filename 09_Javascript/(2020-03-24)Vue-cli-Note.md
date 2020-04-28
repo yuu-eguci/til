@@ -163,6 +163,8 @@ export default {
 </b-table>
 ```
 
+b-table の内容を更新するときは b-table に ref="mainTable" をつけて、 `this.$refs.mainTable.refresh();` する。
+
 ## @fortawesome/vue-fontawesome
 
 - [https://www.npmjs.com/package/@fortawesome/vue-fontawesome](https://www.npmjs.com/package/@fortawesome/vue-fontawesome)
