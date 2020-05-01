@@ -85,6 +85,7 @@ $ sequelize db:migrate:undo
 # 全部戻す。
 $ sequelize db:migrate:undo:all
 # 「このファイルまで」戻す。
+# NOTE: 指定したファイルの undo も行われる。これの1個前を実行した状態にします。
 $ sequelize db:migrate:undo:all --to 20190628070134-create-ModelName.js
 # 裏技
 # DB の SequelizeMeta を直接編集。
