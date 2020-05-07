@@ -594,3 +594,47 @@ console.info(process.env.VUE_APP_API_BASE_URL)
 "serve": "vue-cli-service serve --mode production",
 "build:local": "vue-cli-service build --mode local",
 ```
+
+## test:unit mixin
+
+package.json
+
+```json
+"test:unit": "vue-cli-service test:unit 'tests/**/*.spec.{j,t}s'"
+```
+
+@/mixins/util.js
+
+```javascript
+export default {
+  methods: {
+    foo() {
+      return 'aaa';
+    },
+  }
+}
+```
+
+tests/unit/mixin/util.spec.js
+
+```javascript
+import { expect } from 'chai';
+import dateUtil from '@/mixins/dateUtil.js';
+
+describe('JS', () => {
+  it('should success', () => {
+    expect(dateUtil.methods.foo()).to.deep.equal('aaa');
+  })
+});
+```
+
+コンポーネントでの呼び出し方。
+
+```javascript
+// ...
+import util from '@/mixins/util';
+// ...
+mixins: [util]
+// ...
+this.foo()
+```
