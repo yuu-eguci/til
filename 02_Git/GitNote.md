@@ -22,6 +22,8 @@ git remote set-url origin https://yuu-eguci@github.com/yuu-eguci/repo.git
 
 # ↓のエイリアスを自作した。
 git_ccd "2020-02-20 19:00"
+# Mac では事前に brew install coreutils
+# でないと fatal: invalid date format 発生。
 
 # AuthorDate を変更。
 git commit --amend --no-edit --date="Sat Dec 14 10:00:00 2020 +0900"
