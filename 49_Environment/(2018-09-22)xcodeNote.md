@@ -151,3 +151,14 @@ xcode はクソ。このくらいの機能つけとけよ。 GitHub さんひい
 ### 各々で xcode を開いて開発をはじめてしまうと provisioning profile を共有できない
 
 - [複数台のMacでiOSアプリを開発する方法](http://stpsysdev.blogspot.com/2015/09/macios.html)
+
+
+## xcode インストール
+
+下記 url から MacOS に応じた xcode を dl。
+
+- https://developer.apple.com/downloads/index.action?name=Xcode
+
+どのバージョンなのかってのは自分で調べる……。(2020-05-07)今回はここを参考にした。
+
+- [Xcode - インストール可能 対応バージョン macOS 一覧 / Install Support macOS Version Lists 【 2019.07 】](https://qiita.com/thinkalot/items/1dfdba642906c1bf1fd2)
