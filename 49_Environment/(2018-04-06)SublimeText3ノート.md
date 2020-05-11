@@ -193,10 +193,10 @@ HTMLPrettify
 
 # Default
 ln -sf "(絶対パス必須)Default (OSX).sublime-keymap" "./Default/Default (OSX).sublime-keymap"
-ln -sf "/Users/username/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap" "./Default/Default (OSX).sublime-keymap"
+ln -sf "/Users/user/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap" "./Default/Default (OSX).sublime-keymap"
 
 # Table Editor にも ctrl+k が使われている。
-ln -sf "/Users/username/Library/Application Support/Sublime Text 3/Packages/User/Default-TableEditor (OSX).sublime-keymap" "./Table Editor/Default (OSX).sublime-keymap"
+ln -sf "/Users/user/Library/Application Support/Sublime Text 3/Packages/User/Default-TableEditor (OSX).sublime-keymap" "./Table Editor/Default (OSX).sublime-keymap"
 ```
 
 #### Sync Settings
