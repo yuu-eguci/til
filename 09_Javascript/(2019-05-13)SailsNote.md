@@ -37,6 +37,32 @@ const newKey = await sails.helpers.subscription.generate.with({
 });
 ```
 
+- https://gitter.im/balderdashy/sails?at=5ab44f512b9dfdbc3a113e2f
+
+以下5つは同じ。
+
+```JavaScript
+.intercept('E_UNIQUE', 'emailAlreadyInUse')
+
+.intercept('E_UNIQUE', ()=>'emailAlreadyInUse')
+
+.intercept('E_UNIQUE', ()=>{ return 'emailAlreadyInUse'; })
+
+try {
+  // …
+} catch (err) {
+  if (err.code === 'E_UNIQUE') {
+    throw 'emailAlreadyInUse';
+  } else { throw err; }
+
+try {
+  // …
+} catch (err) {
+  if (err.code === 'E_UNIQUE') {
+    return exits.emailAlreadyInUse();
+  } else { return exits.error(err); }
+```
+
 ## update は fetch できるが updateOne はできない
 
 ```javascript
