@@ -202,6 +202,10 @@ Command palette > configure language specific settings > 言語を選択
 
 ## Python の linter と formatter を導入
 
+```
+Linter flake8 is not installed.
+```
+
 拡張機能
 
 - Python
