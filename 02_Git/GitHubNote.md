@@ -155,3 +155,11 @@ fatal: unable to access 'https://github.com/yuu-eguci/work-notes.git': schannel:
 [http]
     sslbackend = openssl
 ```
+
+## Commit から PR を探す方法
+
+このクソコードいつのタイミングで紛れ込んだんだ? -> どこの PR で見逃したんだ?
+
+1. ファイルの blame から、クソコードが追加されたコミットを探す
+1. ここから PR に行くのが面倒なんだけど、コミットのページの一番上に `feature/a (#170, #98) + feature/b (#168, #98) + v0.0.1 (#98)` こんな表示がある
+1. なんかよくわかんないんだけど、このへんをクリックするとコミット履歴が出てくるから、そこからギリ、コミットが含まれる PR を探せる……
