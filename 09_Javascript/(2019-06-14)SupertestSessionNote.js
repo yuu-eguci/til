@@ -85,6 +85,33 @@ it('', () => {
 
 
 /**
+ * it 全体が async のときも done 使わず return しないとダメ。
+ */
+it('', async () => {
+
+  await なんちゃら;
+  return _authenticatedSession.get('...')
+    .expect(404);
+
+});
+
+
+/**
+ * (2020-06-10)
+ * ↑ 全体を return しなくても、 then の中で return done することもできた。
+ */
+it('', (done) => {
+  _authenticatedSession.get('...')
+    .expect(200)
+    .then((res) => {
+      assert.strictEqual(res.body.id, 1, '取得できた id がログインユーザのものと違います。');
+      assert.strictEqual(res.body.auth, 2, '取得できた auth がログインユーザのものと違います。');
+      return done();
+    });
+});
+
+
+/**
  * then の中で await を使うとき
  * ちょっとドキドキしたけれど普通に async await つけて通る!
  */
@@ -100,10 +127,19 @@ it('', () => {
 });
 
 
+
 /**
+ * Error: Resolution method is overspecified. Specify a callback *or* return a Promise; not both.
+ * このエラーよく出るけどまあ async await done の組み合わせはこのノートのコードを参考にして。
  * 
  */
 
+
+
+
+/**
+ *
+ */
 
 
 
