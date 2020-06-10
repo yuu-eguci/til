@@ -42,3 +42,7 @@ async getGeolocation() {
 
 }
 ```
+
+## (Chrome)Geolocation permission has been blocked as the user has dismissed the permission prompt several times
+
+これが出るとブラウザの設定画面からブロックを取り消しできなくなる。 URL の左のマークから取り消しできるようになる。
