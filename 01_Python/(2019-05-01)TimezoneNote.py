@@ -45,6 +45,9 @@ current_nepal = TZ_NEPAL.normalize(current_utc.astimezone(TZ_NEPAL))
 # ↑のように一度 UTC にするのもいいけど、日本->ネパールに一発で変換するには?
 current_nepal = TZ_NEPAL.normalize(current_japan.astimezone(TZ_NEPAL))
 
+# YYYY-MM-DDThh:mm:ssZ 形式(ISO 8601)
+print(current_utc.strftime('%Y-%m-%dT%H:%M:%SZ'))
+
 # ---------------------------------------------
 
 # strptime
