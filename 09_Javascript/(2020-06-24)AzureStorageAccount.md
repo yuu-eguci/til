@@ -94,6 +94,38 @@ while (!blobItem.done) {
 }
 ```
 
+## ContainerClient を取得する
+
+`ContainerClient` のプロパティとかメソッドは公式ドキュメントを。
+
+- https://docs.microsoft.com/en-us/javascript/api/@azure/storage-blob/containerclient?view=azure-node-latest
+
+```JavaScript
+// Storage Account を利用するためのライブラリです。
+const { ContainerClient, StorageSharedKeyCredential, RestError } = require('@azure/storage-blob');
+
+// Storage Account 接続用の設定です。
+const storageAccountName = sails.config.custom.azureStorageAccountName;
+const accessKey = sails.config.custom.azureStorageAccountAccessKey;
+
+// Use StorageSharedKeyCredential with storage account and account key.
+const sharedKeyCredential = new StorageSharedKeyCredential(storageAccountName, accessKey);
+
+// コンテナクライアントを生成します。
+// NOTE: BlobServiceClient から作るサンプルコードもありますが、このように直接 ContainerClient を生成することもできます。
+const containerClient = new ContainerClient(`https://${storageAccountName}.blob.core.windows.net/${inputs.containerName}`, sharedKeyCredential);
+
+// 実際にコンテナを create します。
+// すでに存在する場合は RestError, ContainerAlreadyExists が発生します。正常な動きなのでスルーとなります。
+try {
+  await containerClient.create();
+} catch (err) {
+  // すでに存在する場合は RestError, ContainerAlreadyExists が発生しますが、2度目以降のアクセスでは正常です。
+  if (err instanceof RestError && err.details.errorCode === 'ContainerAlreadyExists') {
+  }
+}
+```
+
 ## すでに存在する container をもう一度 create しようとしたら?
 
 RestError 出ます。
