@@ -33,3 +33,11 @@ App Service に SSL 証明書を適用するノート
 1. Onamae で txt 設定: `@` | [↑そこに書いてある文字列]
 1. App Service で左ペイン > Settings > TLS/SSL settings
     - Private key certificates(.pfx)タブ > Import App Service Certificate > いま作った Certificate を選択
+1. App Service で左ペイン > Custom domains
+    - Add binding
+
+## ひとつの SSL 証明書のみ、 custom domain にバインドできる
+
+SSL 証明書は複数 TLS/SSL settings に追加できるが、実際に適用できるのはひとつだけ。
+
+1. 左ペイン > Custom domains > Add binding
