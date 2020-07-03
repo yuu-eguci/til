@@ -115,6 +115,12 @@ az storage blob upload-batch --account-name "STORAGE_ACCOUNT_NAME" --account-key
 
 - **Save** してから **Create release**。
 
+### Pre/Post -deployment approvals
+
+デプロイの許可を設定できる。
+
+- Pipeline タブ > Stages のカード > Stage 1 の左右にこの設定がある
+
 ### ファイルの動きまとめ
 
 1. GitHub のソースが D:/a/1/s へ置かれる。 `$(Build.SourcesDirectory)`
