@@ -50,4 +50,8 @@ MySQLノート
     [mysqld]欄に
     character-set-server=utf8 追加
 
+# MySQL Workbench でエクスポート -> インポートするときの tips
 
+- Export to Dump Project Folder のほうが1ファイルが小さくなるから嬉しいが、インポートでエラーが出る。(ことがある)
+    - ERROR 1044 (42000): Access denied for user 'admin'@'%' to database 'schemaname'
+- 今の所 Export to Self-Contained File しか使ったことない。
