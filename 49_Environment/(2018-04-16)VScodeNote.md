@@ -198,6 +198,7 @@ Command palette > configure language specific settings > 言語を選択
 
 - `Open Keyboard Shortcuts` で `zoom` を見ればわかる。
 - デフォルトだとたぶん Command + - と Command + Shift + - かな。
+- なんか謎だけど押す順番が関係あった。 Shift > Command > - の順番で拡大が成功した……。
 
 
 ## Python の linter と formatter を導入
