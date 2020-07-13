@@ -3,6 +3,9 @@ dotenv Note
 
 Python で環境変数を取得するノート。
 waka-box で実践してる。
+
+os.environ['SECRET_API_KEY']  KeyError あり。
+os.getenv('SECRET_API_KEY')  None が返る。
 """
 
 
