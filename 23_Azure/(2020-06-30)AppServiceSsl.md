@@ -41,3 +41,8 @@ App Service に SSL 証明書を適用するノート
 SSL 証明書は複数 TLS/SSL settings に追加できるが、実際に適用できるのはひとつだけ。
 
 1. 左ペイン > Custom domains > Add binding
+
+(2020-07-18)ん……? Custom domains ではないわ。もしかしたら、一番最初はそこでもいいのかも。
+
+1. TLS/SSL settings > pfx タブ > 複数の証明書がある
+1. Bindings タブ > ドメインをクリックして、ラジオボタンから好きな証明書を選ぶ
