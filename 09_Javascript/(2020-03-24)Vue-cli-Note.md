@@ -73,7 +73,7 @@ yarn add @fortawesome/free-brands-svg-icons
 yarn add @fortawesome/vue-fontawesome
 ```
 
-```javascript
+```JavaScript
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -94,7 +94,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 vue.config.js を手動追加。
 
-```javascript
+```JavaScript
 module.exports = {
   pages: {
     index: {
@@ -180,7 +180,7 @@ export default class TopListGroupItem extends Vue {
 1. 親 route record の `beforeEnter`
 1. 子 route record の `beforeEnter`
 
-```javascript
+```JavaScript
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -288,7 +288,7 @@ vue add i18n
 1. 親 route record のパスを `/:locale` で設定。
 1. `router.beforeEach` で locale をもとに `i18n.locale` をセット。
 
-```javascript
+```JavaScript
 routes: [
   {
     // :locale 動的セグメントです。これをもとに beforeEach 内で i18n.locale をセットします。
@@ -322,7 +322,7 @@ router.beforeEach((to, from, next) => {
 1. 認証要求のページに `requiredAuth` を設定。
 1. `router.beforeEach` で認証確認。
 
-```javascript
+```JavaScript
 {
   path: 'admin',
   name: 'Admin',
@@ -452,10 +452,11 @@ tsconfig.json に `@` を定義しているところがあって、 src 直下�
 
 ```json
 {
-"paths": {
-  "@/*": [
-    "src/*"
-  ]
+  "paths": {
+    "@/*": [
+      "src/*"
+    ]
+  }
 }
 ```
 
@@ -479,7 +480,7 @@ VUE_APP_API_BASE_URL='http://localhost:1337'
 
 使うとき
 
-```javascript
+```JavaScript
 // eslint-disable-line @typescript-eslint/no-console
 console.info(process.env.VUE_APP_API_BASE_URL)
 ```
@@ -501,7 +502,7 @@ package.json
 
 @/mixins/util.js
 
-```javascript
+```JavaScript
 export default {
   methods: {
     foo() {
@@ -513,7 +514,7 @@ export default {
 
 tests/unit/mixin/util.spec.js
 
-```javascript
+```JavaScript
 import { expect } from 'chai';
 import dateUtil from '@/mixins/dateUtil.js';
 
@@ -526,11 +527,43 @@ describe('JS', () => {
 
 コンポーネントでの呼び出し方。
 
-```javascript
+```JavaScript
 // ...
 import util from '@/mixins/util';
 // ...
 mixins: [util]
 // ...
 this.foo()
+```
+
+## v-model を component で使う
+
+```html
+<!-- 親側 -->
+<MyComponent :label="'タイトル'" v-model="title" />
+
+<!-- 子側 -->
+<b-form-input v-model="innerValue" trim></b-form-input>
+<script>
+export default {
+
+  props: [
+    'value',
+  ],
+
+  computed: {
+
+    // NOTE: このコンポーネントで v-model を使うための実装です。
+    innerValue: {
+      get() {
+        return this.value
+      },
+      set(val) {
+        this.$emit('input', val)
+      }
+    }
+  },
+
+}
+</script>
 ```
