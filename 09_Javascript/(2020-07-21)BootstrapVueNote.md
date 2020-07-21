@@ -1,8 +1,6 @@
 Vue-cli Note
 ===
 
-なんで Vue なんて名前にしたんですかね。(View と聞き間違えながら)
-
 
 ## BootstrapVue
 
@@ -19,7 +17,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 ```
 
-### b-table
+## b-table
 
 - https://bootstrap-vue.js.org/docs/components/table
 
@@ -107,3 +105,48 @@ export default {
 ```
 
 b-table の内容を更新するときは b-table に ref="mainTable" をつけて、 `this.$refs.mainTable.refresh();` する。
+
+## toggle
+
+### card を toggleable
+
+```html
+<b-card no-body class="mb-3">
+  <b-card-header header-tag="header" class="p-1" role="tab">
+    <b-button block href="#" v-b-toggle.accordion-1 variant="light">
+      タイトル
+    </b-button>
+  </b-card-header>
+  <!-- visible をつけると最初から開いてる。 -->
+  <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
+    <b-card-body>
+    </b-card-body>
+  </b-collapse>
+</b-card>
+```
+
+## フォームにアイコンを
+
+```html
+<!-- アイコンがテキストでいい場合 -->
+<b-form-group label="タイトル:" size="sm">
+  <b-input-group prepend="@" size="sm">
+    <b-form-input v-model='foo' trim></b-form-input>
+  </b-input-group>
+</b-form-group>
+
+<!-- アイコンを fontawesome にしたい場合 -->
+<b-form-group label="タイトル:" size="sm">
+  <b-input-group size="sm">
+    <div class="input-group-prepend">
+      <span class="input-group-text"><i class="fa fa-user"></i></span>
+    </div>
+    <b-form-input v-model='bar' trim></b-form-input>
+  </b-input-group>
+</b-form-group>
+
+<!-- ついで。セレクトボックス -->
+<b-input-group prepend="タイトル">
+  <b-form-select v-model="baz" :options="options"></b-form-select>
+</b-input-group>
+```
