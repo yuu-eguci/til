@@ -219,3 +219,7 @@ https://packagecontrol.io/packages/Sync%20Settings
 
 - Install auto-save
 - Key bindings に追加 `{ "keys": ["ctrl+shift+s"], "command": "auto_save" }`
+
+## Markdown 用プラグイン
+
+- Markdown Extended を入れる。これがないと html がハイライトされなかった。
