@@ -61,6 +61,13 @@ const response = await axiosInstance.request({
 const response = await axiosInstance.post('/api/v1/example', {
   foo: 'foo',
 });
+
+
+// delete を使う。
+// delete では謎に
+const response = await axiosInstance.post('/api/v1/example', {
+  data: { foo: 'foo' },
+});
 ```
 
 ### axios.post のパターン
