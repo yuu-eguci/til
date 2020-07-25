@@ -567,3 +567,7 @@ export default {
 }
 </script>
 ```
+
+## ハマるとこ
+
+- 自分のコンポーネントに `@click` をつけるときは `@click.native` と書く!
