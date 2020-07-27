@@ -100,11 +100,16 @@ steps:
     - **Destination folder** に `./$(Build.BuildId)` 参考サイトには `$(Build.DefaultWorkingDirectory)/$(Build.BuildId)` とあったけどカレントだったらこっちのほうがわかりやすいだろ。
     - これにより D:/a/r1/a/BUILD_ID/dist/... ができる。
 - ＋ を押して **Azure CLI** を add する。
+    - (2020-07-27)追記。 Task Version 2 が出てる。内容が変わってるから↓に追記する。
     - Storage Account のある **Azure subscription** を選択。
     - **Script Location** に **Inline script**。
     - **Inline Script** に以下のスクリプト。 STORAGE_ACCOUNT_NAME と STORAGE_ACCOUNT_ACCESS_KEY を埋める。
     - **Working Directory** に `./$(Build.BuildId)/dist` 参考サイトでは `$(System.DefaultWorkingDirectory)/$(Build.BuildId)/dist`。
     - これにより D:/a/r1/a/BUILD_ID/dist の中身が SA へ送られる。
+- Azure CLI version 2 の場合。(2020-07-27)追記。
+    - Azure subscription ではなく Azure Resource Manager connection になってる。内容は所詮同じ。 Subscription の種類を選ぶ。
+    - **Script Type** が増えている。<span style="color: red">ここ、何にすればいいかわからない。てか v2 は成功してない。</span>
+    - Inline Script とか Working Directory については version 1 と同じ。
 
 ```bash
 # もちろんこのへんは参考。
