@@ -84,3 +84,18 @@ concatenated_mat = concatenate_tile(mat_list_2d)
 # 確認します。
 cv2.imshow('concatenated_mat', concatenated_mat)
 cv2.waitKey(0)
+
+# ローカルへの保存のやりかた2通りです。
+# 1. cv2.imwrite を使う。
+cv2.imwrite('./use_imwrite.png', concatenated_mat)
+# 2. cv2.imencode と tobytes でバイナリに変換してから保存する。
+encode_succeeded, buffer = cv2.imencode('.png', concatenated_mat)
+bytes_image = buffer.tobytes()
+with open('./use_imencode.png', 'wb') as f:
+    f.write(bytes_image)
+
+# もし「ストリーム」が必要だと言われたら io を使わないといけない。
+# _io.BytesIO というオブジェクト。
+stream = io.BytesIO(buffer)
+# これは f.write には回せない。
+# バイナリにするには stream.read()
