@@ -72,6 +72,11 @@ export default {
   :items="items"
   :fields="fields"
 >
+  <!-- あるヘッダのデザインを変えたい場合。 -->
+  <template v-slot:head(marker)="data">
+    {{data.label}}aaa
+  </template>
+
   <!-- あるカラムのデザインを変えたい場合。 -->
   <template v-slot:cell(column0)="row">
     <b-link to="/members">{{ row.item.column0 }}</b-link>
@@ -149,4 +154,17 @@ b-table の内容を更新するときは b-table に ref="mainTable" をつけ�
 <b-input-group prepend="タイトル">
   <b-form-select v-model="baz" :options="options"></b-form-select>
 </b-input-group>
+```
+
+## b-popover
+
+```html
+<!-- これマジでハマりどころなんだけど Safari では triggers="focus" が動作しない。 -->
+<!-- 動作させるために href="#" をつける必要がある。 -->
+<b-button :id="`markers`" href="#">
+  foo
+</b-button>
+<b-popover :target="`markers`" triggers="focus" title="マーカー">
+  bar
+</b-popover>
 ```
