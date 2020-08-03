@@ -242,3 +242,14 @@ module.exports = {
   },
 };
 ```
+
+## SequelizeMeta doesn't exist
+
+Docker の MySQL でこれが起こったときはコンテナを再起動すると解決する。よくわからんけど。
+
+```bash
+# mysql のコンテナ id を特定
+docker ps -a | grep mysqldb
+# コンテナ再起動
+docker restart ID
+```
