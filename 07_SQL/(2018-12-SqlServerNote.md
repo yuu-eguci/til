@@ -10,33 +10,24 @@ SQL Server Note (SQLserverNote)
 
 ## 環境編
 
-#### 01. ローカルの SQL server に繋ぐとき
+### ローカルの SQL server に繋ぐとき
 
 SSMS で SQL server で自分のPCを選択して windows認証。
 
-#### 02. エクスポートがしたい
+### Azure の SQL server に繋ぐとき
 
-- DB 右クリック(この DB は「データベース」の下階層のスキーム名を指す。)
-- スクリプト生成
-- エクスポートしたいテーブルにチェック
-- 次へ
-- 詳細設定
-- スクリプトを作成するデータの種類 でいつも Workbench で選んでいる「構造のみ、データのみ」が選べる
-
-
-#### 03. インポートがしたい
-
-上のエクスポートで作成したファイルはスキーマからの作成SQLになっている。だからテーブルのCREATEからやりたいなら中のテキストを切り抜いて実行すればOK。
-
+- Server type: Database Engine
+- Server name: `...database.windows.net` みたいなやつ
+- Authentication: SQL Server Authentication
 
 ## って何? 編
 
-#### 01. 認証が2種類あんの何?
+### 01. 認証が2種類あんの何?
 
 - Windows認証: デフォルトの認証。
 - SQL Server認証: 専用ユーザ、パスワードでの認証。
 
-#### 02. セキュリティ > ログイン にある sa って何?
+### 02. セキュリティ > ログイン にある sa って何?
 
 最高権限をもつユーザ。Mysqlのrootみたいなもんかな? sysadminロールを持つ。
 
@@ -45,7 +36,7 @@ SSMS で SQL server で自分のPCを選択して windows認証。
 
 ## SQL 編
 
-#### 01. LIMIT がやりたい
+### 01. LIMIT がやりたい
 
 n 件目から m 件を取得。
 
@@ -67,7 +58,7 @@ SELECT *
     OFFSET 10 ROWS FETCH NEXT 5 ROWS ONLY
 ```
 
-#### OFFSET FETCH を速くする方法
+### OFFSET FETCH を速くする方法
 
 ```sql
 -- これを
@@ -82,7 +73,7 @@ OFFSET 0 ROWS FETCH NEXT @a ROWS ONLY
 
 **パラメータ化すると内部でソートの方法が変わる**のでそういうことになると言う。……が、意味がよくわからない。わかるときはくるだろうか。
 
-#### 02. SQL の中で変数使いたいんですけど
+### 02. SQL の中で変数使いたいんですけど
 
 `DECLARE` で宣言するときは型に注意しないとだめ。 `string` とかざっくりしたのは使えない。めんど。
 
@@ -94,7 +85,7 @@ DELETE FROM table2 WHERE code=@NUM;
 DELETE FROM table3 WHERE code=@NUM;
 ```
 
-#### 03. 全テーブルの件数を知りたい
+### 03. 全テーブルの件数を知りたい
 
 ```sql
 SELECT
@@ -108,7 +99,7 @@ ORDER BY OBJ.name;
 
 `type='U'` はユーザテーブル。
 
-#### 04. SQLの履歴が見たい
+### 04. SQLの履歴が見たい
 
 ```sql
 SELECT creation_time, text
@@ -118,7 +109,7 @@ WHERE creation_time >= 'yyyy-mm-dd'  -- 別になくてもいいけどね
 ORDER BY creation_time DESC -- 別になくてもいいけどね
 ```
 
-#### オートインクリメントにする
+### オートインクリメントにする
 
 ```sql
 column_name bigint IDENTITY(1,1) NOT NULL
