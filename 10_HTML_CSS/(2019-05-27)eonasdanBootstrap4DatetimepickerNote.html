@@ -121,8 +121,11 @@
     // format はここを
     //     http://momentjs.com/docs/#/displaying/format/
     //
-    // (2020-08-11)このノートに助けられたで。お礼に js ファイルの読み込みを cdn 化しといたる。
-    // だけど肝心の bootstrap-datetimepicker だけは cdn がなんか使えない……? 最新版の bootstrap4 と合わないんかな……?
+    // (2020-08-11)
+    // このノートに助けられたで。お礼に js ファイルの読み込みを cdn 化したる。
+    // だけど肝心の bootstrap-datetimepicker だけは cdn がなんか使えない……? cdn にすると、動かない。最新版の bootstrap4 と合わないんかな……?
+    // そもそもこのライブラリは for bootstrap3 ということで、 uxsolutions のライブラリに移行する。
+    // でもホントは timepicker もついているこっちのほうが好きやで。
 
     $(function () {
       $('#minimum-setup').datetimepicker();
