@@ -29,73 +29,71 @@
 </head>
 
 <body>
-  <div class="container mt-5">
-    <main role="main">
-      <form>
-        <div class="form-row">
-          <div class="col-md-6 mb-3">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-              </div>
-              <input type="text" class="form-control" id="minimum-setup" placeholder="最小構成" required="">
+  <main role="main" class="container">
+    <form>
+      <div class="form-row">
+        <div class="col-md-6 mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
             </div>
-          </div>
-          <div class="col-md-6 mb-3">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-              </div>
-              <input type="text" class="form-control" id="time-only" placeholder="時間のみは不可。これは datepicker だから。" required="" disabled="">
-            </div>
+            <input type="text" class="form-control" id="minimum-setup" placeholder="最小構成" />
           </div>
         </div>
-
-        <div class="form-row">
-          <div class="col-md-6 mb-3">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-              </div>
-              <input type="text" class="form-control" id="ymd" placeholder="フォーマット指定、日本語で" required="">
+        <div class="col-md-6 mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-times"></i></span>
             </div>
-          </div>
-          <div class="col-md-6 mb-3">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-              </div>
-              <input type="text" class="form-control" id="month-only" placeholder="年月のみ" required="">
-            </div>
+            <input type="text" class="form-control" id="time-only" placeholder="時間のみは不可。これは datepicker だから。" disabled="" />
           </div>
         </div>
+      </div>
 
-        <div class="form-row">
-          <div class="col-md-6 mb-3">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-              </div>
-              <input type="text" class="form-control" id="" placeholder="" required="">
+      <div class="form-row">
+        <div class="col-md-6 mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
             </div>
-          </div>
-          <div class="col-md-6 mb-3">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-              </div>
-              <input type="text" class="form-control" id="" placeholder="" required="">
-            </div>
+            <input type="text" class="form-control" id="ymd" placeholder="フォーマット指定、日本語で" />
           </div>
         </div>
+        <div class="col-md-6 mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+            </div>
+            <input type="text" class="form-control" id="month-only" placeholder="年月のみ" />
+          </div>
+        </div>
+      </div>
 
-      </form>
+      <div class="form-row">
+        <div class="col-md-6 mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+            </div>
+            <input type="text" class="form-control" id="" placeholder="" />
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+            </div>
+            <input type="text" class="form-control" id="" placeholder="" />
+          </div>
+        </div>
+      </div>
 
-      <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">uxsolutions/bootstrap-datepicker</p>
-      </footer>
-    </main>
-  </div>
+    </form>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1">uxsolutions/bootstrap-datepicker</p>
+    </footer>
+  </main>
 
 
 
