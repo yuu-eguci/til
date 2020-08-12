@@ -11,7 +11,10 @@
 
   <!-- Font awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+  <!-- v4 も入れないと、時間選択の時計アイコンが出ない。 -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+  <!-- cdn ではこのサンプルが動かない。ダウンロードファイルで動かしています。 -->
   <link rel="stylesheet" href="./Dependencies/bootstrap-4-datetimepicker/bootstrap-datetimepicker.min.css">
 
   <style type="text/css">
@@ -91,7 +94,7 @@
       </form>
 
       <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">Bootstrap4 Datetimepicker Note</p>
+        <p class="mb-1">eonasdan Datetimepicker Note</p>
       </footer>
     </main>
   </div>
@@ -107,6 +110,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/locale/ja.min.js"></script>
 
+  <!-- cdn ではこのサンプルが動かない。ダウンロードファイルで動かしています。 -->
   <script src="./Dependencies/bootstrap-4-datetimepicker/bootstrap-datetimepicker.min.js"></script>
 
   <!-- Bootstrap4 Datetimepicker Note  -->
@@ -118,6 +122,7 @@
     //     http://momentjs.com/docs/#/displaying/format/
     //
     // (2020-08-11)このノートに助けられたで。お礼に js ファイルの読み込みを cdn 化しといたる。
+    // だけど肝心の bootstrap-datetimepicker だけは cdn がなんか使えない……? 最新版の bootstrap4 と合わないんかな……?
 
     $(function () {
       $('#minimum-setup').datetimepicker();
