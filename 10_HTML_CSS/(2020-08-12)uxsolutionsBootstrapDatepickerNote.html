@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css">
+
+  <!-- Font awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+
+  <!-- uxsolutions/bootstrap-datepicker -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" />
+
+  <style type="text/css">
+    .datepicker-days th.dow:first-child,
+    .datepicker-days td:first-child {
+      color: #f00;
+    }
+
+    .datepicker-days th.dow:last-child,
+    .datepicker-days td:last-child {
+      color: #00f;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container mt-5">
+    <main role="main">
+      <form>
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+              </div>
+              <input type="text" class="form-control" id="minimum-setup" placeholder="最小構成" required="">
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+              </div>
+              <input type="text" class="form-control" id="time-only" placeholder="時間のみは不可。これは datepicker だから。" required="" disabled="">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+              </div>
+              <input type="text" class="form-control" id="ymd" placeholder="フォーマット指定、日本語で" required="">
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+              </div>
+              <input type="text" class="form-control" id="month-only" placeholder="年月のみ" required="">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+              </div>
+              <input type="text" class="form-control" id="" placeholder="" required="">
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+              </div>
+              <input type="text" class="form-control" id="" placeholder="" required="">
+            </div>
+          </div>
+        </div>
+
+      </form>
+
+      <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">uxsolutions/bootstrap-datepicker</p>
+      </footer>
+    </main>
+  </div>
+
+
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js"></script>
+
+  <!-- https://cdnjs.com/libraries/bootstrap-datepicker -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.ja.min.js"></script>
+
+  <!-- uxsolutions/bootstrap-datepicker Note -->
+  <script>
+    //
+    // オプション一覧: https://bootstrap-datepicker.readthedocs.io/en/stable/options.html
+
+    $(function () {
+      $('#minimum-setup').datepicker();
+      $('#ymd').datepicker({
+        format: 'yyyy, mm, dd, D',
+        language: 'ja',
+        autoclose: true,
+        todayHighlight: true,
+      });
+      $('#month-only').datepicker({
+        format: 'yyyy-mm',
+        language: 'ja',
+        autoclose: true,
+        todayHighlight: true,
+        minViewMode: 1,  // これで月選択になります。
+      });
+    });
+  </script>
+</body>
+</html>
