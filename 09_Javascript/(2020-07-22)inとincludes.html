@@ -1,0 +1,23 @@
+
+コンソで見ろ。
+
+<script>
+
+const array = [1];
+
+console.info({ array });
+console.info('0 in array', 0 in array, 'なんでやねん。1しか無いだろうが。 -> in で指定してるのは値じゃなくてキーだ!');
+console.info('1 in array', 1 in array);
+
+console.info('array.includes(0)', array.includes(0), 'includes はキーじゃなくて値指定。');
+console.info('array.includes(1)', array.includes(1));
+
+console.info('ここで疑問。オブジェクトで includes を使ったらキーと値どっちになる?');
+
+const object = { 0:1 }
+
+console.info('array.includes(1)', array.includes(1), 'あくまで値指定になる。なるほどな。');
+
+console.info('結論。キーで検索したいなら in を使う。値で指定したいなら includes を使う。');
+
+</script>
