@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css">
+
+  <!-- Font awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+
+  <!-- tempusdominus/bootstrap-4 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
+
+  <style type="text/css">
+    .datepicker-days th.dow:first-child,
+    .datepicker-days td:first-child {
+      color: #f00;
+    }
+
+    .datepicker-days th.dow:last-child,
+    .datepicker-days td:last-child {
+      color: #00f;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container mt-5">
+    <main role="main">
+      <form>
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <div id="minimum-setup" class="input-group" data-target-input="nearest">
+              <div class="input-group-prepend" data-target="#minimum-setup" data-toggle="datetimepicker">
+                <span class="input-group-text"><i class="fas fa-calendar-alt fa-fw"></i></span>
+              </div>
+              <!-- datetimepicker-input がないと、別の場所をクリックしたとき閉じない。 -->
+              <input type="text" class="form-control datetimepicker-input" data-target="#minimum-setup" placeholder="最小構成" data-toggle="datetimepicker" />
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div id="time-only" class="input-group" data-target-input="nearest">
+              <div class="input-group-prepend" data-target="#time-only" data-toggle="datetimepicker">
+                <span class="input-group-text"><i class="fas fa-clock fa-fw"></i></span>
+              </div>
+              <input type="text" class="form-control datetimepicker-input" data-target="#time-only" placeholder="時間のみ" data-toggle="datetimepicker" />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <div id="ymdhm" class="input-group" data-target-input="nearest">
+              <div class="input-group-prepend" data-target="#ymdhm" data-toggle="datetimepicker">
+                <span class="input-group-text"><i class="fas fa-calendar-alt fa-fw"></i></span>
+              </div>
+              <input type="text" class="form-control datetimepicker-input" data-target="#ymdhm" placeholder="年月日と時間 10分刻み" data-toggle="datetimepicker" />
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div id="month-only" class="input-group" data-target-input="nearest">
+              <div class="input-group-prepend" data-target="#month-only" data-toggle="datetimepicker">
+                <span class="input-group-text"><i class="fas fa-calendar-alt fa-fw"></i></span>
+              </div>
+              <input type="text" class="form-control datetimepicker-input" data-target="#month-only" placeholder="年月のみ" data-toggle="datetimepicker" />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <input type="text" class="form-control datetimepicker-input" id="input-only" data-toggle="datetimepicker" data-target="#input-only" placeholder="input のみ" />
+          </div>
+        </div>
+
+      </form>
+
+      <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">tempusdominus/bootstrap-4 DateTimePicker Note</p>
+      </footer>
+    </main>
+  </div>
+
+
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js"></script>
+
+  <!-- datetimepicker は moment.js に依存している。 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/locale/ja.min.js"></script>
+
+  <!-- tempusdominus/bootstrap-4 -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+
+  <script>
+    //
+    // https://tempusdominus.github.io/bootstrap-4/
+    // Tempus Dominus is the successor to the very popular Eonasdan/bootstrap-datetimepicker.
+    // 
+
+    $(function () {
+
+      // fontawesome5 を使うときは icon を変更する必要があります。
+      // 個別の datetimepicker 初期化オプションの中でも指定できる。そっちなら、変えたいやつだけ指定できる。こっちは全部書かないとだめ。
+      // https://fontawesome.com/icons?d=gallery&m=free
+      $.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Constructor.Default, {
+                  locale: 'ja',
+                  icons: {
+                      time: 'far fa-clock',
+                      date: 'far fa-calendar',
+                      up: 'fas fa-arrow-up',
+                      down: 'fas fa-arrow-down',
+                      previous: 'fas fa-chevron-left',
+                      next: 'fas fa-chevron-right',
+                      today: 'fas fa-calendar-check-o',
+                      clear: 'fas fa-trash',
+                      close: 'fas fa-times'
+                  } });
+
+      // 今回の datetimepicker では、最小構成のときは js による初期化が不要。
+      // #minimum-setup は初期化不要。
+      $('#time-only').datetimepicker({
+          format: 'LT',
+      });
+      $('#ymdhm').datetimepicker({
+          format: 'YYYY-MM-DD HH:mm',
+          stepping: 10,
+      });
+      $('#month-only').datetimepicker({
+          format: 'YYYY-MM',
+          maxDate: $.now(),
+      });
+
+
+    });
+  </script>
+</body>
+</html>
