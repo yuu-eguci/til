@@ -75,6 +75,12 @@
           <div class="col-md-6 mb-3">
             <input type="text" class="form-control datetimepicker-input" id="input-only" data-toggle="datetimepicker" data-target="#input-only" placeholder="input のみ" />
           </div>
+          <div class="col-md-6 mb-3">
+            <span id="outer-input" class="bg-light p-3" data-toggle="datetimepicker" data-target="#outer-input" data-target-input="#outer-input-input">
+              <i class="fas fa-calendar-alt fa-fw"></i> Picker と離れたところに input
+            </span>
+            <input id="outer-input-input" type="text" class="datetimepicker-input" data-target="#outer-input" data-toggle="datetimepicker" />
+          </div>
         </div>
 
       </form>
@@ -124,8 +130,8 @@
                       close: 'fas fa-times'
                   } });
 
-      // 今回の datetimepicker では、最小構成のときは js による初期化が不要。
-      // #minimum-setup は初期化不要。
+      // 初期化を書かなくても使えるが、 TypeError: Cannot read property '_options' of undefined が発生する。
+      $('#minimum-setup').datetimepicker();
       $('#time-only').datetimepicker({
           format: 'LT',
       });
@@ -137,6 +143,8 @@
           format: 'YYYY-MM',
           maxDate: $.now(),
       });
+      $('#input-only').datetimepicker();
+      $('#outer-input').datetimepicker();
 
     });
   </script>
