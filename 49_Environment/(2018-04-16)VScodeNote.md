@@ -197,6 +197,7 @@ Command palette > configure language specific settings > 言語を選択
 ## 全体の拡大と縮小
 
 - `Open Keyboard Shortcuts` で `zoom` を見ればわかる。
+    - ↑これはガチ。まったく意味不明だけれど、この画面を開いた状態じゃないとショートカットが成功しなかったりする。
 - デフォルトだとたぶん Command + - と Command + Shift + - かな。
 - なんか謎だけど押す順番が関係あった。 Shift > Command > - の順番で拡大が成功した……。
 
