@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Sample</title>
+</head>
+
+<body>
+<script>
+  // 1秒に1回、カウントし、3カウントで終わる setInterval。
+  let intervalCount = 0;
+  const intervalId = setInterval(function() {
+    intervalCount++;
+    console.info({ intervalCount });
+
+    if (intervalCount === 3) {
+      clearInterval(intervalId);
+      console.info('clearInterval');
+    }
+  }, 10);
+  // 定義した瞬間 interval が始まると思っていたんだが、そうではないみたい。
+
+  // 20,000回 loop して終わる while。
+  // なぜか、この while が終わってからでないと↑の setInterval が開始しない。
+  let whileCount = 0;
+  while (true) {
+    whileCount++;
+    console.info('while loop');
+    if (whileCount === 20000) {
+      console.info('while ends');
+      break;
+    }
+  }
+
+  // for loop も終わってからでないと↑の setInterval が開始しない。
+  for (let i = 0; i < 20000; i++) {
+    console.info('for loop');
+  }
+
+  // 推測。
+  // setInterval の処理は、ここまで来てはじめて開始する。
+</script>
+</body>
+
+</html>
