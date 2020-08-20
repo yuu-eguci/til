@@ -1,7 +1,7 @@
 Aviutl Note
 ===
 
-## インストール
+## Installation
 
 - 公式ページから Aviutl, 拡張編集Plugin, FilterPlugin, 出力Plugin をダウンロード。
     - http://spring-fragrance.mints.ne.jp/aviutl/
@@ -22,7 +22,7 @@ Aviutl Note
 - 中の auo_setup.exe を実行して、 exe_files をダウンロード。
 - この順番で入れれば、 2016.01.29.Sun のメモにある「入力プラグインの優先度の設定」はしなくていいと思う。
 
-## 文字入れる
+## Text
 
 - 拡張編集ウィンドウ右クリック > メディアオブジェクト追加 > テキスト
 - 拡張編集でテキストをダブルクリック > このオブジェクト用のウィンドウが出る > 右上の + マークを押してフェードを加える
