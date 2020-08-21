@@ -5,6 +5,8 @@ Edge Legacy Note
 
 ## コマンドで強制的にダウングレード
 
+Edge -> Edge Legacy に戻すやつ。
+
 - エクスプローラで `C:\Program Files (x86)\Microsoft\Edge\Application` へ。
 - そこのフォルダにいまの Edge のバージョンがある。それをコピっとく。
 - cmd を管理者権限で開く。
@@ -20,6 +22,8 @@ setup.exe --uninstall --system-level --verbose-logging --force-uninstall
 - [Microsoft EdgeをChromium版から以前のEdgeに戻す手順（Edgeダウングレード）](http://tanweb.net/2020/03/11/31135/)
 
 ## Blocker Toolkit
+
+ほっとくと新 Edge がダウンロードされてきやがるのをブロックするやつ。
 
 - ダウンロード。
 	- https://docs.microsoft.com/ja-jp/deployedge/microsoft-edge-blocker-toolkit
