@@ -17,6 +17,13 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 ```
 
+## d-none 系のクラス
+
+わかりづらいからメモっていく。 `sm` は「sm 以上で」という意味である。
+
+- `d-sm-none` sm 以下で表示。
+- `d-none d-sm-block` sm 以上で表示。
+
 ## b-table
 
 - https://bootstrap-vue.js.org/docs/components/table
