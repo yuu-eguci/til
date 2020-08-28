@@ -143,7 +143,12 @@
         stepping: 10,
       });
       $('#input-only').datetimepicker();
+
+      // これ、 input のほうを hidden にすると、外クリックによる close が無効になる。クソじゃん。
+      // https://github.com/tempusdominus/bootstrap-4/issues/346
+      //     Calendar autoclose not working without visible input text #346
       $('#outer-input').datetimepicker();
+
       $('#not-useCurrent').datetimepicker({
         format: 'YYYY-MM-DD',
         useCurrent: false,
