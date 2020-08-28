@@ -39,4 +39,4 @@ ffmpeg -i 画面収録_299U-08-09_1.93.N.mov -r 24 gamen_test1.gif
     - デフォルト機能なのでぜひ使いたいが、「デスクトップは録画できない」というのが無能すぎる
 - ScreenToGif アプリを別途ダウンロード
     - https://forest.watch.impress.co.jp/library/software/screentogif/
-    - オプション > ffmpeg ダウンロード > 録画の雰囲気は Mac の Quick Time Player と同じ > ffmpeg を DL しておけば保存時に gif ではなく avi とか mp4 にできる
+    - オプション > 外部ツール > ffmpeg ダウンロード > 録画の雰囲気は Mac の Quick Time Player と同じ > ffmpeg を DL しておけば保存時に gif ではなく avi とか mp4 にできる
