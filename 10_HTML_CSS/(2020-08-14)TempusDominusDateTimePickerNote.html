@@ -50,9 +50,6 @@
               <input type="text" class="form-control datetimepicker-input" data-target="#time-only" placeholder="時間のみ" data-toggle="datetimepicker" />
             </div>
           </div>
-        </div>
-
-        <div class="form-row">
           <div class="col-md-6 mb-3">
             <div id="ymdhm" class="input-group" data-target-input="nearest">
               <div class="input-group-prepend" data-target="#ymdhm" data-toggle="datetimepicker">
@@ -62,16 +59,13 @@
             </div>
           </div>
           <div class="col-md-6 mb-3">
-            <div id="month-only" class="input-group" data-target-input="nearest">
+            <div id="month-only" class="input-group date" data-target-input="nearest">
               <div class="input-group-prepend" data-target="#month-only" data-toggle="datetimepicker">
-                <span class="input-group-text"><i class="fas fa-calendar-alt fa-fw"></i></span>
+                <div class="input-group-text"><i class="fas fa-calendar-alt fa-fw"></i></div>
               </div>
               <input type="text" class="form-control datetimepicker-input" data-target="#month-only" placeholder="年月のみ" data-toggle="datetimepicker" />
             </div>
           </div>
-        </div>
-
-        <div class="form-row">
           <div class="col-md-6 mb-3">
             <input type="text" class="form-control datetimepicker-input" id="input-only" data-toggle="datetimepicker" data-target="#input-only" placeholder="input のみ" />
           </div>
@@ -80,6 +74,15 @@
               <i class="fas fa-calendar-alt fa-fw"></i> Picker と離れたところに input
             </span>
             <input id="outer-input-input" type="text" class="datetimepicker-input" data-target="#outer-input" data-toggle="datetimepicker" />
+          </div>
+          <div class="col-md-6 mb-3">
+            <div id="not-useCurrent" class="input-group date" data-target-input="nearest">
+              <div class="input-group-prepend" data-target="#not-useCurrent" data-toggle="datetimepicker">
+                <div class="input-group-text"><i class="fas fa-calendar-alt fa-fw"></i></div>
+              </div>
+              <input type="text" class="form-control datetimepicker-input" data-target="#not-useCurrent"
+                     placeholder="useCurrent をオフ" data-toggle="datetimepicker" />
+            </div>
           </div>
         </div>
 
@@ -109,7 +112,7 @@
     //
     // https://tempusdominus.github.io/bootstrap-4/
     // Tempus Dominus is the successor to the very popular Eonasdan/bootstrap-datetimepicker.
-    // 
+    //
 
     $(function () {
 
@@ -133,20 +136,35 @@
       // 初期化を書かなくても使えるが、 TypeError: Cannot read property '_options' of undefined が発生する。
       $('#minimum-setup').datetimepicker();
       $('#time-only').datetimepicker({
-          format: 'LT',
+        format: 'LT',
       });
       $('#ymdhm').datetimepicker({
-          format: 'YYYY-MM-DD HH:mm',
-          stepping: 10,
-      });
-      $('#month-only').datetimepicker({
-          format: 'YYYY-MM',
-          maxDate: $.now(),
+        format: 'YYYY-MM-DD HH:mm',
+        stepping: 10,
       });
       $('#input-only').datetimepicker();
       $('#outer-input').datetimepicker();
+      $('#not-useCurrent').datetimepicker({
+        format: 'YYYY-MM-DD',
+        useCurrent: false,
+      });
+
+      // これかなり注意なんだけど、他の .datetimepicker() をこの初期化のあとに書くと Min View Mode が無効化される。
+      // <head> タグの中で jquery を読み込んで、 input タグの直後に書くのがよさそう。なんでこうなるん?
+      $('#month-only').datetimepicker({
+        viewMode: 'years',
+        format: 'YYYY-MM',
+        maxDate: $.now(),
+      });
+
+      // datetimepicker は単純な on change ではイベント登録できない。
+      // input じゃなくて↑で初期化してる要素について on を使う。
+      $('.input-group').on('change.datetimepicker', function ({oldDate, date}) {
+        console.info({ oldDate, date });
+      });
 
     });
   </script>
+
 </body>
 </html>
