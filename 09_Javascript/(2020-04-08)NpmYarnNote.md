@@ -47,8 +47,8 @@ yarn add PACKAGE --trusted-host
 DevOps pipelines 上の yarn install で発生する問題。
 
 - `https://...tgz` を resolved で持つパッケージを upgrade する。
+    - `yarn upgrade @vue/cli-service@^4.2.0` こんな感じ。
 - それで変わらなかったら、 yarn.lock のそのパッケージの部分を削除して、 yarn install し直すと更新されることがあった。
 - あるいは、 yarn.lock を破棄して yarn install し直し、新しい resolved で昔の yarn.lock を更新する。
 
 とくにふたつのメジャーバージョンが混在しているパッケージのとき非常に面倒くさい。
-
