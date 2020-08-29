@@ -3,6 +3,12 @@ Excel Note
 
 Excel に関する tips を書くノート。
 
+## 365 版のインストール、どこや
+
+- https://www.office.com/
+- ↑これが Office 365 のページ。
+- 右上に「Office のインストール」がある。
+
 ## セルに合わせて画像を拡大したり動かしたり
 
 Excel for Mac
