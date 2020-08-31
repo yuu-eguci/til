@@ -33,6 +33,7 @@
     <main role="main">
       <form>
         <div class="form-row">
+          
           <div class="col-md-6 mb-3">
             <div id="minimum-setup" class="input-group" data-target-input="nearest">
               <div class="input-group-prepend" data-target="#minimum-setup" data-toggle="datetimepicker">
@@ -42,6 +43,7 @@
               <input type="text" class="form-control datetimepicker-input" data-target="#minimum-setup" placeholder="最小構成" data-toggle="datetimepicker" />
             </div>
           </div>
+
           <div class="col-md-6 mb-3">
             <div id="time-only" class="input-group" data-target-input="nearest">
               <div class="input-group-prepend" data-target="#time-only" data-toggle="datetimepicker">
@@ -50,6 +52,7 @@
               <input type="text" class="form-control datetimepicker-input" data-target="#time-only" placeholder="時間のみ" data-toggle="datetimepicker" />
             </div>
           </div>
+
           <div class="col-md-6 mb-3">
             <div id="ymdhm" class="input-group" data-target-input="nearest">
               <div class="input-group-prepend" data-target="#ymdhm" data-toggle="datetimepicker">
@@ -58,6 +61,7 @@
               <input type="text" class="form-control datetimepicker-input" data-target="#ymdhm" placeholder="年月日と時間 10分刻み" data-toggle="datetimepicker" />
             </div>
           </div>
+
           <div class="col-md-6 mb-3">
             <div id="month-only" class="input-group date" data-target-input="nearest">
               <div class="input-group-prepend" data-target="#month-only" data-toggle="datetimepicker">
@@ -66,15 +70,18 @@
               <input type="text" class="form-control datetimepicker-input" data-target="#month-only" placeholder="年月のみ" data-toggle="datetimepicker" />
             </div>
           </div>
+
           <div class="col-md-6 mb-3">
             <input type="text" class="form-control datetimepicker-input" id="input-only" data-toggle="datetimepicker" data-target="#input-only" placeholder="input のみ" />
           </div>
+
           <div class="col-md-6 mb-3">
             <span id="outer-input" class="bg-light p-3" data-toggle="datetimepicker" data-target="#outer-input" data-target-input="#outer-input-input">
               <i class="fas fa-calendar-alt fa-fw"></i> Picker と離れたところに input
             </span>
             <input id="outer-input-input" type="text" class="datetimepicker-input" data-target="#outer-input" data-toggle="datetimepicker" />
           </div>
+
           <div class="col-md-6 mb-3">
             <div id="not-useCurrent" class="input-group date" data-target-input="nearest">
               <div class="input-group-prepend" data-target="#not-useCurrent" data-toggle="datetimepicker">
@@ -83,6 +90,14 @@
               <input type="text" class="form-control datetimepicker-input" data-target="#not-useCurrent"
                      placeholder="useCurrent をオフ" data-toggle="datetimepicker" />
             </div>
+          </div>
+
+        <div class="col-md-6 mb-3">
+          <div id="time-only-with-clear" class="input-group" data-target-input="nearest">
+            <div class="input-group-prepend" data-target="#time-only-with-clear" data-toggle="datetimepicker">
+              <span class="input-group-text"><i class="fas fa-clock fa-fw"></i></span>
+            </div>
+            <input type="text" class="form-control datetimepicker-input" data-target="#time-only-with-clear" placeholder="時間のみ(with クリアボタン)" data-toggle="datetimepicker" />
           </div>
         </div>
 
@@ -152,6 +167,15 @@
       $('#not-useCurrent').datetimepicker({
         format: 'YYYY-MM-DD',
         useCurrent: false,
+      });
+
+      // Clear ボタンで消すと Uncaught TypeError: Cannot read property 'format' of undefined が発生します。
+      // 周知のバグ。 https://github.com/tempusdominus/bootstrap-4/issues/34
+      $('#time-only-with-clear').datetimepicker({
+        format: 'LT',
+        buttons: {
+          showClear: true,
+        },
       });
 
       // これかなり注意なんだけど、他の .datetimepicker() をこの初期化のあとに書くと Min View Mode が無効化される。
