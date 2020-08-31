@@ -33,14 +33,17 @@
     <main role="main">
       <form>
         <div class="form-row">
-          
+
           <div class="col-md-6 mb-3">
             <div id="minimum-setup" class="input-group" data-target-input="nearest">
               <div class="input-group-prepend" data-target="#minimum-setup" data-toggle="datetimepicker">
                 <span class="input-group-text"><i class="fas fa-calendar-alt fa-fw"></i></span>
               </div>
-              <!-- datetimepicker-input がないと、別の場所をクリックしたとき閉じない。 -->
-              <input type="text" class="form-control datetimepicker-input" data-target="#minimum-setup" placeholder="最小構成" data-toggle="datetimepicker" />
+              <!--
+                datetimepicker-input がないと、別の場所をクリックしたとき閉じない。
+                「input 押してトグル」はここに data-toggle="datetimepicker" をつけてもいいし、 JS 側の初期化で allowInputToggle:true でもいい。
+              -->
+              <input type="text" class="form-control datetimepicker-input" data-target="#minimum-setup" placeholder="最小構成" />
             </div>
           </div>
 
@@ -49,7 +52,7 @@
               <div class="input-group-prepend" data-target="#time-only" data-toggle="datetimepicker">
                 <span class="input-group-text"><i class="fas fa-clock fa-fw"></i></span>
               </div>
-              <input type="text" class="form-control datetimepicker-input" data-target="#time-only" placeholder="時間のみ" data-toggle="datetimepicker" />
+              <input type="text" class="form-control datetimepicker-input" data-target="#time-only" placeholder="時間のみ" />
             </div>
           </div>
 
@@ -58,7 +61,7 @@
               <div class="input-group-prepend" data-target="#ymdhm" data-toggle="datetimepicker">
                 <span class="input-group-text"><i class="fas fa-calendar-alt fa-fw"></i></span>
               </div>
-              <input type="text" class="form-control datetimepicker-input" data-target="#ymdhm" placeholder="年月日と時間 10分刻み" data-toggle="datetimepicker" />
+              <input type="text" class="form-control datetimepicker-input" data-target="#ymdhm" placeholder="年月日と時間 10分刻み" />
             </div>
           </div>
 
@@ -67,19 +70,19 @@
               <div class="input-group-prepend" data-target="#month-only" data-toggle="datetimepicker">
                 <div class="input-group-text"><i class="fas fa-calendar-alt fa-fw"></i></div>
               </div>
-              <input type="text" class="form-control datetimepicker-input" data-target="#month-only" placeholder="年月のみ" data-toggle="datetimepicker" />
+              <input type="text" class="form-control datetimepicker-input" data-target="#month-only" placeholder="年月のみ" />
             </div>
           </div>
 
           <div class="col-md-6 mb-3">
-            <input type="text" class="form-control datetimepicker-input" id="input-only" data-toggle="datetimepicker" data-target="#input-only" placeholder="input のみ" />
+            <input type="text" class="form-control datetimepicker-input" id="input-only" data-target="#input-only" placeholder="input のみ" />
           </div>
 
           <div class="col-md-6 mb-3">
             <span id="outer-input" class="bg-light p-3" data-toggle="datetimepicker" data-target="#outer-input" data-target-input="#outer-input-input">
               <i class="fas fa-calendar-alt fa-fw"></i> Picker と離れたところに input
             </span>
-            <input id="outer-input-input" type="text" class="datetimepicker-input" data-target="#outer-input" data-toggle="datetimepicker" />
+            <input id="outer-input-input" type="text" class="datetimepicker-input" data-target="#outer-input" />
           </div>
 
           <div class="col-md-6 mb-3">
@@ -88,19 +91,20 @@
                 <div class="input-group-text"><i class="fas fa-calendar-alt fa-fw"></i></div>
               </div>
               <input type="text" class="form-control datetimepicker-input" data-target="#not-useCurrent"
-                     placeholder="useCurrent をオフ" data-toggle="datetimepicker" />
+                     placeholder="useCurrent をオフ" />
             </div>
           </div>
 
-        <div class="col-md-6 mb-3">
-          <div id="time-only-with-clear" class="input-group" data-target-input="nearest">
-            <div class="input-group-prepend" data-target="#time-only-with-clear" data-toggle="datetimepicker">
-              <span class="input-group-text"><i class="fas fa-clock fa-fw"></i></span>
+          <div class="col-md-6 mb-3">
+            <div id="time-only-with-clear" class="input-group" data-target-input="nearest">
+              <div class="input-group-prepend" data-target="#time-only-with-clear" data-toggle="datetimepicker">
+                <span class="input-group-text"><i class="fas fa-clock fa-fw"></i></span>
+              </div>
+              <input type="text" class="form-control datetimepicker-input" data-target="#time-only-with-clear" placeholder="時間のみ(with クリアボタン)" />
             </div>
-            <input type="text" class="form-control datetimepicker-input" data-target="#time-only-with-clear" placeholder="時間のみ(with クリアボタン)" data-toggle="datetimepicker" />
           </div>
+
         </div>
-
       </form>
 
       <footer class="my-5 pt-5 text-muted text-center text-small">
@@ -149,24 +153,33 @@
                   } });
 
       // 初期化を書かなくても使えるが、 TypeError: Cannot read property '_options' of undefined が発生する。
-      $('#minimum-setup').datetimepicker();
+      $('#minimum-setup').datetimepicker({
+        allowInputToggle: true,
+      });
       $('#time-only').datetimepicker({
         format: 'LT',
+        allowInputToggle: true,
       });
       $('#ymdhm').datetimepicker({
         format: 'YYYY-MM-DD HH:mm',
         stepping: 10,
+        allowInputToggle: true,
       });
-      $('#input-only').datetimepicker();
+      $('#input-only').datetimepicker({
+        allowInputToggle: true,
+      });
 
       // これ、 input のほうを hidden にすると、外クリックによる close が無効になる。クソじゃん。
       // https://github.com/tempusdominus/bootstrap-4/issues/346
       //     Calendar autoclose not working without visible input text #346
-      $('#outer-input').datetimepicker();
+      $('#outer-input').datetimepicker({
+        allowInputToggle: true,
+      });
 
       $('#not-useCurrent').datetimepicker({
         format: 'YYYY-MM-DD',
         useCurrent: false,
+        allowInputToggle: true,
       });
 
       // Clear ボタンで消すと Uncaught TypeError: Cannot read property 'format' of undefined が発生します。
@@ -176,6 +189,7 @@
         buttons: {
           showClear: true,
         },
+        allowInputToggle: true,
       });
 
       // これかなり注意なんだけど、他の .datetimepicker() をこの初期化のあとに書くと Min View Mode が無効化される。
@@ -184,6 +198,7 @@
         viewMode: 'years',
         format: 'YYYY-MM',
         maxDate: $.now(),
+        allowInputToggle: true,
       });
 
       // datetimepicker は単純な on change ではイベント登録できない。
