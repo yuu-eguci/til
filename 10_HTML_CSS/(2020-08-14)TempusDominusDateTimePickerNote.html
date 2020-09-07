@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
 
   <!-- tempusdominus/bootstrap-4 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css" />
 
   <style type="text/css">
     .datepicker-days th.dow:first-child,
@@ -53,6 +53,15 @@
                 <span class="input-group-text"><i class="fas fa-clock fa-fw"></i></span>
               </div>
               <input type="text" class="form-control datetimepicker-input" data-target="#time-only" placeholder="時間のみ" />
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <div id="time-only-with-default-value" class="input-group" data-target-input="nearest">
+              <div class="input-group-prepend" data-target="#time-only-with-default-value" data-toggle="datetimepicker">
+                <span class="input-group-text"><i class="fas fa-clock fa-fw"></i></span>
+              </div>
+              <input type="text" class="form-control datetimepicker-input" data-target="#time-only-with-default-value" placeholder="時間のみ、デフォルト9:00" />
             </div>
           </div>
 
@@ -104,11 +113,32 @@
             </div>
           </div>
 
+          <div class="col-md-6 mb-3">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-sticky-note fa-fw"></i></span>
+              </div>
+              <input id="simple-input" type="text" class="form-control" placeholder="これはただの input" />
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <div id="with-default-value" class="input-group" data-target-input="nearest">
+              <div class="input-group-prepend" data-target="#with-default-value" data-toggle="datetimepicker">
+                <span class="input-group-text"><i class="fas fa-calendar-alt fa-fw"></i></span>
+              </div>
+              <input type="text" class="form-control datetimepicker-input" data-target="#with-default-value" value="1900-09-02" />
+            </div>
+          </div>
+
         </div>
       </form>
 
       <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">tempusdominus/bootstrap-4 DateTimePicker Note</p>
+        <p class="mb-1">
+          <a href="https://tempusdominus.github.io/bootstrap-4/">tempusdominus/bootstrap-4 DateTimePicker</a>
+          Note
+        </p>
       </footer>
     </main>
   </div>
@@ -125,7 +155,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/locale/ja.min.js"></script>
 
   <!-- tempusdominus/bootstrap-4 -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+  <!-- 5.0.1 だと、 YYYY/MM のあとで YYYY/MM/DD を初期化すると前者の view がおかしくなる不具合があるよ。 -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js"></script>
 
   <script>
     //
@@ -156,16 +187,38 @@
       $('#minimum-setup').datetimepicker({
         allowInputToggle: true,
       });
+
       $('#time-only').datetimepicker({
         format: 'LT',
         allowInputToggle: true,
+        // これは timepicker には意味ない。↓の defaultDate で対応して。
+        useCurrent: false,
       });
+
+      $('#time-only-with-default-value').datetimepicker({
+        format: 'LT',
+        allowInputToggle: true,
+        // 9:00 を指定するためこうする。
+        defaultDate: new Date(1995, 11, 17, 9, 0, 0),
+      });
+
       $('#ymdhm').datetimepicker({
         format: 'YYYY-MM-DD HH:mm',
         stepping: 10,
         allowInputToggle: true,
       });
+
+      // これは 5.0.1 で発生する不具合。
+      //     これかなり注意なんだけど、他の .datetimepicker() をこの初期化のあとに書くと Min View Mode が無効化される。
+      $('#month-only').datetimepicker({
+        viewMode: 'months',
+        format: 'YYYY-MM',
+        maxDate: $.now(),
+        allowInputToggle: true,
+      });
+
       $('#input-only').datetimepicker({
+        format: 'YYYY-MM-DD HH:mm',
         allowInputToggle: true,
       });
 
@@ -192,12 +245,11 @@
         allowInputToggle: true,
       });
 
-      // これかなり注意なんだけど、他の .datetimepicker() をこの初期化のあとに書くと Min View Mode が無効化される。
-      // <head> タグの中で jquery を読み込んで、 input タグの直後に書くのがよさそう。なんでこうなるん?
-      $('#month-only').datetimepicker({
-        viewMode: 'years',
-        format: 'YYYY-MM',
-        maxDate: $.now(),
+      // 最初から値が入っている datetimepicker です。
+      // イベント登録より前で初期化しないといけません。
+      // そうでないと、初期値の自体が change.datetimepicker として扱われます。
+      $('#with-default-value').datetimepicker({
+        format: 'YYYY-MM-DD',
         allowInputToggle: true,
       });
 
@@ -205,6 +257,11 @@
       // input じゃなくて↑で初期化してる要素について on を使う。
       $('.input-group').on('change.datetimepicker', function ({oldDate, date}) {
         console.info({ oldDate, date });
+      });
+
+      // change.datetimepicker は change イベントも含んでいる!
+      $('#simple-input').on('change.datetimepicker', function () {
+        console.info('simple-input の change イベントが実行されました。');
       });
 
     });
