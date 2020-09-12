@@ -4,6 +4,10 @@ DjangoNote
 
 ## 基本形作成
 
+```bash
+pipenv install django
+```
+
 - Add gitignore
     - [example](https://github.com/jpadilla/django-project-template/blob/master/.gitignore)
 - Initialize Django
