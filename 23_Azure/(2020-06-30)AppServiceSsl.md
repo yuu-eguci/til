@@ -46,3 +46,17 @@ SSL 証明書は複数 TLS/SSL settings に追加できるが、実際に適用�
 
 1. TLS/SSL settings > pfx タブ > 複数の証明書がある
 1. Bindings タブ > ドメインをクリックして、ラジオボタンから好きな証明書を選ぶ
+
+## 別の Azure アカウントへ App Service Certificate をエクスポート -> インポートする
+
+エクスポートは PowerShell でやらないといけない。(マジクソ)
+
+- https://stackoverflow.com/questions/38836724/export-azure-ssl-certificate-as-pfx-file
+- このページもわかりやすい。 http://raaviblog.com/how-to-create-pfx-certificate-using-azure-app-service-certificate/
+
+コメントにこうある通り。
+
+> C'mon guys, make this a one button export.
+
+マジでな。
+インポートはノリでわかるよ。
