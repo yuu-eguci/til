@@ -14,6 +14,11 @@
       ・ $(A).on(click, func) Jquery イベントは既存の A DOM の click イベントに func を登録することである。
     だから
       ・ イベント登録したあとに追加された A をクリックしても func は起こらない。
+
+    ---
+    (2020-08-21)追記。
+    あとから追加された DOM にもイベントを適用する方法知った。
+    $(document).on('click', クラス名, function () {});
    --------------------------------------------------------------->
 
 
@@ -22,7 +27,7 @@
 
 
   <script>
-     // input.A がチェックされたら「わー」って言う。
+    // input.A がチェックされたら「わー」って言う。
     $('input.A').on('change', function () {
         console.log('わー');
     });
@@ -38,6 +43,23 @@
     $('input.A').on('change', function () {
         console.log('わー');
     });
+  </script>
+
+
+  <input class="C" type="checkbox">
+  <div id="D"></div>
+
+
+  <script>
+    // input.C がチェックされたら「うぇー」って言う。
+    $(document).on('change', 'input.C', function () {
+      console.log('うぇー');
+    });
+
+    // div#D の中に input.C をもういっこ作成。
+    $('div#D').html('<input class="C" type="checkbox">');
+
+    // $(document) の登録方法なら、のちに増えた DOM にもイベントが適用される!
   </script>
 </body>
 </html>
