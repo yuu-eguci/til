@@ -179,3 +179,23 @@ DATEADD(week, 1, GETDATE())
 -- 2週間前から今日
 date_field BETWEEN DATEADD(WEEK, -2, GETDATE()) AND GETDATE()
 ```
+
+## Bulk insert
+
+```sql
+INSERT INTO test_table VALUES
+     ( 1, 'NAME1', 10 )
+    ,( 2, 'NAME2', 20 )
+    ,( 3, 'NAME3', 30 )
+    ,( 4, 'NAME4', 40 )
+    ,( 5, 'NAME5', 50 )
+```
+
+## Azure SQL Server に接続しようとしたときのエラー
+
+```
+a connection was successfully established with the server,
+but then an error occured during the pre-login handshake. 指定されたネットワーク名は利用できません。
+```
+
+Wi-Fi 2.4 GHz に接続することで解消。
