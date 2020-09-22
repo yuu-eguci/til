@@ -1,5 +1,9 @@
 
 """TimezoneNote
+
+pipenv install pytz
+pipenv install python-dateutil
+
 """
 
 
@@ -70,3 +74,24 @@ print(naive, '----', type(naive.tzinfo), naive.tzinfo)
 # from django.utils import timezone
 # timezone.now()        UTC
 # timezone.localtime()  設定したタイムゾーン
+
+
+# (2020-09-17)
+# 任意の日本時間 -> utc -> ISO 8601 出力の関数サンプル!
+
+def get_beginning_of_month_utc(y: int, m: int) -> str:
+    beginning_of_month = datetime.datetime(
+        y, m, 1, 0, 0, 0, 0, pytz.timezone('Asia/Tokyo'))
+    beginning_of_month_utc = pytz.utc.normalize(
+        beginning_of_month.astimezone(pytz.utc))
+    return beginning_of_month_utc.strftime('%Y-%m-%dT%H:%M:%SZ')
+    # 2020,7 を指定した場合 -> 2020-06-30T14:41:00Z
+
+
+def get_end_of_month_utc(y: int, m: int) -> str:
+    end_of_month = datetime.datetime(y, m, 1, 0, 0, 0, 0, pytz.timezone(
+        'Asia/Tokyo')) + relativedelta(months=1)
+    end_of_month_utc = pytz.utc.normalize(
+        end_of_month.astimezone(pytz.utc))
+    return end_of_month_utc.strftime('%Y-%m-%dT%H:%M:%SZ')
+    # 2020,7 を指定した場合 -> 2020-07-31T14:41:00Z
