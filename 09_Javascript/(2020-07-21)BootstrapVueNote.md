@@ -178,4 +178,5 @@ b-table の内容を更新するときは b-table に ref="mainTable" をつけ�
 
 他にも「Safari では動かないシリーズ」がある。
 
-- (これは素の Bootstrap のほうだが) `data-toggle="collapse"` が動かない。そのときも `href="#"` をつける。 div だろうとつける。 button のときは必要ないみたい。
+- (これは素の Bootstrap のほうだが) `data-toggle="collapse"` が動かない。そのときは `style="cursor: pointer;"` をつける。 div だろうとつける。 button のときは必要ないみたい。だって最初から pointer だから?
+- `href="#target"` をつけろ、みたいな記事もあったが動作しなかった。
