@@ -18,7 +18,18 @@ AzureFunctionsNote
 ## 実行しかた
 
 - F5
-- あるいは `func start --functions FUNCTION_NAME FUNCTION_NAME`
+- あるいは↓
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+func start --functions FUNCTION_NAME FUNCTION_NAME
+```
+
+- TimerTrigger の場合は、↑のを打ってから、
+    - VScode 左ペイン > Local Project > 右クリック > Execute Function Now...
+
+参考: https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-run-local?tabs=macos%2Cpython%2Cbash#run-functions-locally
 
 ***
 
