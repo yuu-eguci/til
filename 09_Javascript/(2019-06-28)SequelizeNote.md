@@ -253,3 +253,34 @@ docker ps -a | grep mysqldb
 # コンテナ再起動
 docker restart ID
 ```
+
+## CREATE TABLE で Table 'sequelizemeta' doesn't exist が出る
+
+ふざけんな。「作れ」と言ってるのに「無い」ってどういうことだよ、無いから作れって言ってんだよ。環境は Docker の MySQL。
+
+```sql
+CREATE TABLE `sequelizemeta` (
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`name`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+```
+
+```plaintext
+Error Code: 1146. Table 'sequelizemeta' doesn't exist 0.0099 sec
+```
+
+ビックリするんだけどこのエラーは docker を `docker rmi -f` で削除して再作成したとしても解消されない。
+
+## Cannot read property 'toString' of undefined
+
+どこにも! toString は!! 使っていないのに!!!
+
+- カラムをいじる際は、 type プロパティを外してはいけない。
+- `queryInterface.changeColumn` を使うときも、変えたいプロパティだけでなく全部のプロパティを書かないとダメ。
+
+## changeColumn unique:false が効かない
+
+- unique:false は changeColumn では変更できない。
+- `return queryInterface.removeConstraint(tableName, constraintName);`
+- constraintName の値は、実際に Workbench で unique を外してみて、そこで発行される sql を見て判明させよう。
