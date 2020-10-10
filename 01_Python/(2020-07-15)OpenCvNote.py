@@ -7,12 +7,21 @@ pipenv install opencv-python
 """
 
 
+import io
 import cv2
 import numpy
 
 
 # ローカルファイルから mat ファイルを作る。
+# WARNING: 指定したファイルがなくてもエラーが発生しません。 None が出ます。
 mat = cv2.imread('./file.png')
+assert mat is not None, 'ファイルないよ。'
+
+
+# mat ファイルをリサイズする。今回はどんな画像も 200x200 にします。
+# WARNING: これを復活させると、下のブランク画像を作ってるところも (200, 200) にしないとダメよ。
+# mat = cv2.resize(mat, (200, 200))
+
 
 # グレースケールで作る。
 gray_scale_mat = cv2.imread('./file.png', cv2.IMREAD_GRAYSCALE)
@@ -46,7 +55,7 @@ def imread_from_bytes(b: bytes) -> numpy.ndarray:
 #   [ 64  94 127]]]
 
 # mat を画像で閲覧できます。ニュッと GUI で出てくる。
-cv2.imshow('mat', mat)
+cv2.imshow('Push any key to close the window', mat)
 cv2.waitKey(0)
 
 # mat の情報は普通に numpy.ndarray の持っているメソッドで確認できる。
@@ -82,7 +91,7 @@ mat_list_2d = [
 concatenated_mat = concatenate_tile(mat_list_2d)
 
 # 確認します。
-cv2.imshow('concatenated_mat', concatenated_mat)
+cv2.imshow('Push any key to close the window', concatenated_mat)
 cv2.waitKey(0)
 
 # ローカルへの保存のやりかた2通りです。
