@@ -44,6 +44,18 @@ yarn add PACKAGE --trusted-host
 
 ## error An unexpected error occurred: "https://...tgz: unexpected end of file"
 
+(2020-10-12)根治。これは中国国内向けのミラーサイト taobao を使おうとしているから起きている。プロジェクトのルートに .vuerc を置いて↓を書こう。
+
+```
+{
+  "useTaobaoRegistry": false
+}
+```
+
+***
+
+以下、 `useTaobaoRegistry` を知らなかったころの対処療法。
+
 DevOps pipelines 上の yarn install で発生する問題。
 
 - `https://...tgz` を resolved で持つパッケージを upgrade する。
