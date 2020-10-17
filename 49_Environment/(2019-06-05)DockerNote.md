@@ -53,12 +53,14 @@ $ docker restart foo
 $ docker stop foo
 $ docker rm foo
 
-# とにかく削除したいセット
-$ docker ps -a -q
-$ docker stop id id id id
-$ docker rm id id id id
-$ docker images -a -q
-$ docker rmi -f id id id id
+# とにかく削除したいセット  --> 滅びの呪文の登場により無用に
+# $ docker ps -a -q
+# $ docker stop id id id id
+# $ docker rm id id id id
+# $ docker images -a -q
+# $ docker rmi -f id id id id
+# 滅びの呪文 https://qiita.com/suin/items/19d65e191b96a0079417
+docker-compose down --rmi all --volumes --remove-orphans
 
 # Container の中に入る
 $ docker exec -it foo /bin/bash
