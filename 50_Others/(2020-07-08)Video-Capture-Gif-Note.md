@@ -21,6 +21,26 @@ brew install ffmpeg
 ffmpeg -i 画面収録_299U-08-09_1.93.N.mov -r 24 gamen_test1.gif
 ```
 
+## ffmpeg で動画リサイズ
+
+```bash
+# 現在のサイズを取得。
+ffprobe -i ORIGINAL.MP4
+
+# 自動で縮尺をあわせてほしいほうを -1 にする。
+ffmpeg -i ORIGINAL.MP4 -vf scale=320:-1 OUTPUT.mp4
+```
+
+代表的な解像度
+
+- https://qiita.com/riversun/items/d09d8e596a20ec1798f3#169%E3%81%AE%E4%BB%A3%E8%A1%A8%E7%9A%84%E8%A7%A3%E5%83%8F%E5%BA%A6
+
+### 参考
+
+- https://qiita.com/riversun/items/d09d8e596a20ec1798f3
+- https://qiita.com/cha84rakanal/items/e84fe4eb6fbe2ae13fd8
+
+
 ## Windows で画面キャプチャ
 
 - Windows + Shift + S
