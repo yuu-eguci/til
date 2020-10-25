@@ -28,26 +28,6 @@ ng add angular-cli-ghpages
 ng generate component COMPONENT
 ```
 
-## GitHub Pages
-
-サブドメインの設定方法。 apex domain の場合は違う。
-
-1. お名前でドメインを CHAME: username.github.io に設定
-1. GitHub リポジトリの settings > Custom domain
-1. Enforce HTTPS にチェック入れる。
-
-Apex domain の場合……やったことないけど。
-
-1. お名前でドメインを A: ↓の ip address で設定。
-1. あとはサブドメインと同じなんじゃない?
-
-```plaintext
-185.199.108.153
-185.199.109.153
-185.199.110.153
-185.199.111.153
-```
-
 ## Version
 
 ```bash
