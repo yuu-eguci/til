@@ -174,57 +174,6 @@ export default class TopListGroupItem extends Vue {
 </b-list-group-item>
 ```
 
-## vue-router のライフサイクル(って言っていいのかな?)
-
-1. `router.beforeEach`
-1. 親 route record の `beforeEnter`
-1. 子 route record の `beforeEnter`
-
-```JavaScript
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes: [
-    // これら各 route の object は route record と呼ばれる。(children 内のも同じく。)
-    {
-      // この親 route record が開かれたときに呼ばれる。各 child が開かれるときは呼ばれない。
-      // 各 child が開かれるときの処理は後述の beforeEach に書く。
-      beforeEnter: (to, from, next) => {
-        console.info('2. 親 route record の beforeEnter だよ')
-        next()
-      },
-      path: '/',
-      component: App,
-      children: [
-        // このひとつひとつも route record。
-        {
-          path: '',
-          name: 'Home',
-          component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
-          // この route record が開かれたときに呼ばれる。
-          beforeEnter: (to, from, next) => {
-            // これ(debug)、出ない。
-            console.debug('3. 子 route record の beforeEnter だよ')
-            next()
-          },
-        },
-        {
-          path: 'about',
-          name: 'About',
-          component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-        },
-      ]
-    },
-  ],
-})
-
-router.beforeEach((to, from, next) => {
-  console.info('1. router.beforeEach だよ')
-  // next() を呼ばないといけない。
-  next()
-})
-```
-
 ## i18n(vue-cli-plugin-i18n)
 
 > The vue-cli-plugin-i18n that has been released on npm will be released as @intlify/vue-cli-plugin-i18n in near future.
