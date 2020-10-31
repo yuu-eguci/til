@@ -16,3 +16,9 @@
     -o-text-overflow: ellipsis; /* はみ出た場合に「…」を表示 (Opera用) */
 
 }
+
+/*
+    bootstrap では
+    block or inline-block 要素に .text-truncate と max-width をつけることで可能。
+    https://getbootstrap.com/docs/4.5/utilities/text/#text-wrapping-and-overflow
+*/
