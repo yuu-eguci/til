@@ -64,8 +64,11 @@ Parallels Toolbox の古いバージョン用に作成されたライセンス�
 
 ようは、古いバージョンの Toolbox が欲しいわけだ。
 
-- https://my.parallels.com/ のページにログイン。そこからダウンロードできる Parallels Toolbox for Mac 2.0.4 (PD12 compatible) は自分のライセンスキーでアクティベートできる。
+- https://my.parallels.com/ のページにログイン。ダッシュボードへ。そこからダウンロードできる Parallels Toolbox for Mac 2.0.4 (PD12 compatible) は自分のライセンスキーでアクティベートできる。
+- ↑これをやってから、 Parallels ウィンドウ右上の三角マークを押して「Tools インストール」みたいなのを押すと、 Windows 内部でインストールが始まる。(内部かよ、って思った。)
+- ↓こんな感じ。画像をみたらすんなり理解できるんじゃない?
 
+![ref](https://user-images.githubusercontent.com/28250432/96804010-cb8abc80-1448-11eb-8ee6-729ac95d49fe.png)
 
 ## Windows10 を使うまでのメモ
 
@@ -99,3 +102,14 @@ sys > network > 右下の詳細 > TCP/IP タブ > IPv4 アドレス
 - 英字キーボードにはかなキーがないから Parallels の中では認識しない。
 - 絶対このキーボードの使いかたが悪いんだけど、取り急ぎどうするか。
 - -> Alt + \` によって 半角/全角 と同じ効果がある。
+
+## Windows ライセンス移行
+
+これは Parallels の話とはちょっと違うかもだけど、 Parallels でやったことだからいいだろ。
+
+1. スタート > 歯車(設定) > 更新とセキュリティ > ライセンス認証
+1. このライセンスが ms account と紐付いていることを確認
+1. https://account.microsoft.com/
+1. 既存 Windows 削除
+1. 新しい Windows では、セットアップ時に「プロダクトキーがありません」選ぶ
+1. 同じく更新とセキュリティまでいって、 > ライセンス認証 > トラブルシューティング > Windowsのライセンス認証 > このデバイス上のハードウェアを最近変更しました
