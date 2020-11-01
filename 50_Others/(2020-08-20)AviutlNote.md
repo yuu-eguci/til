@@ -18,6 +18,10 @@ Aviutl Note
     - 参考: https://aviutl.info/l-smash-works/
 - x264guiEx をダウンロード。 x264guiEx_2.64v3.zip を。
     - https://drive.google.com/drive/u/0/folders/0BzA4dIFteM2dOWhmTXA3bE9WaWs
+    - (2020-10-23)なんかこの拡張が Mac Parallels で使えなくなったから入れ直したのだが、場所変わったかも
+        - https://www.dropbox.com/sh/q6afzrpcrl8nsda/AACtGgD-V8Z9AnWTmwV6AKo5a
+        - ファイル名も x264guiEx_2.65v2.zip になってた。
+        - この件で気づいたんだけど、この拡張で出力した mp4 でないと mac のクイックビューで再生できない。
     - 参考: https://aviutl.info/x264guiex-intro/
 - 中の auo_setup.exe を実行して、 exe_files をダウンロード。
 - この順番で入れれば、 2016.01.29.Sun のメモにある「入力プラグインの優先度の設定」はしなくていいと思う。
