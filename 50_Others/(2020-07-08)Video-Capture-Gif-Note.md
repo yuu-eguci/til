@@ -32,6 +32,8 @@ ffmpeg -i ORIGINAL.MP4 -vf scale=640:-1 OUTPUT.mp4
 
 # 音声削除。 copy が入ってると同時にリサイズはできないっぽい。
 ffmpeg -i ORIGINAL.MP4 -vcodec copy -an OUTPUT.mp4
+# よく使う
+ffmpeg -i original.mov -vcodec copy -an original.mp4
 ```
 
 代表的な解像度
