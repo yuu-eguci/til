@@ -46,6 +46,8 @@ yarn add PACKAGE --trusted-host
 
 (2020-10-12)根治。これは中国国内向けのミラーサイト taobao を使おうとしているから起きている。プロジェクトのルートに .vuerc を置いて↓を書こう。
 
+(2020-11-02)いやこれ yarn install には効いてなくね?!
+
 ```
 {
   "useTaobaoRegistry": false
