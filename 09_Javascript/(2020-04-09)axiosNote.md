@@ -87,13 +87,15 @@ const response = await axios.post('http://hitoren.net/api/v1/example', {
 
 Axios は返却コードが200じゃないとき? 例外をぶん投げるのでマジで注意。
 
+`.catch` の部分がないと200以外の body 部を取得できない。
+
 ```JavaScript
 const res = await axios.get("/user?id=123")
  .catch(err => {
    return err.response
  });
 
-if (res.status != 200) {
+if (res.status !== 200) {
    console.log("例外発生時の処理")
 }
 ```
