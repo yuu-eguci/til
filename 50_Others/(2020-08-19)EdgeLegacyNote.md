@@ -1,7 +1,7 @@
 Edge Legacy Note
 ===
 
-- クソ窓をクリーンインストールしたら最初から新 Edge が入っていて、アンインストールができない・・・・・・
+- クソ窓をクリーンインストールしたら最初から新 Edge が入っていて、アンインストールができない……
 
 ## コマンドで強制的にダウングレード
 
@@ -26,7 +26,7 @@ setup.exe --uninstall --system-level --verbose-logging --force-uninstall
 ほっとくと新 Edge がダウンロードされてきやがるのをブロックするやつ。
 
 - ダウンロード。
-	- https://docs.microsoft.com/ja-jp/deployedge/microsoft-edge-blocker-toolkit
+    - https://docs.microsoft.com/ja-jp/deployedge/microsoft-edge-blocker-toolkit
 - MicrosoftEdgeChromiumBlockerToolkit.exe を実行すると、展開先を聞かれるからてきとうに。 EdgeChromium_Blocker.cmd とかが出てくる。
 - cmd を管理者権限で開く。
 - EdgeChromium_Blocker.cmd のところまで移動。
