@@ -127,7 +127,6 @@ it('', () => {
 });
 
 
-
 /**
  * Error: Resolution method is overspecified. Specify a callback *or* return a Promise; not both.
  * このエラーよく出るけどまあ async await done の組み合わせはこのノートのコードを参考にして。
@@ -135,11 +134,25 @@ it('', () => {
  */
 
 
-
-
 /**
- *
+ * Redirect をテストしたいときの例。
  */
+it('', async () => {
+
+  // Company.useAttendanceManagementSystem=true のときは membernonce 発行ののちリダイレクトが発生することを確認します。
+  return _authenticatedSession.get('/...')
+    .expect(302)
+    .then(async (res) => {
+
+      // await なんちゃら
+
+      // リダイレクト先を確認します。
+      assert.strictEqual(res.header.location, `https://...`);
+
+    });
+
+});
+
 
 
 
