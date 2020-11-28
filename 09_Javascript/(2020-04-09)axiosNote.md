@@ -92,7 +92,7 @@ Axios は返却コードが200じゃないとき? 例外をぶん投げるので
 ```JavaScript
 const res = await axios.get("/user?id=123")
  .catch(err => {
-   return err.response
+   return err.response;
  });
 
 if (res.status !== 200) {
