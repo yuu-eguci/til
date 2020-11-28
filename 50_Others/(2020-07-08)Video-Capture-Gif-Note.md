@@ -19,19 +19,24 @@ brew install ffmpeg
 
 # ffmpeg -i Input.mov -r FrameRate OutputFilename.gif
 ffmpeg -i 画面収録_299U-08-09_1.93.N.mov -r 24 gamen_test1.gif
+# よく使う
+ffmpeg -i edit.mp4 -r 24 edit.gif
 ```
 
 ## ffmpeg
 
 ```bash
 # 現在のサイズを取得。
-ffprobe -i ORIGINAL.MP4
+ffprobe -i original.MP4
 
 # リサイズ。自動で縮尺をあわせてほしいほうを -1 にする。
-ffmpeg -i ORIGINAL.MP4 -vf scale=640:-1 OUTPUT.mp4
+ffmpeg -i original.MP4 -vf scale=640:-1 output.mp4
+ffmpeg -i original.MP4 -vf scale=1024:-1 output.mp4
+ffmpeg -i original.MP4 -vf scale=1280:-1 output.mp4
+ffmpeg -i original.MP4 -vf scale=1600:-1 output.mp4
 
 # 音声削除。 copy が入ってると同時にリサイズはできないっぽい。
-ffmpeg -i ORIGINAL.MP4 -vcodec copy -an OUTPUT.mp4
+ffmpeg -i original.MP4 -vcodec copy -an output.mp4
 # よく使う
 ffmpeg -i original.mov -vcodec copy -an original.mp4
 ```
