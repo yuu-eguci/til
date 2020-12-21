@@ -207,7 +207,7 @@ heroku ci
 
 問題: 開くとエラー。
     relation "app1_floare" does not exist
-    は? migrate したじゃん。ls してみたら sqlite3 がないからマジで heroku では posgre が疲れてるんかなー。
+    は? migrate したじゃん。ls してみたら sqlite3 がないからマジで heroku では posgre が使われているのかな。
     ずっと半信半疑だった、「migrations ファイルは git add するもんなのか問題」にカタがついたみたいだ。絶対 add すること。
     そして heroku ci の中に makemigrations はいらない。ローカルで作って、リモートで migrate する。
 
@@ -325,6 +325,8 @@ ImageField の使い方
 
 - sqlite では `%Y-%m-%d %H:%M:%S.000000` のフォーマットで登録すること。
 - 参考: `datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.000000')`
+
+(2020-12-19)いまこれをたまたま読んだが、 iso フォーマットだね。この頃は知らなかった……。 utc のフォーマットでもいいのかな?
 
 
 ### テンプレート内でディクショナリとかリストのインデックスに変数が使えない。
@@ -808,4 +810,16 @@ DATABASES = {
         }
     }
 }
+```
+
+### migration
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+
+# 「このファイルまで migration が行われた状態」にする。
+# これは migration にも使えるし undo としても使える。このファイルの後続 migration があったとき、それは revert されるってことね。
+python manage.py migrate app migration_file.py
 ```
