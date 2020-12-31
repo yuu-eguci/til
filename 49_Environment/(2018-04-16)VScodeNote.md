@@ -106,6 +106,10 @@ Sync : 無効もしくは期限切れの GitHub Token です.
 C:\\WINDOWS\\system32\\cmd.exe
 ```
 
+```
+"terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+```
+
 いや PowerShell と cmd を並列で使いたいよね? かゆいところに手が届かないな。
 
 
