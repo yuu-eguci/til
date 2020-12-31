@@ -39,6 +39,8 @@ ffmpeg -i original.MP4 -vf scale=1600:-1 output.mp4
 ffmpeg -i original.MP4 -vcodec copy -an output.mp4
 # よく使う
 ffmpeg -i original.mov -vcodec copy -an original.mp4
+# 単純に mov->mp4
+ffmpeg -i original.mov original.mp4
 ```
 
 代表的な解像度
