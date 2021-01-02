@@ -35,7 +35,6 @@ lsof -i:1337
 kill 20
 ```
 
-
 ## curl
 
 ```bash
@@ -55,4 +54,18 @@ curl -i -b cookie -X PUT http://localhost:1337/api/v1/timecard -H "Content-type:
 
 ```bash
 VAR=`pwd`
+```
+
+## ssh
+
+```bash
+# 基本
+ssh user@000.000.000.000
+
+# 秘密鍵を使ってログイン
+ssh -i /Users/user/.ssh/id_rsa user@000.000.000.000
+
+# 秘密鍵を使わずにログイン
+# NOTE: なんか一度秘密鍵を指定すると次から自動で使われちゃうみたい。
+ssh -o PubkeyAuthentication=no user@000.000.000.000
 ```
