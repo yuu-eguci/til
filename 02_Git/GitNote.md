@@ -317,6 +317,15 @@ git filter-branch -f --env-filter "
     editor = "'c:/program files/sublime text 3/subl.exe' -w"
 ```
 
+### 29. ローカルをリモートのブランチに強制一致
+
+```bash
+git fetch origin
+git reset --hard origin/master
+
+# もちろんブランチ名は適宜変更。
+```
+
 ***
 
 ## これを書いてる頃にはもう出会わないんだけど昔のエラーノート
