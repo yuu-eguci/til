@@ -50,3 +50,8 @@ pipenv --venv
 # Remove virtual env.
 pipenv --rm
 ```
+
+```bash
+# requirements.txt
+pipenv lock -r > requirements.txt
+```
