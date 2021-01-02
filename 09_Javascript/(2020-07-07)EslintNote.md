@@ -26,4 +26,5 @@ TypeScript で使いたいときは
 // eslint-disable-line @typescript-eslint/no-var-requires
 // eslint-disable-line @typescript-eslint/no-unused-vars
 /* eslint-disable */
+// eslint-disable-next-line no-console
 ```
