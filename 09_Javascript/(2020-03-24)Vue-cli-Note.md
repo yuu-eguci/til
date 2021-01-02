@@ -520,3 +520,4 @@ export default {
 ## ハマるとこ
 
 - 自分のコンポーネントに `@click` をつけるときは `@click.native` と書く!
+- .env.local は全環境で読み込まれる!
