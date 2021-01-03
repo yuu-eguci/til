@@ -94,18 +94,24 @@ C#.sublime-build
 
 ・ キーバインドファイルをここにコピー。
 
-    Packages/Default/Default (OSX).sublime-keymap
+```
+Packages/Default/Default (OSX).sublime-keymap
+```
 
 ・ 検索欄の「次へ」ショートカットをCtrl+Enterにする。
 
-    // Find panel key bindings
-    // Replace panel key bindings
-    // Incremental find panel key bindings
-    以上のショートカットを enter から ctrl+enter にする。
+```
+// Find panel key bindings
+// Replace panel key bindings
+// Incremental find panel key bindings
+以上のショートカットを enter から ctrl+enter にする。
+```
 
 ・ Ctrl+kでカタカナ変換ができるようにする。
 
-    ctrl+k のところをコメントアウト。
+```
+ctrl+k のところをコメントアウト。
+```
 
 ・ 置換は Command+opt+f だけど他のとかぶるから変更する。
 
