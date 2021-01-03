@@ -223,3 +223,7 @@ https://packagecontrol.io/packages/Sync%20Settings
 ## Markdown 用プラグイン
 
 - Markdown Extended を入れる。これがないと html がハイライトされなかった。
+
+## Error trying to parse file: ... sublime-keypmap
+
+Key binding のファイル記述に syntax error があった。これがあると subl がまともに動かないので、キーボードの不具合か? と思ってしまった。
