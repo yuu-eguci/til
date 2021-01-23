@@ -12,7 +12,47 @@ SlackNote
     - Event Subscriptions: ユーザからの入力などに対して反応するようにする
     - Permissions: AppがAPIを使用するための権限設定
 
+## slackapi/python-slack-sdk
+
+トークンを作って、それを指定して WebClient を作って chat_postMessage する流れ。ドキュメントはここ↓。
+
+- https://github.com/slackapi/python-slack-sdk/blob/main/tutorial/01-creating-the-slack-app.md
+- https://api.slack.com/apps?new_granular_bot_app=1 から App 作成
+- App 作成
+- OAuth & Permissions > Scopes > chat:write 追加
+    - postMessage の一部の引数は chat:write.customize を追加しないといけない。
+    - ただしこのノートを書いているときはそこまでやっていない。
+- 上の方の OAuth Tokens for Your Team に表示されている Token を取得
+    - 2種類あって、 OAuth Access Token のほうは「自分からの」メッセージを送信できる
+    - Bot User OAuth Access Token のほうはメッセージの name とか emoji を変えられるけれど、 bot を channel へ招待しないといけないみたい。今回はやってない。
+- サンプルコードは GitHub 参照
+    - https://github.com/slackapi/python-slack-sdk
+
+```python
+# サンプル。 SharePoindMaid プロジェクトで使用。
+from slack_sdk import WebClient
+from slack_sdk.errors import SlackApiError
+
+try:
+    # NOTE: unfurl_links は時折鬱陶しいと思っている「リンクの展開機能」です。不要です。 False.
+    response = slack_client.chat_postMessage(
+        channel=SLACK_MESSAGE_CHANNEL, text=message, unfurl_links=False)
+    # 返却値の確認は行いません。
+    # NOTE: Slack api のドキュメントにあるコードなので追加していましたが排除します。
+    #       リンクの含まれるメッセージを送信すると、返却値が勝手に変更されるため絶対一致しないからです。
+    #       - リンクの前後に <, > がつく
+    #       - & -> &amp; エスケープが起こる
+    # assert response['message']['text'] == message
+except SlackApiError as e:
+    assert e.response['ok'] is False
+    # str like 'invalid_auth', 'channel_not_found'
+    assert e.response['error']
+    print(f'Got an error: {e.response["error"]}')
+```
+
 ## Sample
+
+(2021-01-13)こちらは昔の。現在では slack_sdk を使うことにした。
 
 ```python
 # FIXME: なぜか普通に実行すると OK で
@@ -77,16 +117,22 @@ jobs:
       if: success()
       uses: rtCamp/action-slack-notify@v2.0.2
       env:
-        SLACK_CHANNEL: post_yuu-eguci
-        SLACK_TITLE: SharePointMaid succeeded
+        SLACK_CHANNEL: restaurant
         SLACK_COLOR: good
+        SLACK_MESSAGE: 'job SUCCEEDED'
+        SLACK_TITLE: build-and-test job succeeded
+        SLACK_USERNAME: RESTaurant
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
 
     # 失敗時はこちらのステップが実行されます。
     - name: Slack Notification on Failure
       uses: rtCamp/action-slack-notify@v2.0.2
       if: failure()
       env:
-        SLACK_CHANNEL: post_yuu-eguci
-        SLACK_TITLE: SharePointMaid failed
+        SLACK_CHANNEL: restaurant
         SLACK_COLOR: danger
+        SLACK_MESSAGE: 'job FAILED'
+        SLACK_TITLE: build-and-test job failed
+        SLACK_USERNAME: RESTaurant
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
 ```
