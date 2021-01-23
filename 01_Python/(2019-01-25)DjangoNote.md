@@ -4,37 +4,61 @@ DjangoNote
 
 ## 基本形作成
 
+(2021-01-10)久々にイチから Django 作っている。復習がてらこの DjangoNote を見直し + 修正した。
+
 ```bash
+# NOTE: デプロイ環境と合わせること。たとえば Azure AppService なら今のとこ3.8までしかない。
+pipenv install --python 3.8
+
 pipenv install django
+
+# REST framework を使う場合はこれ。
+pipenv install djangorestframework markdown django-filter
+
+# mysql を使う場合、 App Service を使う場合はこれも。
+pipenv install pymysql whitenoise
+
+# .gitignore
+open https://github.com/jpadilla/django-project-template/blob/master/.gitignore
+
+# ---
+
+# Initialize Django
+# NOTE: 最初のうちは、 -project つけるといいかもと思った。 config もいいけど。
+django-admin startproject config .
+
+# Add static folders
+# NOTE: (2021-01-10)最近は api と web を分けることを考えてるけどね
+# static/app1/images/.gitkeep
+# static/app2/images/.gitkeep
+# static/css/.gitkeep
+# static/js/.gitkeep
+
+# Add template folders
+# templates/.gitkeep
+# templates/app1/.gitkeep
+# templates/app2/.gitkeep
+
+# Add apps
+# NOTE: 最初のうちは、 -app つけるといいかもと思った。
+python manage.py startapp app1
+python manage.py startapp app2
+
+# Migrate
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser --email admin@example.com --username admin
+
+# Run
+python manage.py runserver
 ```
 
-- Add gitignore
-    - [example](https://github.com/jpadilla/django-project-template/blob/master/.gitignore)
-- Initialize Django
-    - django-admin startproject config .
-- Add static folders
-    - static
-        - app1/images/.gitkeep
-        - app2/images/.gitkeep
-        - css/.gitkeep
-        - js/.gitkeep
-- Add template folders
-    - templates
-        - .gitkeep
-        - app1/.gitkeep
-        - app2/.gitkeep
-- Add apps
-    - python manage.py startapp app1
-    - python manage.py startapp app2
-- Migrate
-    - python manage.py makemigrations
-    - python manage.py migrate
-    - python manage.py createsuperuser
-- Run
-    - python manage.py runserver
+## REST framework の場合
 
-[localhost:8000](http://localhost:8000/)
+このあたりを参考に serializers.py とか views.py を編集しないといかん。
 
+- https://www.django-rest-framework.org/
+- https://qiita.com/kimihiro_n/items/86e0a9e619720e57ecd8
 
 ## 設定ファイル分割
 
@@ -69,6 +93,14 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.local')
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.production')
 ```
 
+### (2021-01-10)設定ファイルを分ける別の方法
+
+こんな方法もある。 DangoDeployToAppServiceNote に記載した。
+
+```python
+settings_module = 'RESTaurant.production' if 'WEBSITE_HOSTNAME' in os.environ else 'RESTaurant.settings'
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_module)
+```
 
 ## Vagrant Apache 環境
 
@@ -97,12 +129,9 @@ $ sudo tail -f /var/log/httpd/error_log
 $ sudo tail -f /var/log/httpd/access_log
 ```
 
-
-
 ## 作成から heroku デプロイまで。
 
 [DjangoFloare](https://gitlab.com/midori-mate/djangofloare)に以下のとおりの手順でコミットしてある。
-
 
 ### 作成
 
@@ -178,7 +207,6 @@ DEBUG=False のための準備
 
 これで DEBUG=False 許容する。
 
-
 ### heroku デプロイ
 
 ```
@@ -215,7 +243,6 @@ heroku ci
     heroku apps:destroy --app django-floare
 ```
 
-
 ## 基礎
 
 ### INSERT
@@ -242,6 +269,8 @@ t.save()
 ### GETSERT
 
 取得、さもなくばINSERT。こんなんあるんだ一度もやろうと思ったことないけど。
+
+- (2021-01-10)ワロタ。めっちゃ使うわ findOrCreate
 
 ```python
 tbl, created = Tbl.objects.get_or_create(
@@ -277,7 +306,7 @@ tbl, created = Tbl.objects.update_or_create(
 解法
 
 - 解法: フォームの中に `{% csrf_token %}` を追加すればよい。
-
+-(2021-01-10)今ではもう csrf を知ってるから、この頃の「よくわかんなさ」が懐かしいなあ。
 
 ### DEBUG = False にすると static が読み込まれない。
 
@@ -293,12 +322,10 @@ tbl, created = Tbl.objects.update_or_create(
 
 - [Django での static files の扱い方まとめ](http://hideharaaws.hatenablog.com/entry/2014/12/12/230825)
 
-
 ### 404 ページを作りたいんだが。
 
 テンプレートディレクトリに `404.html` を追加する。  
 `DEBUG=False` のときだけ表示される。
-
 
 ### 画像を格納するDBがほしい。
 
@@ -314,7 +341,6 @@ ImageField の使い方
 
 - [Django2で画像を指定サイズで保存する](https://qiita.com/peijipe/items/68292ded4fd3e31a8bfe)
 
-
 ### DatetimeField を取得するとき None になるんだが。
 
 原因
@@ -327,7 +353,6 @@ ImageField の使い方
 - 参考: `datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.000000')`
 
 (2020-12-19)いまこれをたまたま読んだが、 iso フォーマットだね。この頃は知らなかった……。 utc のフォーマットでもいいのかな?
-
 
 ### テンプレート内でディクショナリとかリストのインデックスに変数が使えない。
 
@@ -386,7 +411,6 @@ TEMPLATES = [
 {% endfor %}
 ```
 
-
 ### テンプレート内で文字列を連結したりする
 
 ```
@@ -411,7 +435,6 @@ heroku config:set NAME=VALUE
 heroku config:unset NAME
 ```
 
-
 ### adminページで OperationalError エラー
 
 具体的にはこういうエラーが出る。
@@ -425,7 +448,6 @@ unable to open database file
 
 - sqlite ファイル自体。
 - sqlite のあるディレクトリ(プロジェクト本体である場合が多いかな?)
-
 
 ### django-markdownx で画像アップできない問題
 
@@ -442,11 +464,9 @@ PermissionError: [Errno 13] Permission denied: '/vagrant/media/markdownx/ba4befe
 
 media/markdownx のパーミッションを開けたら解決。
 
-
 ### Vagrant,Apache,DEBUG=False ではめっちゃ読み込みが遅い
 
 なんなんこれ。
-
 
 ### apache 環境、staticfiles が notfound 言われる。
 
@@ -464,7 +484,6 @@ FileNotFoundError: [Errno 2] No such file or directory: '/vagrant/staticfiles/ad
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 ```
-
 
 ### apache 環境、admin ページのCSSが404。
 
@@ -530,7 +549,6 @@ Alias /static/ /var/www/static
 
 だけどこれには疑問。admin はコピーされてたけど markdownx はコピーされてないじゃん。あれ? いまやってみたら staticfiles に現れた。まあよかった。
 
-
 ### ↑のあと DEBUG=False で実行したらcss表示されない
 
 `--insecure` で実行したら表示された。
@@ -550,7 +568,6 @@ Django の問題で状況を説明するときは
 
 らへんを明記しないとダメだなー。あと django1,2 でちょっと違うから注意。
 
-
 ### ↑の作業を終えたあと admin や markdownx のcssは表示されたが MEDIA にアップした画像が404
 
 まあそりゃ apache なら Alias で media のアクセス先を指定できるけど、ローカルではそういうことしてないもんね。そう理解しつつググったら、あったあった。
@@ -568,11 +585,9 @@ Django の問題で状況を説明するときは
 
 うーん、これはできない、というかしないものなのかも。DEBUG=False にするならば runserver 以外のウェブサーバを使いましょうってことか。どうしても static だけでも確認したいときは collectstatic してから insecure しましょうってことかな?
 
-
 ### ふと思った
 
 Django は「ここはよくわかんないなーまあでもやりたいメインのことじゃないし適当にしとくか」ってほかっておいたことがあとになって必ず襲ってくる感じ。
-
 
 ### django-heroku の pip が成功しない。
 
@@ -581,7 +596,6 @@ Command "python setup.py egg_info" failed with error code 1
 ```
 
 psycopg2は psycopg2==2.7.1 でinstallしないとダメ。
-
 
 ### ImproperlyConfigured エラー
 
@@ -597,7 +611,6 @@ Django==2.1.7
 
 requirements.txt の重要性を強く感じたとさ。
 
-
 ### ModuleNotFoundError エラー
 
 ```
@@ -608,7 +621,6 @@ ModuleNotFoundError: No module named 'django.templatetags.static'
 なんじゃこりゃ。まあ `/vagrant/env3.6/lib/python3.6/site-packages/django/templatetags/static.py` が存在しないのが原因ではある。けどなんでこれが生成されてねーんだ?
 
 よくわからないが `/vagrant/env3.6/lib/python3.6/site-packages` 内のdjango関係を消し去って `django==2.1.8` をinstallしたら生成された。
-
 
 ### Apache 環境で500が出たときの原因がわからねーぞクソが問題の解決
 
@@ -642,7 +654,6 @@ def page_server_error(request, *args, **kw):
 
 いやーーこれ相当苦労したから解決して嬉しいわー。
 
-
 ### 自作400ビュー作成
 
 500エラーと同じで、デフォルトのビューをユーザ定義ビューにすげ替える。
@@ -659,7 +670,6 @@ def page_not_found(request, *args, **kw):
     # まあこの中は好きにどうぞ。
     return redirect('/')
 ```
-
 
 ### basic 認証
 
@@ -702,7 +712,6 @@ if not basic_auth.basic_auth(request):
 
 ID,PW は createsuperuser で作ったやつ。
 
-
 ### manage.py を使うときの settings ファイルを指定する
 
 こんな感じ。
@@ -710,7 +719,6 @@ ID,PW は createsuperuser で作ったやつ。
 ```
 $ python /vagrant/manage.py migrate --settings=config.settings.production
 ```
-
 
 ### Did you install mysqlclient? って出たときは?
 
@@ -720,7 +728,6 @@ $ python /vagrant/manage.py migrate --settings=config.settings.production
 import pymysql
 pymysql.install_as_MySQLdb()
 ```
-
 
 ### DBの初期データ、マスタデータを登録
 
@@ -742,7 +749,6 @@ $ python manage.py loaddata initial_db_data.json
 $ python manage.py dumpdata app > initial_db_data.json
 ```
 
-
 ### URLの取得
 
 `http://localhost:8000/ja/?a=1` にアクセスした場合。
@@ -754,7 +760,6 @@ print(request.path                ) # /ja/
 print(request.get_full_path()     ) # /ja/?a=1
 print(request.build_absolute_uri()) # http://localhost:8000/ja/?a=1
 ```
-
 
 ### Timezone によるワーニングやエラー
 
@@ -775,7 +780,6 @@ TypeError: can't compare offset-naive and offset-aware datetimes
 
 らしいが変換されてないぞ。
 
-
 ### dumpdata
 
 ```bash
@@ -791,10 +795,11 @@ auth_user じゃなくて `auth.user`
 $ python /vagrant/manage.py dumpdata auth.user --indent 4 --settings=config.settings.for_production > /vagrant/initial_db_data.json
 ```
 
-
 ### DATABASES 設定に ssl を指定する例
 
 たまたま見つけた Azure Database for MySQL へ ssl を使ってアクセスする記事なんだけど、「OPTIONS ssl はどうやって使うんだろう」への答えがあったのでメモっとく。
+
+- (2021-01-10)実際に App Service へデプロイしたとき用いた設定。マジでそのまま機能した。これ↑を書いたころはホントに使うときがくるとは思ってなかっただろうなあー。
 
 ```python
 DATABASES = {
@@ -822,4 +827,26 @@ python manage.py createsuperuser
 # 「このファイルまで migration が行われた状態」にする。
 # これは migration にも使えるし undo としても使える。このファイルの後続 migration があったとき、それは revert されるってことね。
 python manage.py migrate app migration_file.py
+```
+
+## カスタムコマンド
+
+`[プロジェクト名]/[アプリ名]/management/commands/[コマンド名].py` を作成。
+
+- コマンド一覧は `python manage.py` でわかる。
+- そこを見ると、スネークケースはひとつもなくて、全部 `runserver` とか `changepassword` とかだから、それに従うといいかも。
+
+```python
+from django.core.management.base import BaseCommand
+from django.utils import timezone
+
+
+class Command(BaseCommand):
+    help = 'Displays current time'
+
+    def handle(self, *args, **kwargs):
+        now = timezone.now()
+        iso = now.strftime('%Y-%m-%dT%H:%M:%SZ')
+        tzinfo = now.tzinfo
+        self.stdout.write(f'timezone.now(): {iso}, tzinfo: {tzinfo}')
 ```
