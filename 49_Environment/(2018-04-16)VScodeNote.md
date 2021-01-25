@@ -33,13 +33,17 @@ Visual Studio Code Note vscodenote
 - 左アイコンが増える > 押す > Start collaboration session > GitHub でログイン
 
 
-## 設定の同期
+## Settings Sync
 
 - 拡張 > **Settings Sync**
 - アップロードは Opt+Shift+U(token 必要)
 - ダウンロードは Opt+Shift+D(token, gistID 必要)
 
-#### 初回設定
+### 初回
+
+(2021-01-12)超カンタン、見た通り。昔はこんなん↓で面倒だったなあ。
+
+***
 
 - token 取得
     - Opt+Shift+U
@@ -51,25 +55,18 @@ Visual Studio Code Note vscodenote
     - `https://gist.github.com/ユーザ名`
     - cloudSettings のページのURL末尾文字列。
 
-#### token と gistID の確認
-
-- token: [https://github.com/settings/tokens](https://github.com/settings/tokens)
-    - これ忘れたときは Regenerate する感じみたい。
-- gistID: 上述
-
-
-#### ダウンロードでエラー
-
-```
-Sync : 無効もしくは期限切れの GitHub Token です.
-```
-
-一度これが出ちゃったとき再設定する方法。
+### Sync : 無効もしくは期限切れの GitHub Token です.
 
 - コマンドパレットで `sync` って打って `Advanced Options`
 - `Edit Extension Local Settings` を押すと syncLocalSettings.json が開く。
 - `token` の値を変えればいい。
 
+### Sync : You cant edit GIST for user
+
+「てか再サインインさせろよ。 gist を選ぶ画面をもう一度見せろ」
+
+- ↑の方法で syncLocalSettings.json を開いて、中身を全部消すと再びサインインボタンが出る。
+- gist をもう一度選べるようになる。
 
 ## 検索
 
@@ -253,3 +250,6 @@ Command + , > associations > Edit in settings.json
 # 拡張を見る。
 code --list-extensions
 ```
+
+## Sync : You cant edit GIST for user
+
