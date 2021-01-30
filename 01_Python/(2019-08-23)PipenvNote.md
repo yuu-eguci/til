@@ -54,4 +54,7 @@ pipenv --rm
 ```bash
 # requirements.txt
 pipenv lock -r > requirements.txt
+
+# Locking Failed! って言われたとき。
+pipenv lock --clear
 ```
