@@ -19,7 +19,7 @@ Aviutl Note
 - x264guiEx をダウンロード。 x264guiEx_2.64v3.zip を。
     - https://drive.google.com/drive/u/0/folders/0BzA4dIFteM2dOWhmTXA3bE9WaWs
     - (2020-10-23)なんかこの拡張が Mac Parallels で使えなくなったから入れ直したのだが、場所変わったかも
-        - https://www.dropbox.com/sh/q6afzrpcrl8nsda/AACtGgD-V8Z9AnWTmwV6AKo5a
+        - https://www.dropbox.com/sh/q6afzrpcrl8nsda/AACtGgD-V8Z9AnWTmwV6AKo5a -> また変わった
         - ファイル名も x264guiEx_2.65v2.zip になってた。
         - この件で気づいたんだけど、この拡張で出力した mp4 でないと mac のクイックビューで再生できない。
     - 参考: https://aviutl.info/x264guiex-intro/
@@ -38,3 +38,18 @@ Aviutl Note
 - 丁度いい大きさ(長さ)にする。
 - クリッピングを + する。
 - 上下左右どれか希望するものを直線移動にして、 0 -> [サイズの値] にする。
+
+## WindowSize
+
+- メニュー > 表示 > 拡大表示 > WindowSize
+- これが編集しやすい。
+
+## Warning: Detected CTS duplication at frame ...
+
+- ファイル > 環境設定
+    - 入力プラグイン優先度 > L-Smash Works File Reader を一番上に
+    - 入力プラグインの設定 > L-Smash > Libav+L-Smash のチェックを解除
+
+## ファイルの読み込みに失敗しました
+
+↑の「Libav+L-Smash のチェックを解除」を戻したら解決した。
