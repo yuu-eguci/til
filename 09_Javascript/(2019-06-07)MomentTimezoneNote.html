@@ -144,7 +144,38 @@
       moment('2019-01-01T00:00').tz('America/Los_Angeles').utc().format()
     );
 
+    console.info('-------------------- JST の時間を UTC へ変換する(JST0時を設定したらUTC15時が欲しいってこと) --------------------');
 
+    // 日本時間でこのスクリプトを実行するときは必要ありません。
+    // システム時間が UTC の環境で実行するときはこれを設定しないと、以下↓スクリプトの出力が変わって混乱します。注意。
+    moment.tz.setDefault('Etc/UTC');
+
+    // Asia/Tokyo
+    console.info(moment('2020-01-01T00:00').tz());
+
+    // 2020-01-01T00:00:00+09:00
+    console.info(moment('2020-01-01T00:00').format());
+
+    // 2019-12-31T15:00:00Z
+    console.info(moment('2020-01-01T00:00').utc().format());
+
+    // Default tz をリセット。
+    moment.tz.setDefault();
+
+    console.info('--- setDefault("Etc/UTC") ---');
+    moment.tz.setDefault('Etc/UTC');
+    console.info(moment('2019-01-01T00:00').format());
+    console.info(moment('2019-01-01T00:00').tz('Asia/Tokyo').format());
+    console.info(moment('2019-01-01T00:00').tz('Asia/Tokyo').utc().format());
+    moment.tz.setDefault();
+
+
+    console.info('--- setDefault("Asia/Tokyo") ---');
+    moment.tz.setDefault('Asia/Tokyo');
+    console.info(moment('2019-01-01T00:00').format());
+    console.info(moment('2019-01-01T00:00').tz('Asia/Tokyo').format());
+    console.info(moment('2019-01-01T00:00').tz('Asia/Tokyo').utc().format());
+    moment.tz.setDefault();
 
     // --------------------------
     // オマケ 時計表示
