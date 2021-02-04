@@ -56,6 +56,15 @@ headers = {
     'RegistrationToken':'exampleexample',
 }
 res = session.post(url, data=postdata, headers=headers)
+
+# 一部の API は json エンコードされたデータを受け取る。
+# 上の方法で payload を送ると form で送られたと判断されるようだ。
+# たとえば api.github.com はこのタイプ。
+# https://requests-docs-ja.readthedocs.io/en/latest/user/quickstart/#post
+url = 'https://api.github.com/some/endpoint'
+payload = {'some': 'data'}
+res = requests.post(url, data=json.dumps(payload))  # こういうことね。
+
 encoding = res.encoding                 # デフォルトではISO-8859-1になってるかもしれん。すっと文字化けするから下行で直す。
 res.encoding = 'Shift_JIS'
 res.encoding = res.apparent_encoding    # 本文を読んで文字コードを自動判別してくれるからこれでも。
