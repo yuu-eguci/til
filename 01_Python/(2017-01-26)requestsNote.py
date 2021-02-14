@@ -74,6 +74,9 @@ example = urllib.parse.unquote(res.headers['Content-Disposition'])
 # 本文の取得方法
 text = res.text
 
+# 返却値が json ならこれで dict に出来る。
+pprint(res.json())
+
 ''' cx_freezeとrequests
 "C:\Python34\Lib\site-packages\requests\packages\urllib3\util\ssl_.py"
 の290行目あたりに以下の処理を加えないとダメ
