@@ -95,3 +95,21 @@ def get_end_of_month_utc(y: int, m: int) -> str:
         end_of_month.astimezone(pytz.utc))
     return end_of_month_utc.strftime('%Y-%m-%dT%H:%M:%SZ')
     # 2020,7 を指定した場合 -> 2020-07-31T14:41:00Z
+
+# (2021-02-01)
+# 任意の utc 文字列 -> 日本時間 のサンプル。
+# NOTE: 文字列で strptime することも考えたけれど、なんか面倒だったから
+#       一番引数がわかりやすい int 化からの datetime オブジェクト生成にした。
+original = '2021-02-01T06:00:12Z'
+yyyy = int(original[0:4])
+mm = int(original[5:7])
+dd = int(original[8:10])
+hh = int(original[11:13])
+mm_ = int(original[14:16])
+ss = int(original[17:19])
+# こうやって utc datetime インスタンスを作る。
+datetime_utc = datetime.datetime(yyyy, mm, dd, hh, mm_, ss, 0, pytz.utc)
+# それを日本時間にする。ここがちと見づらいよね……
+TZ_JAPAN = pytz.timezone('Asia/Tokyo')
+datetime_jst = TZ_JAPAN.normalize(datetime_utc.astimezone(TZ_JAPAN))
+print(datetime_jst)
