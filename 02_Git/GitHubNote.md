@@ -4,6 +4,16 @@ GitHubNote
 
 ## hub コマンド
 
+- https://hub.github.com/hub.1.html
+
+```bash
+# とりあえず pull-request だけは「定期リリース」を検討したときに調べたんで、書いとく。
+# NOTE: --edit を使うコマンドは GitHub Actions では使えないかも。
+# NOTE: --message があると --file が打ち消されるからテンプレートの1行目にタイトルを書くこと。
+# dev -> master の場合…… dev branch に checkout しているときに……
+hub pull-request --base master --file .github/PULL_REQUEST_TEMPLATE_FOR_WORKFLOW.md
+```
+
 ### Mac
 
 ```bash
@@ -56,7 +66,6 @@ $ git mkpr ORIGINALBRANCH BRANCHNAME "-r xxx,xxx -a xxx,xxx -l xxx,xxx"
 
 `subl` の設定をしておけばこのあと PR の編集画面が開く。
 
-
 ### subl の設定
 
 これを打つ。
@@ -66,6 +75,19 @@ $ ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" "/usr/l
 $ git config --global core.editor "subl -w"
 ```
 
+## gh コマンド
+
+- https://cli.github.com/
+
+### Mac
+
+```bash
+brew install gh
+```
+
+### How to
+
+GitHub 公式のクセに hub の劣化版って感じ。使わなくていい。
 
 ## GitHub 開発フロー
 
@@ -119,7 +141,23 @@ https://get.slack.help/hc/ja/articles/232289568-GitHub-%E3%81%A8-Slack-%E3%82%92
 
 # unsubscribe
 # subscribe のオプションを付け直したいときも一度これを
-/github unsubscribe owner/repo
+# (2021-02-03)消したいやつを引数で指定する。
+/github unsubscribe owner/repo issues,pulls,statuses,public,releases,comments,reviews
+
+# 現在 subscribe 中の一覧を出す。
+/github subscribe list features
+```
+
+ラベルを使ってフィルタリングするときのコマンド
+
+- https://github.com/integrations/slack#filters
+
+```plaintext
+# 特定のラベルが付いたものだけフィルタリングして通知する。↓の設定だと FOO ラベルがついたものを通知。
+/github subscribe owner/repo +label:"FOO"
+
+# 「欲しいのは pulls と label FOO だけなんだよ!」ってときは issues とかを unsubscribe する。
+/github unsubscribe owner/repo issues,deployments,statuses,public,commits,releases
 ```
 
 ### Could not find resource: owner/repo
@@ -163,3 +201,55 @@ fatal: unable to access 'https://github.com/yuu-eguci/work-notes.git': schannel:
 1. ファイルの blame から、クソコードが追加されたコミットを探す
 1. ここから PR に行くのが面倒なんだけど、コミットのページの一番上に `feature/a (#170, #98) + feature/b (#168, #98) + v0.0.1 (#98)` こんな表示がある
 1. なんかよくわかんないんだけど、このへんをクリックするとコミット履歴が出てくるから、そこからギリ、コミットが含まれる PR を探せる……
+
+## api.github.com
+
+hub や gh に出来ないことがコイツには出来る。
+
+- ドキュメント: https://docs.github.com/en/rest/reference
+
+```bash
+# yuu-eguci の public エリアへアクセス。
+curl https://api.github.com/users/yuu-eguci/orgs
+curl https://api.github.com/repos/yuu-eguci/SharePointMaid/pulls/22/commits
+```
+
+Private なエリアへアクセスするときは **Scope: repo の権限を与えた personal access token** 必要。でもそれだけでイケる。
+
+```bash
+# PR を出す。ドキュメントの Parameters が見やすい。
+# https://docs.github.com/en/rest/reference/pulls#create-a-pull-request
+curl \
+    -X POST \
+    -H "Accept: application/vnd.github.v3+json" -H "Authorization: token PERSONAL_ACCESS_TOKEN" \
+    https://api.github.com/repos/yuu-eguci/SharePointMaid/pulls \
+    -d '{"title":"🚀 [Scheduled] dev to master","head":"dev","base":"master","body":"## Continueous PR\nRelease flow is following.\n- [ ] Check"}'
+
+# 上で作った PR に label をつける。
+# https://docs.github.com/en/rest/reference/issues#add-labels-to-an-issue
+# NOTE: パスは issues だけど、 GitHub API の文脈では pull request も issue である。
+curl \
+    -X POST \
+    -H "Accept: application/vnd.github.v3+json" -H "Authorization: token PERSONAL_ACCESS_TOKEN" \
+    https://api.github.com/repos/yuu-eguci/SharePointMaid/issues/26/labels \
+    -d '{"labels":["FOO"]}'
+
+# 作った PR の commits 一覧を出す。
+# https://docs.github.com/en/rest/reference/pulls#list-commits-on-a-pull-request
+curl \
+    -H "Accept: application/vnd.github.v3+json" -H "Authorization: token PERSONAL_ACCESS_TOKEN" \
+    https://api.github.com/repos/yuu-eguci/SharePointMaid/pulls/26/commits
+
+# コメントをする。
+# https://docs.github.com/en/rest/reference/issues#create-an-issue-comment
+# NOTE: ここもパスが issue なのでややこしいけど大丈夫。
+curl \
+    -X POST \
+    -H "Accept: application/vnd.github.v3+json" -H "Authorization: token PERSONAL_ACCESS_TOKEN" \
+    https://api.github.com/repos/yuu-eguci/SharePointMaid/issues/26/comments \
+    -d '{"body":"## Commit list\n:alembic: XXXX を追加\n:green_heart:\n:green_heart:"}'
+```
+
+もし Python でやろうと思ったら requests で地道にやることになると思うけれど、サードパーティライブラリがある。
+
+- https://docs.github.com/en/rest/overview/libraries#python
