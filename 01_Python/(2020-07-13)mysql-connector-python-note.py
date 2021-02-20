@@ -2,6 +2,7 @@
 mysql-connector-python Note
 
 pip install mysql-connector-python
+pipenv install mysql-connector-python
 """
 
 import mysql.connector
