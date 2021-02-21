@@ -14,6 +14,11 @@ SlackNote
 
 ## slackapi/python-slack-sdk
 
+```bash
+pip install slack_sdk
+pipenv install slack_sdk
+```
+
 トークンを作って、それを指定して WebClient を作って chat_postMessage する流れ。ドキュメントはここ↓。
 
 - https://github.com/slackapi/python-slack-sdk/blob/main/tutorial/01-creating-the-slack-app.md
@@ -49,6 +54,8 @@ except SlackApiError as e:
     assert e.response['error']
     print(f'Got an error: {e.response["error"]}')
 ```
+
+- channel_not_found: 一度あったのが、チャンネル名が違うこと
 
 ## Sample
 
@@ -136,3 +143,17 @@ jobs:
         SLACK_USERNAME: RESTaurant
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
 ```
+
+## メンション
+
+投稿メッセージの中でメンションを使う方法。
+
+- `@yuu-eguci` の代わりに member ID を使う
+- Slack アプリのユーザプロフィールから member ID をコピーできる
+- あるいは Member 一覧ダウンロード > csv の中に id がある
+- `<@UBHUQ6XXX>` こういう形式にするとメンションになる!
+
+ユーザ以外の場合
+
+- `<!here>`
+- `<!channel>`
