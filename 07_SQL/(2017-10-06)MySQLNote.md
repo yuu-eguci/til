@@ -62,6 +62,11 @@ character-set-server=utf8 追加
 - Export to Dump Project Folder のほうが1ファイルが小さくなるから嬉しいが、インポートでエラーが出る。(ことがある)
     - ERROR 1044 (42000): Access denied for user 'admin'@'%' to database 'schemaname'
 - 今の所 Export to Self-Contained File しか使ったことない。
+- Export > Advanced Options... > Other lock-tables のチェックを外すことでエクスポート時のテーブルロックをナシに出来る。
+    - でかい DB のバックアップを取るときはコレ必須だ。
+    - この設定は docs.microsoft.com で読んで知った。
+        - https://docs.microsoft.com/ja-jp/azure/mysql/concepts-migrate-import-export#data-export
+        - あざす。
 
 ## 日付
 
