@@ -148,10 +148,10 @@
 
     // 日本時間でこのスクリプトを実行するときは必要ありません。
     // システム時間が UTC の環境で実行するときはこれを設定しないと、以下↓スクリプトの出力が変わって混乱します。注意。
-    moment.tz.setDefault('Etc/UTC');
+    moment.tz.setDefault('Asia/Tokyo');
 
     // Asia/Tokyo
-    console.info(moment('2020-01-01T00:00').tz());
+    console.info(moment('2020-01-01T00:00').tz());  //
 
     // 2020-01-01T00:00:00+09:00
     console.info(moment('2020-01-01T00:00').format());
