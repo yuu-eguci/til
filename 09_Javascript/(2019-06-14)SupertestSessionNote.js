@@ -139,7 +139,6 @@ it('', () => {
  */
 it('', async () => {
 
-  // Company.useAttendanceManagementSystem=true のときは membernonce 発行ののちリダイレクトが発生することを確認します。
   return _authenticatedSession.get('/...')
     .expect(302)
     .then(async (res) => {
@@ -154,10 +153,29 @@ it('', async () => {
 });
 
 
+/**
+ * it の中で _authenticatedSession を使う、また別の例。
+ */
+it('', async () => {
+
+  return _authenticatedSession.put('/...')
+    .send({
+    })
+    .then((res) => {
+
+      if (res.error) {
+        sails.log.error(res.error);
+        assert.fail('res.error が発生しています。');
+      }
+
+      // 200 が返ることを確認します。
+      assert.strictEqual(res.statusCode, 200, 'ステータスコード 200 が返っていません。');
+
+    });
+
+});
 
 
 /**
  *
  */
-
-
