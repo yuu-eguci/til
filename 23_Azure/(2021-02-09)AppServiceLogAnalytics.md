@@ -18,7 +18,7 @@ App Service のログをずっと保存するために色々試したよ
 - ここで KQL を使ってログを検索したりできる。 KQL 構文は、エディタの中で予測で出してくれるから勘でいける。
 
 ```kql
-AppServiceConsoleLogs 
+AppServiceConsoleLogs
 | where TimeGenerated > datetime(2021-02-09T04:00:00Z) and TimeGenerated < datetime(2021-02-09T12:00:00Z)
 | where ResultDescription !contains "debug: xxxx"
 | where ResultDescription != " "
@@ -27,6 +27,35 @@ AppServiceConsoleLogs
 
 - 上のメニュー Export から CSV ダウンロードが可能。カラムを絞ったりもできる。
 - ダウンロードできた CSV は改行だらけで見づらいので、置換とかで改行を削除すると Excel でまだ見やすくなるかも。
+
+### KQL(Kusto Query Language)
+
+面倒くさい。 SQL にすればいいのに。
+
+- SQL -> Kusto チートシート
+    - https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/sqlcheatsheet
+- format_datetime()
+    - https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/format-datetimefunction
+- project は複数行で書きたい
+    - https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/projectoperator
+
+```Kusto
+AppServiceConsoleLogs 
+// このややこしい書き方は、 TimeGenerated を ISO format にするためのものです。
+| project TimeGenerated, TimeGeneratedUtc = strcat(format_datetime(TimeGenerated, 'yyyy-MM-dd'), 'T', format_datetime(TimeGenerated, 'HH:mm:ss.FFF'), 'Z'), ResultDescription
+| where ResultDescription !contains "debug: xxxx"
+| where ResultDescription != " "
+//| where TimeGenerated > datetime(2021-02-12T00:00:00Z)  // 〜から
+//| where TimeGenerated < datetime(2021-02-12T00:00:00Z)  // 〜まで
+// 期間を KQL 内に含めることもできます。が、上の Time range から検索したほうがラクな気がする。
+// ただし上の Time range は 12h format なのが非常に面倒くさい。 24h にしてください。なんやねん AM PM なんて久々に見たわ。
+```
+
+```Kusto
+AppServiceConsoleLogs 
+| where TimeGenerated > datetime(2021-02-12T08:00:00Z)  // 〜から
+| count  // ...の件数を表示します。 Count というカラムになります。
+```
 
 ### Retention 設定
 
