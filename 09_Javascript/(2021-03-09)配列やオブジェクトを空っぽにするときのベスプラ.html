@@ -1,0 +1,25 @@
+<script type="text/javascript">
+const startTime = performance.now();
+
+// 配列を空っぽにするときは .length=0 を使おう!
+const foo = [1];
+const bar = foo;
+foo.length = 0;
+console.info(foo);  // []
+console.info(bar);  // []
+
+// オブジェクトの中身を空っぽにするときは delete を使おう!
+// 一個ずつしかできないから面倒。
+const baz = {a:1, b:2};
+const qux = baz;
+for (const key in baz) {
+  if (baz.hasOwnProperty(key)) {
+    delete baz[key];
+  }
+}
+console.info(baz);  // {}
+console.info(qux);  // {}
+
+const endTime = performance.now();
+console.info(endTime - startTime);
+</script>
