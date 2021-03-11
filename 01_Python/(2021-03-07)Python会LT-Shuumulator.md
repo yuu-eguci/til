@@ -1,7 +1,7 @@
 yuu-eguci です
 ===
 
-## おまえだれよ
+## おまえだれよ(Python 流の自己紹介らしい)
 
 趣味 Pythonista です。
 
