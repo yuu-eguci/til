@@ -130,6 +130,7 @@ b-table の内容を更新するときは b-table に ref="mainTable" をつけ�
     </b-button>
   </b-card-header>
   <!-- visible をつけると最初から開いてる。 -->
+  <!-- accordion 属性を複数の b-collapse につけると、そのうちのひとつだけが開くようになります -->
   <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
     <b-card-body>
     </b-card-body>
