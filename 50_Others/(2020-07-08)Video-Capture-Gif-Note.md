@@ -35,12 +35,12 @@ ffmpeg -i original.MP4 -vf scale=1024:-1 output.mp4
 ffmpeg -i original.MP4 -vf scale=1280:-1 output.mp4
 ffmpeg -i original.MP4 -vf scale=1600:-1 output.mp4
 
+# 単純に mov->mp4 このコマンドを挟まないと aviutl で面倒な warning: Detected CTS duplication at frame ... が発生する。
+ffmpeg -i original.mov original.mp4
 # 音声削除。 copy が入ってると同時にリサイズはできないっぽい。
 ffmpeg -i original.MP4 -vcodec copy -an output.mp4
 # よく使う
 ffmpeg -i original.mov -vcodec copy -an original.mp4
-# 単純に mov->mp4
-ffmpeg -i original.mov original.mp4
 ```
 
 代表的な解像度
