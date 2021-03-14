@@ -1,8 +1,21 @@
 <script type="text/javascript">
+// nodejs では require が必要です。
+const { performance } = require('perf_hooks');
 const startTime = performance.now();
 
 // ここに処理。
 
 const endTime = performance.now();
 console.info(endTime - startTime);
+</script>
+
+省略版↓
+
+<script type="text/javascript">
+const { performance } = require('perf_hooks');
+const startTime = performance.now();
+
+// ここに処理。
+
+console.info(performance.now() - startTime);
 </script>
