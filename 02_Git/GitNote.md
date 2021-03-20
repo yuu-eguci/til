@@ -326,6 +326,14 @@ git reset --hard origin/master
 # もちろんブランチ名は適宜変更。
 ```
 
+### 30. ブランチの途中からブランチを切る
+
+```bash
+git checkout -b feature/skip_release HASH
+```
+
+- そうして切ったブランチを他のブランチへマージ
+
 ***
 
 ## これを書いてる頃にはもう出会わないんだけど昔のエラーノート
