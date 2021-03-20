@@ -5,6 +5,7 @@ Eslint Note
 
 ```bash
 npm install -g eslint
+npm run lint
 ```
 
 TypeScript で使いたいときは
