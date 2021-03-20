@@ -28,6 +28,11 @@ SublimeText3Note SublimeNote SublimeTextNote
 - Mac では Ricty
 - Win では Myrica M
 
+```json
+"font_size": 16,
+"font_face": "Ricty",
+```
+
 ## 場合別 tips
 
 #### 01. C#のビルド
@@ -229,6 +234,8 @@ https://packagecontrol.io/packages/Sync%20Settings
 ## Markdown 用プラグイン
 
 - Markdown Extended を入れる。これがないと html がハイライトされなかった。
+
+![ok](https://user-images.githubusercontent.com/28250432/110069737-c60c8e00-7dbb-11eb-847a-9029cf3de43f.png)
 
 ## Error trying to parse file: ... sublime-keypmap
 
