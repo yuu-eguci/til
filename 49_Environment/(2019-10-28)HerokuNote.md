@@ -3,7 +3,7 @@ HerokuNote
 
 わりと頻繁にコマンドを調べちゃうから、ノートとしてまとめておく。
 
-## 必要ファイル
+## (Web application に)必要ファイル
 
 - runtime.txt(Pythonのバージョンを記載)
 - requirements.txt(依存するライブラリの記載)
@@ -46,18 +46,57 @@ gunicorn <ファイル名>:<コード内で Flask(...) を格納している変�
 gunicorn <wsgi.py の入ってるディレクトリ名>.<wsgi.py のファイル名(wsgi)>
 ```
 
+## GitHub Actions -> Heroku デプロイ
+
+これについては GitHubActionsAndHerokuNote.md に詳しい。
+
+```yaml
+name: Deploy to Heroku
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}  # required
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}  # required
+          heroku_email: ${{secrets.HEROKU_EMAIL}}  # required
+```
+
 ## Heroku コマンド
 
+https://devcenter.heroku.com/ja/articles/heroku-cli#download-and-install
+
 ```bash
-# 作成
+brew tap heroku/brew && brew install heroku
+
+# 作成(べつにブラウザでやればいいんじゃん?)
 heroku create アプリ名
 
-# 環境変数
+# 環境変数(べつにブラウザでやればいいんじゃん?)
 heroku config:set SLACK_WEBHOOK_URL="https://hooks.slack.com/services/***"
 
-# 削除
+# 削除(べつにブラウザでやればいいんじゃん?)
 heroku apps:destroy --app アプリ名
 
 # 既存の app をリポジトリに登録
 heroku git:remote -a アプリ名
+
+# Heroku 上のスクリプトを実行。
+heroku run python main.py shell --app APP_NAME
+
+# Heroku アプリのログを閲覧。
+heroku logs --ps scheduler.XXXX --app APP_NAME
+# XXXX の部分はどう取得すればいいかわからん。いまんとここれでざっと見て、プロセス番号を取得するしかわかんねえ。
+heroku logs --app APP_NAME
+# 件数を増やせばもっと見やすいかな? --num 1500 とか。(1500が最大)
+heroku logs --num 100 --app APP_NAME
 ```
