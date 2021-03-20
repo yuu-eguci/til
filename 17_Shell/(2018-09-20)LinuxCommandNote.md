@@ -33,6 +33,9 @@ $ source ~/.bash_profile
 lsof -i:1337
 # PID 指定で殺す。
 kill 20
+
+# 環境変数表示。
+printenv
 ```
 
 ## curl
