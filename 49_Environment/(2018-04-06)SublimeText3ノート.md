@@ -201,9 +201,9 @@ HTMLPrettify
 
 ```bash
 # Packages フォルダに移動してから。
+mkdir Default
 
-# Default
-ln -sf "(絶対パス必須)Default (OSX).sublime-keymap" "./Default/Default (OSX).sublime-keymap"
+# keymap
 ln -sf "/Users/user/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap" "./Default/Default (OSX).sublime-keymap"
 
 # Table Editor にも ctrl+k が使われている。
