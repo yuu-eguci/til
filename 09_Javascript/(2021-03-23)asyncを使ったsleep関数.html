@@ -1,0 +1,22 @@
+<script>
+  // Ajax とか使わずに10秒待機する関数を書く。
+
+  const foo = async function () {
+    return new Promise(function (resolve) {
+      setTimeout(function () {
+        resolve();
+      }, 10000);
+    });
+  };
+
+  const main = async function () {
+    const startTime = performance.now();
+    await foo();
+    console.info('Done', performance.now() - startTime);
+  };
+
+  // NOTE: await を 'top level bodies of modules' に書くと syntax error になる。
+  //       だからわざわざ main 関数を作っています。
+  main();
+
+</script>
