@@ -25,12 +25,16 @@ commit;
 
 ## MySQL Workbench 関連のあれこれ
 
-MySQLworkbenchでsqlファイルをimportするときのエラー
-    Cannot load from mysql.proc. The table is probably corrupted
-    シェルから mysql_upgrade -u user -p で解決した(もちろんこのあとでパスワードを入れる)
-フォントサイズを変えたい
-    C:\Users\user\AppData\Roaming\MySQL\Workbench\wb_options.xml
-    ってのをエディタで開いて、"Font"っていう表記があるところの数字を変える。マジ見やすくなるぜ。
+- MySQLworkbenchでsqlファイルをimportするときのエラー
+    - Cannot load from mysql.proc. The table is probably corrupted
+    - シェルから mysql_upgrade -u user -p で解決した(もちろんこのあとでパスワードを入れる)
+- フォントサイズを変えたい
+    - C:\Users\user\AppData\Roaming\MySQL\Workbench\wb_options.xml
+    - ってのをエディタで開いて、"Font"っていう表記があるところの数字を変える。マジ見やすくなるぜ。
+- MySQL Workbench 8.0.23.CE は Catalina で crash する
+    - https://stackoverflow.com/questions/65798626/mysql-workbench-crashes-on-mac-os-fresh-install
+    - > downgrading to 8.0.22 from MySQL archives allows it to startup without a problem.
+    - https://downloads.mysql.com/archives/workbench/
 
 ## 最初に必要になりそうなコマンド
 
