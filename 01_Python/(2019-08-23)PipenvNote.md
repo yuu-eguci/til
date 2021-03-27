@@ -17,7 +17,7 @@ brew install pipenv
 
 # If you don't have neither Pipfile nor Pipfile.lock
 # You have to have the python version in your PC.
-pipenv install --python 3.7
+pipenv install --python 3.8
 
 # If you have Pipfile
 pipenv install
@@ -58,3 +58,14 @@ pipenv lock -r > requirements.txt
 # Locking Failed! って言われたとき。
 pipenv lock --clear
 ```
+
+```bash
+# Install from requirements.txt
+pipenv install -r ./requirements.txt
+```
+
+## venv
+
+を、使いたい場合はこれがラクそう。
+
+https://gist.github.com/pandafulmanda/730a9355e088a9970b18275cb9eadef3
