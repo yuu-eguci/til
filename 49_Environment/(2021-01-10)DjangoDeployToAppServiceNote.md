@@ -18,6 +18,7 @@ Django Deploy To AppSerivce Note
         - 追加する権限は「repo すべて」「workflow」
     - コマンドパレット > Deploy to Azure:Configure CI/CD Pipeline
     - 多分? Python to Linux Web App on Azure を選択 > サブスクリプションを選択
+    - その次に何か input しろって言われる。これが何かは初見ではわからないのだが、これは `AZURE_CREDENTIALS_xxxx` の `AZURE_CREDENTIALS` 部分だと思われる。 AZURE_CREDENTIALS にしとけ。
 - 下に用意した yaml を .github/workflows/workflow.yml みたいに用意。
 - これだけでデプロイ自体はできるはず。だけど Django 側の settings が AppService 環境用になってないので設定する。(下に書く)
 - createsuperuser は……
