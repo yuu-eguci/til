@@ -139,29 +139,3 @@ Favorite libs: dotenv
 &nbsp;
 
 &nbsp;
-
-## 定期的に Pull Request を投稿する
-
-GitHub をやってない方にはホントに関係ないトピックですみません……開き直って GitHub の用語をたくさん使います……。手早くご紹介。
-
-- 友達と一緒にアプリケーションを作っていて、月イチで更新をリリースしています。
-- リリースには GitFlow 開発サイクルを使っていまして、月イチで develop branch -> master branch Pull Request をすることになります。
-- メンドくさいので自動化しました。
-
-実際にやっていることは次の通りです。
-
-- 月イチで実行。またまた GitHub Actions を利用
-- GitHub で PR を投稿
-- PR に含まれるコミットをリストアップ
-- それを「リリースノート」として Slack へ投稿
-
-![](https://user-images.githubusercontent.com/28250432/106868735-7e3e0c80-6712-11eb-89d6-f7d492a3978e.png)
-
-![pr](https://user-images.githubusercontent.com/28250432/107607880-cc589000-6c7d-11eb-88ba-1f6dcee818b2.png)
-
-今回使っているワザはこれ。
-
-- GitHub Actions 定期実行
-- 特定のラベルを貼り付けた PR のみ Slack に通知
-- api.github.com を利用。
-    - 似たような、 GitHub を操作する API には「hub コマンド」や「gh コマンド」がありますが一番汎用性のあるものを利用。 
