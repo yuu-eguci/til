@@ -11,6 +11,11 @@ import requests
 # ==================
 # 単純なやつ
 res = requests.get(url)
+# query のある get
+payload = {
+    'foo': 'foo',
+}
+res = requests.get(url, params=payload)
 # セッション使うやつ
 session = requests.session()
 session.post(url, logindata)
