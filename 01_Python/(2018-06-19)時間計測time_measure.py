@@ -19,3 +19,7 @@ time.sleep(2)
 # ================================
 margin = time.time() - start
 print(f'結果: {margin}秒')
+
+# ↓省略版
+start = time.time()
+print(f'結果: {time.time() - start}秒')
