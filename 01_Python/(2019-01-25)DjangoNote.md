@@ -19,6 +19,7 @@ pipenv install djangorestframework markdown django-filter
 pipenv install pymysql whitenoise
 
 # .gitignore
+# NOTE: GitHub 上で gitignore を作ると自動で作られるよ。
 open https://github.com/jpadilla/django-project-template/blob/master/.gitignore
 
 # ---
@@ -45,6 +46,7 @@ python manage.py startapp app1
 python manage.py startapp app2
 
 # Migrate
+# NOTE: makemigrations 前に、作った app を INSTALLED_APPS に含める必要がある。でないと makemigrations は反応しない。
 python manage.py makemigrations
 python manage.py migrate
 python manage.py createsuperuser --email admin@example.com --username admin
@@ -55,10 +57,7 @@ python manage.py runserver
 
 ## REST framework の場合
 
-このあたりを参考に serializers.py とか views.py を編集しないといかん。
-
-- https://www.django-rest-framework.org/
-- https://qiita.com/kimihiro_n/items/86e0a9e619720e57ecd8
+rest_framework の場合は DjangoRestFrameworkNote.md に書いてるコードを追加して初期化する。
 
 ## 設定ファイル分割
 
@@ -586,7 +585,7 @@ Django の問題で状況を説明するときは
 うーん、これはできない、というかしないものなのかも。DEBUG=False にするならば runserver 以外のウェブサーバを使いましょうってことか。どうしても static だけでも確認したいときは collectstatic してから insecure しましょうってことかな?
 
 ### ふと思った
-
+   
 Django は「ここはよくわかんないなーまあでもやりたいメインのことじゃないし適当にしとくか」ってほかっておいたことがあとになって必ず襲ってくる感じ。
 
 ### django-heroku の pip が成功しない。
