@@ -40,6 +40,15 @@ try:
     cursor.execute(update_sql, (2008,))
     cursor.close()
 
+    # INSERT のときは execute のあとに .lastrowid で挿入 id を取得しようぜ。
+    insert_sql = ' '.join([
+        'INSERT ...',
+    ])
+    cursor = connection.cursor()
+    cursor.execute(insert_sql, (2021,))
+    created_id = cursor.lastrowid
+    cursor.close()
+
 except Exception:
     print('MySQL との接続でれーがい:')
 
