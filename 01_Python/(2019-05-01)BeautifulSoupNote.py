@@ -21,3 +21,6 @@ one = soup.select_one('#id-name')
 
 # 取得したタグから attribute を取得。これは JQuery に慣れているぼくにはわかりやすい。
 attr = one['data-price']
+
+# 取得したタグから中のテキストを取得。
+text = one.get_text()
