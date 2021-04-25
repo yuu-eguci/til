@@ -73,7 +73,7 @@ yarn add @fortawesome/free-brands-svg-icons
 yarn add @fortawesome/vue-fontawesome
 ```
 
-```JavaScript
+```js
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -94,7 +94,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 vue.config.js を手動追加。
 
-```JavaScript
+```js
 module.exports = {
   pages: {
     index: {
@@ -176,6 +176,8 @@ export default class TopListGroupItem extends Vue {
 
 ## i18n(vue-cli-plugin-i18n)
 
+https://kazupon.github.io/vue-i18n/installation.html#direct-download-cdn
+
 > The vue-cli-plugin-i18n that has been released on npm will be released as @intlify/vue-cli-plugin-i18n in near future.
 
 らしい。わくわくだね。ページごとに翻訳 json を用意するという記事もあるけどそれは kazupon/vue-cli-plugin-i18n ではなく kazupon/vue-i18n だから注意。
@@ -232,12 +234,18 @@ vue add i18n
 <p>{{ $t('about-screen.title') }}</p>
 ```
 
+一方、 script 内部で使う場合は tc を使う。
+
+```js
+this.$tc('port.label.boughtAt');
+```
+
 ### URL で i18n
 
 1. 親 route record のパスを `/:locale` で設定。
 1. `router.beforeEach` で locale をもとに `i18n.locale` をセット。
 
-```JavaScript
+```js
 routes: [
   {
     // :locale 動的セグメントです。これをもとに beforeEach 内で i18n.locale をセットします。
@@ -263,7 +271,7 @@ router.beforeEach((to, from, next) => {
 
   // beforeEnter では next() を呼ばないといけない。
   next()
-})
+});
 ```
 
 ## 認証要求のページ
@@ -271,7 +279,7 @@ router.beforeEach((to, from, next) => {
 1. 認証要求のページに `requiredAuth` を設定。
 1. `router.beforeEach` で認証確認。
 
-```JavaScript
+```js
 {
   path: 'admin',
   name: 'Admin',
@@ -299,12 +307,12 @@ router.beforeEach((to, from, next) => {
 
   // beforeEnter では next() を呼ばないといけない。
   next()
-})
+});
 ```
 
 ## Vuex
 
-書くこと多すぎるので ptf-vue 参照……でも大事なところをすこし記録。 TypeScript と JavaScript で違うので、参考記事が見つけづらい……。
+書くこと多すぎるので ptf-vue 参照……でも大事なところをすこし記録。 TypeScript と js で違うので、参考記事が見つけづらい……。
 
 ```typescript
 // types.ts
@@ -429,9 +437,9 @@ VUE_APP_API_BASE_URL='http://localhost:1337'
 
 使うとき
 
-```JavaScript
+```js
 // eslint-disable-line @typescript-eslint/no-console
-console.info(process.env.VUE_APP_API_BASE_URL)
+console.info(process.env.VUE_APP_API_BASE_URL);
 ```
 
 環境切り替え package.json
@@ -451,7 +459,7 @@ package.json
 
 @/mixins/util.js
 
-```JavaScript
+```js
 export default {
   methods: {
     foo() {
@@ -463,7 +471,7 @@ export default {
 
 tests/unit/mixin/util.spec.js
 
-```JavaScript
+```js
 import { expect } from 'chai';
 import dateUtil from '@/mixins/dateUtil.js';
 
@@ -476,13 +484,13 @@ describe('JS', () => {
 
 コンポーネントでの呼び出し方。
 
-```JavaScript
+```js
 // ...
 import util from '@/mixins/util';
 // ...
 mixins: [util]
 // ...
-this.foo()
+this.foo();
 ```
 
 ## v-model を component で使う
@@ -497,6 +505,9 @@ this.foo()
 export default {
 
   props: [
+    // NOTE: このコンポーネントで v-model を使うための prop です。
+    //       親コンポーネントで :value を追加したりはしません。
+    //       v-model とだけ書きます。
     'value',
   ],
 
@@ -505,12 +516,13 @@ export default {
     // NOTE: このコンポーネントで v-model を使うための実装です。
     innerValue: {
       get() {
-        return this.value
+        return this.value;
       },
       set(val) {
-        this.$emit('input', val)
+        this.$emit('input', val);
       }
-    }
+    },
+
   },
 
 }
@@ -521,3 +533,23 @@ export default {
 
 - 自分のコンポーネントに `@click` をつけるときは `@click.native` と書く!
 - .env.local は全環境で読み込まれる!
+
+## v-model を computed で定義
+
+なんか、 v-model と @change を同時に定義しちゃいけないらしい。
+
+```js
+computed: {
+  foo: {
+    get () {
+      return this.innerFoo;
+    },
+    set: function (value) {
+      this.innerFoo = value;
+
+      // onChange でやりたいことをここに書く。
+
+    },
+  }
+}
+```
