@@ -64,6 +64,13 @@ pipenv lock --clear
 pipenv install -r ./requirements.txt
 ```
 
+## dotenv は必要ないカモ?
+
+> プロジェクトに .env ファイルを用意しておくと、 pipenv run や pipenv shell を実行するときに自動で読み込んでくれます  
+> https://qiita.com/y-tsutsu/items/54c10e0b2c6b565c887a
+
+こんな情報があった。次から使ってみたい。
+
 ## venv
 
 を、使いたい場合はこれがラクそう。
