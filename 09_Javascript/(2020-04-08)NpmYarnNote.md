@@ -11,17 +11,24 @@ npm & yarn Note
 # npm のバージョン。
 npm --version
 
-# グローバルのパッケージを1階層表示
+# ローカルのパッケージを1階層表示
 npm list --depth 0
+# グローバルのパッケージを1階層表示
+npm list --depth 0 -g
 
 # package-lock.json を更新するコマンド。
 npm install --package-lock-only
+
+# 削除(-g でグローバルから)
+npm uninstall PACKAGE -g
 ```
 
 ### yarn
 
 ```bash
 yarn install --network-timeout 60000
+
+yarn add PACKAGE
 
 yarn remove PACKAGE
 ```
@@ -48,7 +55,7 @@ yarn add PACKAGE --trusted-host
 
 (2020-11-02)いやこれ yarn install には効いてなくね?!
 
-```
+```json
 {
   "useTaobaoRegistry": false
 }
