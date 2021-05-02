@@ -38,6 +38,8 @@ pipenv install slack_sdk
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 
+slack_client = WebClient(token=os.environ['SLACK_BOT_TOKEN'])
+
 try:
     # NOTE: unfurl_links は時折鬱陶しいと思っている「リンクの展開機能」です。不要です。 False.
     response = slack_client.chat_postMessage(
