@@ -46,3 +46,31 @@ async getGeolocation() {
 ## (Chrome)Geolocation permission has been blocked as the user has dismissed the permission prompt several times
 
 これが出るとブラウザの設定画面からブロックを取り消しできなくなる。 URL の左のマークから取り消しできるようになる。
+
+## await なし(非同期)で試す
+
+```js
+navigator.geolocation.getCurrentPosition(
+  // 取得成功した場合
+  function(position) {
+      alert("緯度:"+position.coords.latitude+",経度"+position.coords.longitude);
+  },
+  // 取得失敗した場合
+  function(error) {
+    switch(error.code) {
+      case 1: //PERMISSION_DENIED
+        alert("位置情報の利用が許可されていません");
+        break;
+      case 2: //POSITION_UNAVAILABLE
+        alert("現在位置が取得できませんでした");
+        break;
+      case 3: //TIMEOUT
+        alert("タイムアウトになりました");
+        break;
+      default:
+        alert("その他のエラー(エラーコード:"+error.code+")");
+        break;
+    }
+  }
+);
+```
