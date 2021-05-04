@@ -83,6 +83,22 @@ const response = await axios.post('http://hitoren.net/api/v1/example', {
 });
 ```
 
+## axios.get
+
+```JavaScript
+const response = await axios.get('http://hitoren.net/api/v1/example', {
+  params: {
+    foo: 1,
+    bar: 100,
+  },
+}).catch(err => {
+  return err.response;
+});
+if (response.status !== 200) {
+  console.log('例外発生時の処理');
+}
+```
+
 ## 例外処理
 
 Axios は返却コードが200じゃないとき? 例外をぶん投げるのでマジで注意。
@@ -96,7 +112,7 @@ const res = await axios.get("/user?id=123")
  });
 
 if (res.status !== 200) {
-   console.log("例外発生時の処理")
+   console.log('例外発生時の処理');
 }
 ```
 
