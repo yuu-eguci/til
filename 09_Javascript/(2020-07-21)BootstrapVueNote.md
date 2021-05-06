@@ -11,10 +11,17 @@ yarn add vue bootstrap-vue bootstrap
 ```
 
 ```javascript
-import { BootstrapVue } from 'bootstrap-vue'
-Vue.use(BootstrapVue)
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+// main.js
+import { BootstrapVue } from 'bootstrap-vue';
+Vue.use(BootstrapVue);
+
+// BootstrapVueIcons も使う場合は↓
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
+Vue.use(BootstrapVue);
+Vue.use(BootstrapVueIcons);
+
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
 ```
 
 ## d-none 系のクラス
@@ -117,6 +124,76 @@ export default {
 ```
 
 b-table の内容を更新するときは b-table に ref="mainTable" をつけて、 `this.$refs.mainTable.refresh();` する。
+
+### b-table fields の絞り込み
+
+こんくらい BootstrapVue のデフォ機能にしてほしいね。
+
+0. fields ではなく innerFields にする。
+
+```js
+// NOTE: visible はユーザ定義プロパティです。詳細は computed.visibleFields に記述します。
+// NOTE: b-table のデフォルトとは異なり、 fields をラップした computed.visibleFields を画面に表示しています。
+//       そのカスタマイズを明示するため、 innerFields の名称にします。
+innerFields: []
+```
+
+1. まず fields に visible=true をつける。
+
+```js
+{
+  key: 'id',
+  label: 'ID',
+  sortable: true,
+  visible: true,
+},
+{
+  key: 'name',
+  label: 'Name',
+  sortable: true,
+  visible: true,
+}
+```
+
+2. visible=true の fields のみを格納する computed 変数を作る。
+
+```js
+computed: {
+
+  // NOTE: Checkbox が fields.visible(ユーザ定義)を切り替え、
+  //       その変更を受けて本 computed.visibleFields が更新されます。
+  //       b-table :fields="visibleFields" なので、 visible=true の fields のみが表示されることになります。
+  visibleFields() {
+    return this.fields.filter(field => field.visible)
+  },
+
+}
+```
+
+3. visibleFields のみを表示するよう b-table に設定する。
+
+```html
+<b-table
+  :fields="visibleFields"
+>
+```
+
+4. field.visible を切り替える checkbox を作る。
+
+```html
+<b-form-group label="列の絞り込み">
+  <b-checkbox v-for="field in fields.filter(x => [
+                'name',
+                '...',
+                '...',
+              ].includes(x.key))"
+              :key="field.id"
+              v-model="field.visible"
+    >
+    {{ field.label }}
+  </b-checkbox>
+</b-form-group>
+```
 
 ## toggle
 
