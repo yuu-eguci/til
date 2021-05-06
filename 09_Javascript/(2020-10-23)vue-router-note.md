@@ -13,7 +13,7 @@ yarn add vue-router
 
 ptf-vue-alime repository の [#4 ✨ vue-router を src にシンプルに導入](https://github.com/yuu-eguci/ptf-vue-alime/commit/fe4dd1a03e68cd01ee3805d37127a01dbfd33173)より。
 
-```JavaScript
+```js
 // main.js
 import router from './router';  // 追加。
 
@@ -23,7 +23,7 @@ new Vue({
 }).$mount('#app')
 ```
 
-```vue
+```html
 App.vue
 <template>
   <div id="app">
@@ -32,7 +32,7 @@ App.vue
 </template>
 ```
 
-```JavaScript
+```js
 // src/router.js ファイルごと追加。
 import Vue from 'vue';
 import Router from 'vue-router';
@@ -44,6 +44,7 @@ const routes = [
     path: '/',
     name: 'HelloWorld',
     component: () => import('./components/HelloWorld.vue'),
+    meta: {},
   },
 ];
 
@@ -68,7 +69,7 @@ export default router;
 - それを component としてもつ親 route を定義して、その children に各ページを定義する。
 - HACK: 結果的に生成される `<div id="locale-parent">` は本来不要なものなので、これを省く方法を知れたらこの情報はアップデートされるだろう。
 
-```vue
+```html
 LocaleParent.vue
 <template>
   <div id="locale-parent">
@@ -84,7 +85,7 @@ export default {
 </script>
 ```
 
-```JavaScript
+```js
 // router.js
 const routes = [
   {
@@ -132,7 +133,7 @@ const routes = [
 1. 親 route record の `beforeEnter`
 1. 子 route record の `beforeEnter`
 
-```JavaScript
+```js
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
