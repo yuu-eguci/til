@@ -43,12 +43,13 @@ printenv
 ```bash
 curl -i -b cookie -X PUT http://localhost:1337/api/v1/timecard -H "Content-type:application/json" -d @timecard.json
 
-curl -i -b cookie -X PUT http://localhost:1337/api/v1/timecard -H "Content-type:application/json" -d @timecard.json
+curl -u admin:password http://127.0.0.1:8000/users/            -H 'Accept: application/json; indent=2'
 
 # -i --include : HTTP ヘッダを出力に含める
 # -b --cookie  : クッキーを利用
 # -X --request : HTTP メソッド
 # -H --header  : ヘッダ情報付与
+# -u: ベーシック認証
 ```
 
 - curl コマンドを python に変換: https://curl.trillworks.com/
