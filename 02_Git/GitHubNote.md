@@ -137,12 +137,13 @@ https://get.slack.help/hc/ja/articles/232289568-GitHub-%E3%81%A8-Slack-%E3%82%92
 
 # もういっぺん subscribe
 # これで OK
-/github subscribe owner/repo issues,pulls,statuses,public,releases,comments,reviews
+# statuses, public らへんがいつからか無効になった
+/github subscribe owner/repo issues,pulls,releases,comments,reviews
 
 # unsubscribe
 # subscribe のオプションを付け直したいときも一度これを
 # (2021-02-03)消したいやつを引数で指定する。
-/github unsubscribe owner/repo issues,pulls,statuses,public,releases,comments,reviews
+/github unsubscribe owner/repo issues,pulls,releases,comments,reviews
 
 # 現在 subscribe 中の一覧を出す。
 /github subscribe list features
