@@ -50,9 +50,19 @@ curl -u admin:password http://127.0.0.1:8000/users/            -H 'Accept: appli
 # -X --request : HTTP メソッド
 # -H --header  : ヘッダ情報付与
 # -u: ベーシック認証
+
+# よく使うパターン。
+API_URL='http://localhost'
+C_TYPE_JSON='Content-type:application/json'
+AUTH_KEY='Authorization:***'
+curl -H $C_TYPE_JSON -H $AUTH_KEY --include \
+    -X GET $API_URL'/api/v1/foo?x=1&y=2';
 ```
 
 - curl コマンドを python に変換: https://curl.trillworks.com/
+- ぼくは頻繁に、「GET クエリを ? と & で連結させずに '--data foo=1' みたいな形式で設定できないものか」とか考えるがその考えは捨てろ。
+    - いまのところよさげなのが、 POSTMAN アプリで API をコールして、「code」のトコ(右側の `</>` マーク)で curl コマンドを生成してもらうこと。
+    - この「code」で urlencode もやってくれるからラクチン。
 
 ## 出力結果を変数に格納
 
