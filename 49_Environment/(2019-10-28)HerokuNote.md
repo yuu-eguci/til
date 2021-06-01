@@ -93,6 +93,9 @@ heroku git:remote -a アプリ名
 # Heroku 上のスクリプトを実行。
 heroku run python main.py shell --app APP_NAME
 
+# Heroku 上のスクリプトをコマンドライン引数つきで実行。
+heroku run --app APP_NAME -- python main.py -a foo -c bar
+
 # Heroku アプリのログを閲覧。
 heroku logs --ps scheduler.XXXX --app APP_NAME
 # XXXX の部分はどう取得すればいいかわからん。いまんとここれでざっと見て、プロセス番号を取得するしかわかんねえ。
