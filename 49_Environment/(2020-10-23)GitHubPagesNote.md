@@ -40,10 +40,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    # ここが @v1 だったり node-version: '10.x' だったりすると
+    # The engine "node" is incompatible with this module. エラーが発生して Actions が動かない。
     - name: Setup Node
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v2
       with:
-        node-version: '10.x'
+        node-version: '14'
 
     - name: Cache dependencies
       uses: actions/cache@v1
@@ -67,13 +69,26 @@ jobs:
         cname: ${{ secrets.CUSTOM_DOMAIN_FOR_THIS_REPOSITORY }}
 ```
 
-```JavaScript
+```js
 module.exports = {
   // サブドメイン時のためのパラメータです。
   // ./ にすると assets は解決する。だけど spa が解決しなかった。
   // TODO: カスタムドメインでの運用が始まったら消すこと。
   publicPath: '/repositoryname/'
 }
+```
+
+```js
+// あと vue-router にも必要。
+const router = new Router({
+  mode: 'history',
+  routes,
+  // NOTE: GitHub Pages で ...io/repositoryname/ パスを使うときは、
+  //       vue.config.js publicPath に加えてコレが必要です。
+  // NOTE: ローカルで実行するときの動作が心配になるけれど、なんと問題ない。
+  //       localhost/repositoryname/ 下で実行される。驚き。
+  base: '/repositoryname/',
+});
 ```
 
 
