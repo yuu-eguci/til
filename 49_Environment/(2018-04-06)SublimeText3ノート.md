@@ -122,7 +122,7 @@ ctrl+k のところをコメントアウト。
 
 ```javascript
 // { "keys": ["super+alt+f"], "command": "show_panel", "args": {"panel": "replace", "reverse": false} },
-{ "keys": ["ctrl+h"], "command": "show_panel", "args": {"panel": "replace", "reverse": false} },
+{ "keys": ["ctrl+h"], "command": "show_panel", "args": {"panel": "replace", "reverse": false} }
 ```
 
 #### 04. coffee script のシンタックスハイライト
@@ -136,8 +136,8 @@ Better CoffeScript をパッケージインストール。ファイルの種類�
 ```bash
 # keymap のユーザ設定ファイルを作成。
 # NOTE: User フォルダ内の Default-TableEditor (OSX).sublime-keymap の ln をユーザ設定ファイルとする。
-$ mkdir -p "/Users/midori/Library/Application Support/Sublime Text 3/Packages/Table Editor"
-$ ln -s "/Users/midori/Library/Application Support/Sublime Text 3/Packages/User/Default-TableEditor (OSX).sublime-keymap" "/Users/midori/Library/Application Support/Sublime Text 3/Packages/Table Editor/Default (OSX).sublime-keymap"
+$ mkdir -p "/Users/user/Library/Application Support/Sublime Text 3/Packages/Table Editor"
+$ ln -s "/Users/user/Library/Application Support/Sublime Text 3/Packages/User/Default-TableEditor (OSX).sublime-keymap" "/Users/user/Library/Application Support/Sublime Text 3/Packages/Table Editor/Default (OSX).sublime-keymap"
 ```
 
 使う key だけ設定。
@@ -240,3 +240,34 @@ https://packagecontrol.io/packages/Sync%20Settings
 ## Error trying to parse file: ... sublime-keypmap
 
 Key binding のファイル記述に syntax error があった。これがあると subl がまともに動かないので、キーボードの不具合か? と思ってしまった。
+
+## だいぶ長く使ったところで、再セットアップのときのチャートを用意しとく
+
+- Sublime インストール
+- Install Package Control
+- Sync Settings だけ入れる
+- Sync Settings: Download する
+- 「設定がねえぞ。書け」と怒られるので、これ↓を書く。
+
+```json
+{
+    "access_token": "XXXX",
+    "gist_id": "XXXX"
+}
+```
+- Sync Settings: Download する
+- たぶんそこで「It appears a package is trying to ignore itself, causing a loop」が発生する。
+    - これがちょっと安定してないのだが、 User settings で `ignored_packages` を眺めながらなんとかする。
+- keymap 適用のため、下記コマンドを流す
+
+```bash
+# Packages フォルダに移動してから。
+mkdir Default
+
+# keymap
+ln -sf "/Users/user/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap" "./Default/Default (OSX).sublime-keymap"
+
+# Table Editor にも ctrl+k が使われている。
+mkdir "Table Editor"
+ln -sf "/Users/user/Library/Application Support/Sublime Text 3/Packages/User/Default-TableEditor (OSX).sublime-keymap" "./Table Editor/Default (OSX).sublime-keymap"
+```
