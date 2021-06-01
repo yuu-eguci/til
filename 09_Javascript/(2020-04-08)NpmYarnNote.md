@@ -11,6 +11,10 @@ npm & yarn Note
 # npm のバージョン。
 npm --version
 
+# npm のバージョンを変更する。
+npm install -g npm@6.14.12
+# ちなみに nodejs とのバージョン対応はこちら: https://nodejs.org/ja/download/releases/
+
 # ローカルのパッケージを1階層表示
 npm list --depth 0
 # グローバルのパッケージを1階層表示
