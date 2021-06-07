@@ -33,6 +33,9 @@ pipenv sync --dev
 pipenv install MODULE1 MODULE2 ...
 pipenv install --dev MODULE1 MODULE2 ...
 
+# Uninstall
+pipenv uninstall MODULE
+
 # Start virtual env.
 pipenv shell
 
@@ -86,3 +89,7 @@ pipenv --py
 を、使いたい場合はこれがラクそう。
 
 https://gist.github.com/pandafulmanda/730a9355e088a9970b18275cb9eadef3
+
+## pipenv locking が終わらない
+
+終わる。たぶん numpy が含まれているから(pandas には含まれてる)遅いだけ。
