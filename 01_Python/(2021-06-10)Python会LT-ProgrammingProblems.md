@@ -17,7 +17,26 @@ yuu-eguci です
 
 &nbsp;
 
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
 ## プログラミング問題へのいざない
+
+<style>
+img.pepyaka {
+    width: 50px;
+    height: 50px;
+}
+</style>
+
+<p><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/i.gif"><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/n.gif"><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/v.gif"><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/i.gif"><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/t.gif"><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/a.gif"><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/t.gif"><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/i.gif"><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/o.gif"><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/n.gif"></p>
+<p><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/t.gif"><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/o.gif"></p>
+<p><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/p.gif"><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/r.gif"><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/o.gif"><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/g.gif"><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/r.gif"><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/a.gif"><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/m.gif"><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/m.gif"><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/i.gif"><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/n.gif"><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/g.gif"></p>
+<p><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/p.gif"><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/r.gif"><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/o.gif"><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/b.gif"><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/l.gif"><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/e.gif"><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/m.gif"><img class="pepyaka" src="http://pepyaka.su/fonts/lobster/s.gif"></p>
+
 
 会でたまに「ヒマな人いたらプログラミング問題やりません?」とご提案しておりますが、いつも「それ何どうやるの?」にうまくご回答できていません。ご回答します。
 
