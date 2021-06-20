@@ -53,3 +53,24 @@ Aviutl Note
 ## ファイルの読み込みに失敗しました
 
 ↑の「Libav+L-Smash のチェックを解除」を戻したら解決した。
+
+## Aviutl のメニューが文字化け ?????? になる
+
+- Control Panel > Clock and Region > Region > Tab: Administrative
+- Language for non-Unicode programs > Button: Change system locale > Japanese
+
+OK! これを設定すれば Windows の表示言語が English でも大丈夫。
+参考動画: https://www.youtube.com/watch?v=tobAHe7OZAg
+
+## 扇形クリッピング
+
+- ここから DL
+    - http://hazumurhythm.com/wev/amazon/?script=扇クリッピングR3Os
+- zip を DL
+- 中身の fan_clipping.lua と 扇クリッピングR.anm を Plugins/script フォルダへ入れる。(なけりゃ作る)
+- 以上で、 アニメーション効果 > セレクトボックス内に「扇クリッピングR」が出てくる。
+
+以下、実際に使う方法
+
+- 基準角を 90 にして
+- 拡張角を 0->360 の直線移動にする
