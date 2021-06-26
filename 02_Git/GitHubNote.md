@@ -120,7 +120,7 @@ https://get.slack.help/hc/ja/articles/232289568-GitHub-%E3%81%A8-Slack-%E3%82%92
 ```
 
 - [https://slack.github.com/](https://slack.github.com/) にアクセス。
-- /github subscribe owner/repo issues,pulls,statuses,public,commits:all,releases,comments,branches,reviews
+- /github subscribe owner/repo issues,pulls,commits:*,releases,comments,branches,reviews
 
 使い始めるとき
 
@@ -133,12 +133,13 @@ https://get.slack.help/hc/ja/articles/232289568-GitHub-%E3%81%A8-Slack-%E3%82%92
 
 # subscribe のコマンドを打つ
 # この repo がまだ slack 連携に含まれてなかったら、 github ページに飛んで手続きを行う。チェックをつける程度。
-/github subscribe owner/repo issues,pulls,statuses,public,releases,comments,reviews
+/github subscribe owner/repo
 
 # もういっぺん subscribe
 # これで OK
-# statuses, public らへんがいつからか無効になった
-/github subscribe owner/repo issues,pulls,releases,comments,reviews
+# statuses, public らへんがいつからか無効になった。
+# 昔は commits:all でメインブランチへの push を全部通知してくれてた気がするけれど、いつしか * で指定しないといけなくなってた。
+/github subscribe owner/repo issues,pulls,releases,comments,reviews,commits:'*'
 
 # unsubscribe
 # subscribe のオプションを付け直したいときも一度これを
