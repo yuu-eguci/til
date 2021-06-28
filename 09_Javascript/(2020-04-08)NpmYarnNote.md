@@ -25,6 +25,13 @@ npm install --package-lock-only
 
 # 削除(-g でグローバルから)
 npm uninstall PACKAGE -g
+
+# バージョンをアップデートするときのセット。
+# outdated で新しいバージョンが出ているものをチェック -> uninstall で package から削除 -> install することで最新が入る。
+# ただし、 npm-check-updates を使ってもっとシンプルにやるのがいいらしい。
+npm outdated
+npm uninstall PACKAGE
+npm install PACKAGE
 ```
 
 ### yarn
