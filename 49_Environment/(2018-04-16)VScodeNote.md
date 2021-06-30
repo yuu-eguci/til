@@ -253,3 +253,17 @@ code --list-extensions
 
 ## Sync : You cant edit GIST for user
 
+## Pylance による Import "" could not be resolved
+
+pipenv 環境での話。
+
+```bash
+pipenv --py  # --> 出たパスをコピーする
+```
+
+```json
+// .vscode/settings.json
+{
+    "python.pythonPath": "[コピペ]"
+}
+```
