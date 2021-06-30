@@ -79,7 +79,8 @@ SSL 証明書は複数 TLS/SSL settings に追加できるが、実際に適用�
     - `subscriptionId`
     - `resourceGroupName`
     - `name`
-- そうするとディレクトリに ptx が出現し、コンソールにはパスワードが表示される。
+- そうするとディレクトリに appservicecertificate.pfx が出現し、コンソールにはパスワードが表示される。
+    - このとき、「pfx が created と出ているのに出来ねえ」とめちゃくちゃキレたけど、それは↑の管理者権限がないときとかに発生する。
 - それらを、インポート先の AppService TLS/SSL settings にアップロードする。そのときのパスワードを入力する。
 
 ```powershell
