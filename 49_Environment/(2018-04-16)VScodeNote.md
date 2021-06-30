@@ -264,6 +264,6 @@ pipenv --py  # --> 出たパスをコピーする
 ```json
 // .vscode/settings.json
 {
-    "python.pythonPath": "[コピペ]"
+    "python.defaultInterpreterPath": "[コピペ]"
 }
 ```
