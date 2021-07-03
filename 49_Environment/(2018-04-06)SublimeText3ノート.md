@@ -262,6 +262,7 @@ Key binding のファイル記述に syntax error があった。これがある
 
 ```bash
 # Packages フォルダに移動してから。
+cd /Users/user/Library/Application Support/Sublime Text 3/Packages
 mkdir Default
 
 # keymap
