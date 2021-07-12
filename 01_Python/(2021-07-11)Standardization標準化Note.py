@@ -23,7 +23,7 @@ dic = {
 average = sum(dic.values()) / len(dic.values())
 # 点数の分散を出しておきます。(各数値の平均からの距離の二乗の平均)
 # NOTE: variance っていうらしいです。
-variance = sum(map(lambda v: (v - average) ** 2, dic.values())) / len(dic.values())
+variance = sum(map(lambda v: (average - v) ** 2, dic.values())) / len(dic.values())
 # 標準偏差を出しておきます。(「分散」のルート値。)
 # NOTE: standard_deviation っていうらしいです。
 standard_deviation = math.sqrt(variance)
