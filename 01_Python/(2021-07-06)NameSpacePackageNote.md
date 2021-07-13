@@ -26,8 +26,6 @@ print(A.B.C.E)  # -> AttributeError: module 'A' has no attribute 'B'
 ```python
 import A
 from A.B.C import D
-print(E)  # NameError: name 'E' is not defined
-          # わかる。
 print(A.B.C.E)  # -> <function E at 0x1048925e0>
                 # わからない。
                 # from A.B.C の時点で、 import A がパワーアップするってこと???
@@ -38,6 +36,7 @@ print(A.B.C.E)  # -> <function E at 0x1048925e0>
 ```python
 import A
 print(A.B)  # -> AttributeError: module 'A' has no attribute 'B'
+            # わかる。 B は名前空間パッケージなので参照できない。
 
 from A.B import C
 print(A.B)  # -> <module 'A.B' (namespace)>
@@ -64,7 +63,7 @@ print(A.B.C.E)
 
 ## 余談 - 似たような「わかりづらっ」
 
-`import os.path` で `os.path.***` 以外も使えるのわかりづらすぎない?
+`import os.path` で `os.***` が使えるのわかりづらすぎない?
 
 ```python
 import os.path
